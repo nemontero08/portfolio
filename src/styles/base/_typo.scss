@@ -1,0 +1,65 @@
+$bold: 900;
+$semibold: 600;
+:root{
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: $white;
+}
+
+@mixin txt-deco {
+} text-deco{
+    &::after{
+        content: "<";
+    }
+    &::after{
+        content: ">";
+    }
+    &::after,&::before{
+        text-shadow: $glow;
+    }
+}
+
+.glowing-txt{
+    text-shadow: $glow;
+}
+
+/*Mobile*/
+.titan{
+    font-size: 3rem;
+}
+
+h1,.title{
+    font-size: 2rem;
+}
+
+.titan,h1,.title{
+    font-weight: $bold;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+.small-txt{
+    font-size: 0.75;
+    color: $light-grey;
+}
+
+h2,.small-txt{
+    font-weight:$semibold;
+}
+
+.title,h2,.small-txt{
+    @include txt-deco();
+}
+
+@media only screen and (min-width: $desktop){
+    .titan{
+        font-size: 6rem;
+    }
+    
+    h1,.title{
+        font-size: 2.25rem;
+    }
+}
+
+
