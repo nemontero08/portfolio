@@ -1,0 +1,96 @@
+.logo{
+    display: none;
+}
+.navBar{
+    position: relative;
+    
+}
+nav{
+    background: rgba(31,31,31,0.1);
+    align-items:center;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    height: 7vh;
+    z-index: 1000;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.navList{
+    background: rgba(31,31,31,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    list-style: none;
+    margin-top: 0%;
+    padding: 0;
+    padding-top: 15%;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 350ms ease-in-out;
+    transform-style: preserve-3d;
+    width: 100%;
+    position: relative;
+    top:0%;
+    left: 0;
+    z-index: 9999;
+}
+.navItem{
+    padding: 2% 0;
+}
+.isOpen{
+    transform: translateX(0%);
+}
+.burgerButton{
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 5vh;
+    justify-content: center;
+    position: absolute;
+    right: 1rem;
+    top:1rem;
+    transition: all .5s ease-in-out;
+    width: 2rem;
+    z-index: 9999;
+    &::before,&::after{
+        content: ' ';
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        background: $orange;
+        transition: all .5s ease-in-out;
+    }
+    &::before{
+        transform: translateY(-9px);
+    }
+
+    &::after{
+        transform: translateY(9px);
+    }
+}
+.burger{
+    height: 10%;
+    width: 100%;
+    background:$orange;
+    transition: all .5s ease-in-out;
+}
+
+.burgerOpen{
+    .burger{
+        transform: translateX(50px);
+        background: transparent;
+    }
+    
+    &::before{
+        transform: rotate(45deg) ;
+        background: $orange;
+    }
+    &::after{
+        transform: rotate(-45deg);
+    }
+}
