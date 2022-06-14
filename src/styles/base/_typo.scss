@@ -32,13 +32,15 @@ $semibold: 600;
 /*Mobile*/
 .titan{
     font-size: 3rem;
+    line-height: 100%;
 }
 
 h1,.title{
     font-size: 2rem;
+    line-height: 120%;
 }
 
-.titan,h1,.title{
+h1,.title{
     font-weight: $bold;
 }
 
@@ -54,13 +56,14 @@ h2,.small-txt{
     font-weight:$semibold;
 }
 
-.title,h2,.small-txt{
+h2,.small-txt{
     @include txt-deco();
 }
 
 @media only screen and (min-width: $desktop){
     .titan{
         font-size: 4rem;
+        line-height: 20%;
     }
     
     h1,.title{

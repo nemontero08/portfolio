@@ -1,0 +1,27 @@
+.hero-cont{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero{
+    width: 80%;
+    max-width: 1000px;
+    justify-content: center;
+    .titan{
+        padding: 3% 0;
+    }
+
+}
+.last-txt{
+    margin-bottom: 6%;
+}
+@media only screen and (min-width: $desktop){
+    .last-txt{
+        margin-bottom: 3%;
+    }
+    .titan{
+        padding:0;
+    }
+}

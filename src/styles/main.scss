@@ -8,3 +8,11 @@
 @import './layout/navBar';
 //COMPONENTS
 @import './components/common/Btn';
+//VIEWS
+@import './views/hero';
+
+
+.box{
+    width: 100%;
+    height: 100vh;
+}

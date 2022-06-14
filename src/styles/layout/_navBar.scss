@@ -39,6 +39,10 @@ nav{
 }
 .navItem{
     padding: 2% 0;
+    a{
+        text-decoration: none;
+        color: $white;
+    }
 }
 .isOpen{
     transform: translateX(0%);
@@ -113,10 +117,13 @@ nav{
         margin-right: 5%;
         width: 70%;
         justify-content: end;
+        background: none;
+        backdrop-filter:none;
+        -webkit-backdrop-filter: none;
     }
     .navItem{
         padding: 0;
-        padding-left: 3%;
+        padding-right: 3%;
         cursor: pointer;
         width: fit-content;
     }

@@ -1,10 +1,12 @@
 
 interface BtnProps{
     text:string;
+    size:string;
+    url:string;
 }
-export const Btn = ({text}:BtnProps) => {
+export const Btn = ({text,size,url}:BtnProps) => {
     return (
-        <a className='btn' href=' '>{text}</a>
+        <a className={`btn ${size}`} href={url}>{text}</a>
     )
 }
 
