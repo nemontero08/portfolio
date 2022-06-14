@@ -5,14 +5,6 @@ export const Portfolio = () => {
     return (
         <>
             <NavBar/>
-            <h1 className='zfixed'>sdaaaaaaaaaa</h1>
-            <h1 className='zfixed'>sdaaaaaaaaaa</h1>
-            <h1 className='zfixed'>sdaaaaaaaaaa</h1>
-            <h1 className='zfixed'>sdaaaaaaaaaa</h1>
-            <h1 className='zfixed'>sdaaaaaaaaaa</h1>
-            <h1 className='zfixed'>sdaaaaaaaaaa</h1>
-            <h1 className='zfixed'>sdaaaaaaaaaa</h1>
-            <h1 className='zfixed'> sdaaaaaaaaaa</h1>
         </>
     )
 }

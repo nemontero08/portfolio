@@ -11,7 +11,7 @@ export const NavBar = () => {
 
     return (
     
-            <nav className='blur'>
+            <nav>
                 
                 <a className="logo glowing-txt" href=' '>Nicolas Montero</a>
 
