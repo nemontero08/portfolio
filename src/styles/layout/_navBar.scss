@@ -1,11 +1,11 @@
 .logo{
     display: none;
 }
-nav,.navList,.burgerButton{
+nav,.navList,.burgerBtn{
     display: flex;
     align-items:center;
 }
-nav,.burgerButton{
+nav,.burgerBtn{
     justify-content: center;
 }
 nav{
@@ -15,6 +15,7 @@ nav{
     position: fixed;
     width: 100%;
     z-index: 1000;
+    font-size: 0.8rem;
 }
 
 .navList{
@@ -42,7 +43,7 @@ nav{
 .isOpen{
     transform: translateX(0%);
 }
-.burgerButton{
+.burgerBtn{
     cursor: pointer;
     height: 5vh;
     position: absolute;
@@ -88,6 +89,7 @@ nav{
     }
 }
 
+
 @media only screen and (min-width: $desktop){
     .logo{
         display: flex;
@@ -108,13 +110,15 @@ nav{
         flex-direction: row;
         height: fit-content;
         padding: 0;
-        width: 50%;
-        margin-right: 8%;
+        margin-right: 5%;
+        width: 70%;
         justify-content: end;
     }
     .navItem{
+        padding: 0;
         padding-left: 3%;
         cursor: pointer;
+        width: fit-content;
     }
 }
 

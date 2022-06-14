@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Btn } from '../components/common/Btn';
 
 
 export const NavBar = () => {
@@ -20,11 +21,9 @@ export const NavBar = () => {
                     <li className='navItem txt-deco' >Sobre mi</li>
                     <li className='navItem txt-deco' >Proyectos</li>
                     <li className='navItem txt-deco' >Contacto</li>
-                    <li className='navItem '>
-                        <a href=' ' className='cv-btn'>Descargar CV</a>
-                    </li>
+                    <Btn text='Descargar CV'/>
                 </ul>
-                        <div className={`burgerButton ${isOpen ? `burgerOpen` : ``}`} onClick={handleMenu}>
+                        <div className={`burgerBtn ${isOpen ? `burgerOpen` : ``}`} onClick={handleMenu}>
                             <div className='burger'></div>
                         </div>
             </nav>
