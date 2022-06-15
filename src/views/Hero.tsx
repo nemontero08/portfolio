@@ -7,7 +7,7 @@ export const Hero = () => {
                 <p className="title">Hola, soy</p>
                 <h1 className="glowing-txt titan">NICOLAS MONTERO</h1>
                 <p className="title last-txt">Desarrollador Front-end</p>
-                <Btn size="btn-l" text="Contactame!" url="#contacto"/>
+                <Btn size="btn-l" text="Contactame!" url="#contacto" download={false}/>
             </div>
         </div>
     )
