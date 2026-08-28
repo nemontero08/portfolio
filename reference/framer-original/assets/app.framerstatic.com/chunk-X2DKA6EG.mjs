@@ -1,0 +1,2 @@
+import{$p as d,Yp as o,_p as n}from"https://app.framerstatic.com/chunk-KQ24V6PH.mjs";import{b as a}from"https://app.framerstatic.com/chunk-4JY5UMT2.mjs";function i(e){return n(e.timeline)}function s(e,r,t){return i(e)===r?!1:(a(e.tree===t.initialTree&&!d(e.timeline)&&!e.tree.hasUncommittedChanges(),"Cannot switch tree mode after tree data has been loaded because it would reset timeline data"),o(e.tree,r),e.timeline=t.createTimeline(r),t.resetTimeline&&e.timeline.reset(e.tree),!0)}export{i as a,s as b};
+//# sourceMappingURL=https://app.framerstatic.com/chunk-X2DKA6EG.mjs.map

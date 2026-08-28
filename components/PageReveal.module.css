@@ -1,0 +1,18 @@
+/*
+  The original site has NO load reveal at the 768–1023.98px tablet
+  breakpoint (`5u7pj5` in reference/specs/motion-reveals.md — its entry in
+  Framer's appear-animation JSON is `null`), confirmed live in
+  reference/specs/motion-confirmed.md #1.
+
+  This forces the final state at that breakpoint via a stylesheet
+  `!important`, which wins the cascade over Motion's inline style on every
+  frame it animates — so it applies from first paint with no JS timing gap
+  and no hydration mismatch, instead of waiting for a client-side viewport
+  check to run after mount.
+*/
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

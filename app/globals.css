@@ -1,0 +1,105 @@
+/*
+  Design tokens extracted from reference/specs/design-system-spec.html
+  (itself read from the compiled CSS of reference/framer-original).
+  The original site is the source of truth — these are not new values.
+*/
+
+:root {
+  /* Color tokens — surfaces */
+  --color-bg-0: #0e0e0e; /* page background */
+  --color-bg-1: #131313; /* base surface */
+  --color-bg-2: #191a1a; /* card surface (default) */
+  --color-bg-3: #1f2020; /* card hover / raised surface */
+  --color-bg-4: #252626; /* highest surface step */
+
+  /* Color tokens — text */
+  --color-text-primary: #e7e5e4; /* headings, body — off-white, never pure white */
+  --color-text-muted: #7a7775; /* secondary copy */
+  --color-text-faint: #4a4845; /* eyebrow labels, metadata */
+
+  /* Color tokens — accent */
+  --color-accent: #b7c4ff; /* links, role label, Let's Talk fill */
+  --color-accent-deep: #0038b6; /* text on accent fill (Let's Talk) */
+  --color-accent-soft: #b7c4ff12; /* pagination track fill, 7% alpha */
+
+  /* Color tokens — hairlines (inset shadows, never add layout width) */
+  --color-hairline: #4a484526; /* card edge, 15% alpha */
+  --color-hairline-strong: #4a484547; /* outlined button border, 28% alpha */
+
+  /* Color tokens — semantic (reserved, unused in current UI) */
+  --color-semantic-green: #2ea882;
+  --color-semantic-red: #e05a45;
+  --color-semantic-amber: #d4920a;
+  --color-semantic-purple: #9a7aff;
+
+  /* Color tokens — per-case-study accents */
+  --color-case-vitalmed: #0057b8;
+  --color-case-basalto: #d4c78f;
+  --color-case-lumine-gas: #0e76a8;
+
+  /* Typography — family (single family site-wide) */
+  --font-family-sans: var(--font-inter), Inter, sans-serif;
+
+  /* Typography — size scale */
+  --text-38: 38px; /* hero greeting ("Hello, I'm Nico") */
+  --text-26: 26px; /* section / case-study headline */
+  --text-19: 19px; /* card title, sub-heading */
+  --text-16: 16px; /* body copy, tagline */
+  --text-13: 13px; /* secondary body / description */
+  --text-12: 12px; /* UI default, metadata value */
+  --text-11: 11px; /* eyebrow label */
+  --text-10: 10px; /* caption / fine print */
+
+  /* Typography — weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Typography — line height */
+  --line-height-default: 1.2em; /* text blocks */
+  --line-height-tight: 100%; /* large numerals */
+  --line-height-compact: 1em; /* compact labels */
+
+  /* Typography — letter spacing (0 everywhere except eyebrow labels) */
+  --tracking-default: 0;
+  --tracking-eyebrow: 0.06em; /* uppercase eyebrow labels only */
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 10px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 24px;
+  --space-7: 32px;
+
+  /* Radii */
+  --radius-outer: 12px; /* outer cards */
+  --radius-inner: 20px; /* inner tiles / hero */
+  --radius-pill: 10px; /* pill controls */
+  --radius-round: 50px; /* fully-round controls */
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--color-bg-0);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--text-12);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-default);
+  letter-spacing: var(--tracking-default);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

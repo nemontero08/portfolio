@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Nico Montero Portfolio — Design System Spec</title>
+<style>
+body{background:#0e0e0e;color:#e7e5e4;font-family:Inter,sans-serif;max-width:920px;margin:0 auto;padding:48px 24px 120px;line-height:1.5}
+h1{font-size:32px;font-weight:600}
+h2{font-size:22px;font-weight:600;margin-top:56px;border-top:1px solid #4a484526;padding-top:32px}
+h3{font-size:16px;font-weight:600;color:#b7c4ff;margin-top:24px}
+p,li{color:#7a7775;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+td,th{border-bottom:1px solid #4a484526;padding:8px 10px;text-align:left;color:#e7e5e4}
+th{color:#4a4845;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.swatch{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px;box-shadow:inset 0 0 0 1px #4a484547}
+code{background:#191a1a;padding:2px 6px;border-radius:4px;font-size:12px;color:#e7e5e4}
+.note{font-size:12px;color:#4a4845;font-style:italic}
+</style></head><body>
+
+<h1>Nico Montero Portfolio — Design System Specification</h1>
+<p>Extracted directly from the original Framer export's compiled CSS (<code>index.html</code>, <code>how-i-work/index.html</code>, <code>vitalmed/index.html</code>). Values below are read from the source, not guessed. The original site is the source of truth; this formalizes what already exists — nothing here is a new visual direction.</p>
+
+<h2>1. Foundations &amp; principles</h2>
+<ul>
+<li>Typography-led hierarchy — one typeface (Inter), hierarchy from size/weight only.</li>
+<li>Monochrome dark base — five near-black surface steps, color reserved for one lavender accent and per-case-study tints.</li>
+<li>Editorial, report-style case studies — procedural section labels ("THE PROBLEM", "CONSTRAINTS") over marketing copy.</li>
+<li>Numbers as evidence — stats always paired with what they mean, never decorative.</li>
+<li>Restrained borders — hairlines are inset shadows, never add layout width.</li>
+<li>Large radii relative to element size — nothing sharp-cornered.</li>
+<li>Motion as confirmation, not spectacle — short fades/lifts, no bounce or elaborate stagger.</li>
+</ul>
+
+<h2>2. Color tokens</h2>
+<p>Read from <code>body{--token-*}</code> custom properties, shared across all three pages.</p>
+<table><tr><th>Token</th><th>Hex</th><th>Swatch</th><th>Use</th></tr>
+<tr><td>bg-0</td><td>#0e0e0e</td><td><span class="swatch" style="background:#0e0e0e"></span></td><td>Page background</td></tr>
+<tr><td>bg-1</td><td>#131313</td><td><span class="swatch" style="background:#131313"></span></td><td>Base surface</td></tr>
+<tr><td>bg-2</td><td>#191a1a</td><td><span class="swatch" style="background:#191a1a"></span></td><td>Card surface (default)</td></tr>
+<tr><td>bg-3</td><td>#1f2020</td><td><span class="swatch" style="background:#1f2020"></span></td><td>Card hover / raised surface</td></tr>
+<tr><td>bg-4</td><td>#252626</td><td><span class="swatch" style="background:#252626"></span></td><td>Highest surface step</td></tr>
+<tr><td>text-primary</td><td>#e7e5e4</td><td><span class="swatch" style="background:#e7e5e4"></span></td><td>Headings, body — off-white, never pure white</td></tr>
+<tr><td>text-muted</td><td>#7a7775</td><td><span class="swatch" style="background:#7a7775"></span></td><td>Secondary copy</td></tr>
+<tr><td>text-faint</td><td>#4a4845</td><td><span class="swatch" style="background:#4a4845"></span></td><td>Eyebrow labels, metadata</td></tr>
+<tr><td>accent</td><td>#b7c4ff</td><td><span class="swatch" style="background:#b7c4ff"></span></td><td>Links, role label, Let's Talk fill</td></tr>
+<tr><td>accent-deep</td><td>#0038b6</td><td><span class="swatch" style="background:#0038b6"></span></td><td>Text on accent fill (Let's Talk)</td></tr>
+<tr><td>accent-soft</td><td>#b7c4ff12 (7% alpha)</td><td></td><td>Pagination track fill</td></tr>
+<tr><td>hairline</td><td>#4a484526 (15% alpha)</td><td></td><td>Card edge (inset shadow)</td></tr>
+<tr><td>hairline-strong</td><td>#4a484547 (28% alpha)</td><td></td><td>Outlined button border</td></tr>
+</table>
+<p class="note">Semantic tokens present but unused in any visible UI (reserved for future states): green #2ea882, red #e05a45, amber #d4920a, purple #9a7aff.</p>
+<p class="note">Per-case-study accent colors: Vitalmed #0057b8, Basalto #d4c78f (gold), Lumine Gas #0e76a8.</p>
+
+<h2>3. Typography tokens</h2>
+<p>Single family: <b>Inter</b> (site-wide, no secondary typeface for UI). Real font sizes found in the compiled CSS:</p>
+<table><tr><th>Size</th><th>Typical use</th></tr>
+<tr><td>38px</td><td>Hero greeting ("Hello, I'm Nico")</td></tr>
+<tr><td>26px</td><td>Section / case-study headline</td></tr>
+<tr><td>19px</td><td>Card title, sub-heading</td></tr>
+<tr><td>16px</td><td>Body copy, tagline</td></tr>
+<tr><td>13px</td><td>Secondary body / description</td></tr>
+<tr><td>12px</td><td>UI default, metadata value</td></tr>
+<tr><td>11px</td><td>Eyebrow label</td></tr>
+<tr><td>10px</td><td>Caption / fine print</td></tr>
+</table>
+<p>Weights in use: <b>300, 400, 500, 600, 700</b> (400 body, 500 medium UI, 600 headings/emphasis, 700 stats/bold accents, 300 rare light use). Line-heights: <code>1.2em</code> default for text blocks, <code>100%</code> tight for large numerals, <code>1em</code> for compact labels. Letter-spacing is 0 everywhere except eyebrow labels, which track open (~0.06em) with uppercase transform — the only place tracking/caps appear.</p>
+
+<h2>4. Spacing &amp; radius tokens</h2>
+<p>Consistent with the numeric scale already documented in the attached design system: 4 / 8 / 10 / 12 / 16 / 24 / 32px. Radii confirmed directly in the compiled CSS: <b>12px</b> (outer cards) and <b>20px</b> (inner tiles/hero); pill (10px) and fully-round (50px) controls come from the pagination/tag components per the same source.</p>
+
+<h2>5. Layout &amp; breakpoints</h2>
+<p>Confirmed directly from <code>@media</code> rules shared by all three pages — five tiers, <code>min-width</code>-based with a <code>.98px</code> max-width cap just below the next tier:</p>
+<table><tr><th>Breakpoint</th><th>Range</th></tr>
+<tr><td>375</td><td>375px – 424.98px</td></tr>
+<tr><td>425</td><td>425px – 767.98px</td></tr>
+<tr><td>768</td><td>768px – 1023.98px</td></tr>
+<tr><td>1024</td><td>1024px – 1439.98px</td></tr>
+<tr><td>1440</td><td>1440px+</td></tr>
+</table>
+<p class="note">These are NOT conventional Bootstrap/Tailwind breakpoints — they're Framer's own device-tier defaults, and the original per-element overrides at each tier are numerous; treat this table as the tier boundaries, not a full override log.</p>
+
+<h2>6. Motion</h2>
+<p>The compiled static CSS carries no <code>transition</code>/<code>box-shadow</code> declarations — Framer drives motion via its runtime JS (Motion library), not CSS. The values below are read from the visible initial-state markup and match what's already documented in the attached design system: section reveals fade+rise (~600ms, ease-out, no bounce), hover transitions on buttons/links are short (120–200ms) color/lift changes. Treat these as a faithful approximation of the runtime behavior, not extracted spring/easing constants — the minified bundle does not expose them as readable values.</p>
+
+<h2>7–9. Components &amp; states</h2>
+<p>Inventory matches what's catalogued in the bound design system (<code>Button</code>, <code>LinkedInCard</code>, <code>Pill</code>, <code>SectionEyebrow</code>, <code>GlassCard</code>, <code>CaseStudyCard</code>, <code>TestimonialCard</code>/slider, <code>HowItWorkStep</code>, <code>HowItWorkTeaser</code>, <code>BackLink</code>, <code>LetsTalkCard</code>) — each maps to a real repeated pattern verified against all three exported pages, not invented. No new components are proposed here.</p>
+
+<h2>10–11. Responsive &amp; interaction patterns</h2>
+<p>Same as documented in the attached design-system guide: hover lightens one surface step (bg-2→bg-3) and/or lifts 1–2px; the Resume tile's arrow nudges up-right; the LinkedIn tile's flourish draws in via stroke animation; the How I Work circular button fills solid on hover; case-study tiles darken their tint slightly on hover. No color inversion, no shrink-on-press.</p>
+
+<h2>12. Caveats</h2>
+<ul>
+<li>Motion timing/easing are approximated from markup, not extracted from the minified Framer Motion runtime.</li>
+<li>Per-breakpoint pixel overrides exist in the hundreds across the export; this spec captures the five tier boundaries, not every override.</li>
+<li>Fonts are served via Google Fonts Inter, not the original per-glyph split <code>.woff2</code> files Framer generated — visually identical, not byte-identical.</li>
+</ul>
+
+</body></html>

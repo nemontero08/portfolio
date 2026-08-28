@@ -1,0 +1,166 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Component &amp; Motion Spec — Nico Montero Portfolio</title>
+<style>
+body{background:#0e0e0e;color:#e7e5e4;font-family:Inter,sans-serif;max-width:960px;margin:0 auto;padding:48px 24px 120px;line-height:1.55}
+h1{font-size:30px;font-weight:600}
+h2{font-size:21px;font-weight:600;margin-top:52px;border-top:1px solid #4a484526;padding-top:28px}
+h3{font-size:16px;font-weight:600;color:#b7c4ff;margin-top:28px}
+h4{font-size:13px;font-weight:600;color:#e7e5e4;margin-top:16px;text-transform:uppercase;letter-spacing:.05em}
+p,li{color:#7a7775;font-size:13px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12.5px}
+td,th{border-bottom:1px solid #4a484526;padding:7px 9px;text-align:left;color:#e7e5e4;vertical-align:top}
+th{color:#4a4845;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em}
+code{background:#191a1a;padding:2px 6px;border-radius:4px;font-size:12px;color:#e7e5e4}
+.na{color:#4a4845;font-style:italic}
+.recover{color:#4a4845;font-style:italic;font-size:12px}
+.comp{background:#191a1a;border-radius:12px;padding:20px 24px;margin:16px 0;box-shadow:inset 0 0 0 1px #4a484526}
+</style></head><body>
+
+<h1>Component &amp; Motion Specification</h1>
+<p>Second extraction pass on the Nico Montero portfolio — focused on component behavior and interaction, not foundations. Grounded in the compiled export CSS/HTML from <code>index.html</code>, <code>how-i-work/index.html</code>, <code>vitalmed/index.html</code>. Where the export doesn't expose a runtime (Framer Motion) value in static markup, it is marked <span class="na">runtime value not recoverable from export</span> rather than guessed.</p>
+
+<h2>1. Component specifications</h2>
+
+<div class="comp"><h3>Button (Resume tile)</h3>
+<h4>Anatomy</h4><p>Container (tile) → label text + trailing arrow icon.</p>
+<h4>Variants</h4><p>Tile (filled surface, used for Resume) · Inline (text link, used inside body copy — underline-free, color-only).</p>
+<h4>States</h4><p>Default: bg-2, text-primary label, arrow static. Hover: bg lightens to bg-3, arrow nudges up-right. Focus/disabled: not present in export (no visible focus ring or disabled tile in source).</p>
+<h4>Responsive</h4><p>No layout change across tiers — same tile proportions 375→1440; only the surrounding row wraps to full width below 768.</p>
+<h4>Layout</h4><p>Inline-flex, gap 10px, padding ~14×20px, radius 12px.</p>
+<h4>Typography / Color</h4><p>13px/500, text-primary on bg-2/bg-3.</p>
+</div>
+
+<div class="comp"><h3>LinkedIn Card</h3>
+<h4>Anatomy</h4><p>Container → LinkedIn mark (SVG) → label → decorative flourish path (drawn stroke, right-aligned).</p>
+<h4>Variants</h4><p>Single variant, footer-only.</p>
+<h4>States</h4><p>Default: flourish path invisible (stroke-dashoffset at full length). Hover: flourish draws itself in.</p>
+<h4>Responsive</h4><p>No structural change; sits in the same footer row as Resume, stacks below 768 with it.</p>
+<h4>Layout</h4><p>Flex row, gap 12px, padding 16px, radius 12px.</p>
+<h4>Typography / Color</h4><p>13px/500 text-primary; icon and flourish inherit text-primary as stroke/fill.</p>
+</div>
+
+<div class="comp"><h3>Pill</h3>
+<h4>Anatomy</h4><p>Single text node in a rounded chip, no icon by default (NDA badge on Vitalmed adds a 🔒 emoji inline).</p>
+<h4>Variants</h4><p>Default (50% black on dark card) · on-tint (used over case-study color washes, same recipe).</p>
+<h4>States</h4><p>Static — no hover/active state observed; pills are informational, not interactive.</p>
+<h4>Responsive</h4><p>Wraps via flex-wrap in tag groups below 768; no size change.</p>
+<h4>Layout</h4><p>Inline-flex, padding 6×12px, radius 10px, gap 6px.</p>
+<h4>Typography / Color</h4><p>10px/500, text-primary.</p>
+</div>
+
+<div class="comp"><h3>Section Eyebrow</h3>
+<h4>Anatomy</h4><p>Single uppercase label, no icon.</p>
+<h4>States</h4><p>Static, non-interactive.</p>
+<h4>Responsive</h4><p>No change across tiers.</p>
+<h4>Typography / Color</h4><p>11px/600, text-faint, uppercase, ~0.06em tracking — the only tracked/uppercase text in the system.</p>
+</div>
+
+<div class="comp"><h3>Glass Card</h3>
+<h4>Anatomy</h4><p>Base surface — no header/footer chrome, just padded content; every other card composes on top of this.</p>
+<h4>Variants</h4><p>Default (bg-2) · About/Lab variant with a background image instead of flat fill.</p>
+<h4>States</h4><p>Static in most uses (Hero, About, What-I-Do tiles); interactive only where wrapped by a link (How-I-Work teaser, Case Study, Vitalmed meta cards are static).</p>
+<h4>Responsive</h4><p>Grid reflows from multi-column (1440/1024) to single column below 768; padding stays constant (no responsive padding scale observed).</p>
+<h4>Layout</h4><p>Radius 12px, shadow: 3-layer soft ambient + 1px inset "hairline" shadow (never adds to box width).</p>
+</div>
+
+<div class="comp"><h3>Case Study Card</h3>
+<h4>Anatomy</h4><p>Tinted container → (optional) "under construction" badge or eyebrow pill, top-right/left → title → tag pill row, bottom.</p>
+<h4>Variants</h4><p>Live (linked, e.g. Vitalmed) · Coming-soon (Basalto, Lumine Gas — non-interactive, badge shown, no href).</p>
+<h4>States</h4><p>Default: case-study color at ~60% opacity wash. Hover (live only): tint darkens/intensifies slightly, card lifts; cursor indicates link. Coming-soon cards show no hover change (not clickable).</p>
+<h4>Responsive</h4><p>3-column grid at 1024/1440 → single column stack below 768; card min-height and tag wrapping adjust, title stays same weight/size.</p>
+<h4>Layout</h4><p>Radius 20px, min-height ~220px, flex column justify-between, padding 20px.</p>
+<h4>Typography / Color</h4><p>Title 19px/600 white; tags via Pill (10px/500); accent = the project's own brand hue, not the site accent.</p>
+</div>
+
+<div class="comp"><h3>Testimonial Card</h3>
+<h4>Anatomy</h4><p>Quote text → name → role, stacked.</p>
+<h4>States</h4><p>Static content; only the slider container is interactive.</p>
+<h4>Responsive</h4><p>Card width fixed (~280px) across tiers; how many are visible per viewport changes with container width, not the card itself.</p>
+<h4>Typography / Color</h4><p>Quote 13px/400 text-primary; name 13px/600; role 10px/400 text-muted.</p>
+</div>
+
+<div class="comp"><h3>Testimonial Slider</h3>
+<h4>Anatomy</h4><p>Horizontal track of Testimonial Cards → pagination control (dot track + prev/next).</p>
+<h4>Navigation</h4><p>Click dot → jump to that slide. Click prev/next → step ±1 with wraparound.</p>
+<h4>Transition</h4><p><span class="na">Exact easing/duration of the slide transition is runtime value not recoverable from export</span> — the original uses Framer Motion's drag/swipe carousel; static markup only shows the resting state.</p>
+<h4>Drag</h4><p>Original site supports drag/swipe on the track (Framer's default carousel behavior); exact velocity/threshold constants are not recoverable from export.</p>
+<h4>Responsive</h4><p>Desktop shows multiple cards abreast with partial peek of the next card; narrow tiers (≤425) show one card at a time.</p>
+</div>
+
+<div class="comp"><h3>How It Work Step</h3>
+<h4>Anatomy</h4><p>Index numeral → phase eyebrow → title → description, stacked in a card.</p>
+<h4>States</h4><p>Static — no hover interaction observed on the step cards themselves.</p>
+<h4>Responsive</h4><p>4-column grid at 1024/1440 → 2-column at 768 → 1-column below 425.</p>
+<h4>Typography / Color</h4><p>Index 19px/700 text-faint; phase 11px/600 accent, uppercase; title 19px/600 text-primary; description 13px/400 text-muted.</p>
+</div>
+
+<div class="comp"><h3>How It Work Teaser</h3>
+<h4>Anatomy</h4><p>Title + subtitle block, left → circular outline arrow button, right.</p>
+<h4>States</h4><p>Default: outline circle, transparent fill. Hover: circle fills solid accent, arrow color inverts to bg-0 for contrast.</p>
+<h4>Responsive</h4><p>Row stays horizontal down to 425; circle size constant (48px) — the one element that doesn't shrink on mobile.</p>
+</div>
+
+<div class="comp"><h3>Back Link</h3>
+<h4>Anatomy</h4><p>Left-chevron icon + "Home" label, inline.</p>
+<h4>States</h4><p>Default: text-muted. Hover: text-primary (simple color step, no icon motion detected).</p>
+<h4>Responsive</h4><p>No change; always top-left of sub-page content.</p>
+</div>
+
+<div class="comp"><h3>Let's Talk Card</h3>
+<h4>Anatomy</h4><p>Accent-filled card → title "Let's talk" → click-to-copy email pill (Space Grotesk Bold).</p>
+<h4>States</h4><p>Default: pill on translucent black-over-accent fill. Hover: <span class="na">no visible hover treatment change beyond the browser's default pointer cursor is present in static markup</span>. Active/click: a "Copied!" confirmation string appears next to the email after click — this is the one component with genuine JS state (clipboard write), confirmed by its script wiring, not just CSS.</p>
+<h4>Responsive</h4><p>Row wraps to stacked layout (title above pill) below 768.</p>
+<h4>Typography / Color</h4><p>Title 19px/600 accent-deep on accent fill; email pill 13px bold Space Grotesk, accent-deep on ~8% black overlay.</p>
+</div>
+
+<h2>2. Motion / interaction extraction</h2>
+<p>The compiled export ships zero <code>cubic-bezier</code>, <code>transition</code>, or component-specific <code>transform</code> declarations in static CSS — Framer's runtime (Motion library, loaded as a separate <code>.mjs</code> bundle) drives all of the animations below via JS, not stylesheet rules. Every timing/easing value in this section is therefore <span class="na">runtime value not recoverable from export</span> unless stated otherwise; what follows documents the observable before/after states from the DOM, which is what is actually recoverable.</p>
+
+<table>
+<tr><th>Interaction</th><th>Trigger</th><th>Initial state</th><th>Final state</th><th>Timing/easing</th></tr>
+<tr><td>Resume tile hover</td><td>Pointer enter</td><td>bg-2, arrow at rest</td><td>bg-3, arrow translated up-right ~2px</td><td class="recover">not recoverable</td></tr>
+<tr><td>LinkedIn flourish</td><td>Pointer enter</td><td>stroke-dashoffset = full path length (invisible)</td><td>stroke-dashoffset = 0 (fully drawn)</td><td class="recover">not recoverable</td></tr>
+<tr><td>How-I-Work teaser circle</td><td>Pointer enter</td><td>outline circle, transparent fill</td><td>solid accent fill, icon color inverted</td><td class="recover">not recoverable</td></tr>
+<tr><td>Case study card hover</td><td>Pointer enter</td><td>tint ~60% opacity</td><td>tint intensified, slight lift</td><td class="recover">not recoverable</td></tr>
+<tr><td>Section scroll reveal</td><td>Element enters viewport</td><td>opacity 0, translateY ~150px (sections) / ~10px (small elements)</td><td>opacity 1, translateY 0</td><td class="recover">not recoverable — visible only as initial/final markup, no JS spring constants exposed</td></tr>
+<tr><td>Let's Talk copy</td><td>Click</td><td>email pill only</td><td>"Copied!" text appended</td><td>JS state toggle, ~1.5s auto-revert (confirmed behavior, not a CSS transition)</td></tr>
+<tr><td>Testimonial slide change</td><td>Dot click / arrow click / drag</td><td>current card in view</td><td>target card scrolled into view</td><td class="recover">not recoverable — carousel is Framer Motion drag-driven</td></tr>
+</table>
+
+<h3>Cursor</h3>
+<p>No custom cursor component exists in the export (<code>data-framer-name</code> inventory across all pages contains no cursor-related entry, and no cursor-follower markup is present). The attached design-system guide's mention of "custom cursor behavior if present" does not apply here — treat any custom-cursor claim as not part of this site.</p>
+
+<h2>3. Motion tokens</h2>
+<table><tr><th>Token</th><th>Value</th><th>Basis</th></tr>
+<tr><td>motion-hover</td><td class="recover">not recoverable (JS-driven)</td><td>Button/card hover color+lift changes — real, repeated pattern, but exact ms/easing not exposed</td></tr>
+<tr><td>motion-reveal</td><td class="recover">not recoverable (JS-driven)</td><td>Section fade+rise on scroll — real, repeated pattern</td></tr>
+<tr><td>motion-copy-feedback</td><td>~1500ms visible, then reverts</td><td>Let's Talk "Copied!" — the one timing value actually observable (JS setTimeout-style behavior)</td></tr>
+</table>
+<p>No <code>motion-fast/standard/slow</code> or spring tokens are proposed beyond the above — inventing numeric values for the hover/reveal rows would contradict the instruction not to guess. If exact figures are required, they must come from reading the unminified Framer Motion bundle at runtime (e.g. instrumenting the live site), not from this static export.</p>
+
+<h2>4. Responsive component matrix</h2>
+<table>
+<tr><th>Component</th><th>375</th><th>425</th><th>768</th><th>1024</th><th>1440</th></tr>
+<tr><td>Hero</td><td>Stacked: greeting → tagline → profile row</td><td>same</td><td>Row layout begins: greeting/tagline left, profile right</td><td>same, more breathing room</td><td>same, max content width reached</td></tr>
+<tr><td>What-I-Do grid</td><td>1 column</td><td>1 column</td><td>2 columns</td><td>3 columns</td><td>3 columns</td></tr>
+<tr><td>Case Study grid</td><td>1 column, full width</td><td>1 column</td><td>2 columns</td><td>3 columns</td><td>3 columns</td></tr>
+<tr><td>About / Lab</td><td>1 column stack</td><td>1 column</td><td>1 column</td><td>2 columns (2:1)</td><td>2 columns (2:1)</td></tr>
+<tr><td>Testimonial slider</td><td>1 card visible</td><td>1 card visible</td><td>~1.5 cards (peek)</td><td>~2 cards</td><td>~2–3 cards</td></tr>
+<tr><td>How It Work steps</td><td>1 column</td><td>1 column</td><td>2 columns</td><td>4 columns</td><td>4 columns</td></tr>
+<tr><td>Footer (Resume/LinkedIn/Let's Talk)</td><td>Stacked, full width</td><td>Stacked</td><td>Stacked</td><td>Row</td><td>Row</td></tr>
+</table>
+
+<h2>5. Implementation guidance</h2>
+<h3>Component boundaries</h3>
+<p>Match the inventory above 1:1 — one React component per row, no merging look-alikes (e.g. Pill stays generic and is reused by Case Study tags and the NDA badge, rather than forking a second "Badge" component).</p>
+<h3>Token structure</h3>
+<p>Keep the three-tier token model already in <code>tokens/</code>: raw values (hex/px) → semantic CSS custom properties (<code>--bg-2</code>, <code>--text-muted</code>) → component-level usage via <code>var()</code>. Do not flatten case-study accent colors into the shared palette — they're per-project, not system tokens.</p>
+<h3>CSS strategy</h3>
+<p>CSS Modules per component (already the pattern in <code>portfolio-web/</code>), values taken verbatim from Section 1 above rather than re-approximated. Reserve global <code>globals.css</code> for tokens + resets only.</p>
+<h3>Responsive strategy</h3>
+<p>Five explicit breakpoints (375/425/768/1024/1440) as <code>max-width</code> media queries per component's module, matching the matrix in Section 4 — not a generic 2-breakpoint mobile/desktop split.</p>
+<h3>Animation strategy</h3>
+<p>Since exact runtime timing isn't recoverable, implement hover/reveal motion with Motion for React (already a documented dependency) using the observable before/after states from Section 2, and pick timing/easing values that read as "restrained, no bounce" per the design system's existing motion principle — treat those as reasonable defaults, not extracted constants, and flag them for a visual diff pass against the live Framer site once one is available.</p>
+<h3>State management</h3>
+<p>Only two components need real state: Testimonial Slider (current index) and Let's Talk Card (copied flag + timeout). Everything else is stateless/presentational — no global store needed.</p>
+
+</body></html>
