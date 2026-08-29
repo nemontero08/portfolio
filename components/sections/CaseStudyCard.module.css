@@ -1,0 +1,65 @@
+.card {
+  border-radius: var(--radius-outer); /* 12px */
+  padding: var(--space-6); /* 24px */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+/* Confirmed: active (linked) cards get cursor:pointer, same as any link. */
+.active {
+  cursor: pointer;
+}
+
+/*
+  Confirmed unconditional in the compiled CSS for both under-construction
+  cards (Basalto, Lumine Gas) — the native cursor is hidden over the whole
+  card whenever it's actually being hovered (cursor:none only matters while
+  hovering that element anyway), so only the cursor-follow pill shows.
+*/
+.underConstruction {
+  cursor: none;
+}
+
+.eyebrow {
+  font-size: var(--text-11);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  margin: 0 0 var(--space-1);
+}
+
+.heading {
+  font-size: var(--text-19);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-default);
+  margin: 0;
+}
+
+.heading strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.imagePlaceholder {
+  border-radius: var(--radius-inner); /* 20px */
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-10);
+  color: inherit;
+  opacity: 0.6;
+  flex: 1;
+  min-height: 80px;
+}

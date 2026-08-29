@@ -1,0 +1,27 @@
+/*
+  reference/framer-original/index.html's .framer-8z2bhi ("Body") — measured
+  directly from the compiled CSS (reference/specs — not eyeballed):
+  12-column x 8-row grid, gap 12px (8px at the 1024 tier), switching to a
+  single-column stack at <1024px.
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(50px, 1fr));
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  gap: var(--space-4); /* 12px */
+  width: 100%;
+}
+
+@media (min-width: 1024px) and (max-width: 1439.98px) {
+  .grid {
+    gap: var(--space-2); /* 8px */
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,69 @@
+.card {
+  background: var(--color-bg-2);
+  border-radius: var(--radius-outer);
+  padding: var(--space-6); /* 24px, confirmed */
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* confirmed */
+}
+
+.title {
+  font-size: 20px; /* confirmed */
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+.description {
+  font-size: var(--text-13); /* 13px, confirmed */
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Floating icon button — confirmed via DevTools. */
+.circle {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  z-index: 1;
+  border-radius: 100%;
+  border: 1px solid currentColor;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circleIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/*
+  .framer-1rk6xyr — the gear, parked outside the card and clipped by
+  .card's overflow:clip (same mechanism as the Resume document graphic).
+  reference/specs/gear.svg, real viewBox 174.261x184.067, fill already
+  rgba(204,204,204,0.4) as authored.
+*/
+.gear {
+  position: absolute;
+  bottom: -92px;
+  left: -88px;
+  width: 174px;
+  height: 184px;
+  transform-origin: 50% 50%;
+}

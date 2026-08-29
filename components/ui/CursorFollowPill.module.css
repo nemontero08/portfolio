@@ -1,0 +1,26 @@
+/*
+  Confirmed values from the original's "Under construction" pill
+  (assets/.../ZITs4QJDF.DGGAzRZZ.mjs and compiled CSS). position:fixed since
+  the original tracks viewport clientX/clientY, not card-relative
+  coordinates; translate(-50%,-50%) centers it on the pointer.
+*/
+.pill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgb(36, 36, 36);
+  color: rgb(204, 204, 204);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 20px;
+  padding: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 9999;
+}

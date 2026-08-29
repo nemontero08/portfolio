@@ -1,0 +1,60 @@
+.button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+/*
+  .framer-da59x7 ("btn_cont") — this is what clips the oversized,
+  absolutely-positioned document graphic. overflow:hidden lives only here.
+*/
+.pill {
+  background: var(--color-bg-2); /* #191a1a, confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+  padding: var(--space-7) 0 var(--space-7) var(--space-6); /* 32px 0 32px 24px, confirmed */
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-4);
+}
+
+.label {
+  font-size: var(--text-19);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+  z-index: 1;
+}
+
+/*
+  .framer-1lt0w37 ("Con") — the document graphic's own positioned container.
+  Sits absolute against .pill (also position:relative), parked outside the
+  visible area at rest and clipped by .pill's overflow:hidden; slides into
+  view on hover. bottom/right/height/gap are owned by the Motion variants in
+  ResumeButton.tsx — confirmed via live DevTools inspection, not guessed.
+*/
+.docContainer {
+  position: absolute;
+  width: min-content;
+  display: flex;
+  flex-flow: row;
+  overflow: visible;
+}
+
+/*
+  Real artwork (reference/specs/resume-doc.svg), intrinsic 97.648x99.955 —
+  sized to that exact ratio via aspect-ratio so width auto-derives from the
+  parent's animated height. Since the box already matches the SVG's own
+  ratio, preserveAspectRatio="none" on the <svg> itself (matching the
+  original's technique) can't visibly distort it.
+*/
+.document {
+  height: 100%;
+  aspect-ratio: 97.648 / 99.955;
+  flex-shrink: 0;
+}

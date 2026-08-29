@@ -1,0 +1,50 @@
+.card {
+  /* background-color is owned by LinkedInCard.tsx's Motion variants (rest/hover) */
+  position: relative;
+  overflow: clip;
+  border-radius: var(--radius-outer);
+  padding: var(--space-6);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.label {
+  font-size: var(--text-19);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+  z-index: 1;
+}
+
+/*
+  data-name="drawingContainer" in the original — a plain, unpositioned flex
+  child (opacity only). It contributes no size of its own; the mark below is
+  absolutely positioned against the card (the nearest positioned ancestor),
+  not against this wrapper.
+*/
+.drawingContainer {
+  opacity: 1;
+}
+
+/*
+  The real mark (viewBox 0 0 210.048 241.69), rendered as a background-image
+  data URI — NOT an inline <svg> — exactly like the original. It's sized to
+  its full 210x242 intrinsic size and deliberately overflows the 60px-tall
+  card; the card's own `overflow: clip` above does the clipping, matching
+  the original rather than shrinking the image to fit.
+*/
+.mark {
+  position: absolute;
+  bottom: -80px;
+  right: -16px;
+  width: 210px;
+  height: 242px;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}

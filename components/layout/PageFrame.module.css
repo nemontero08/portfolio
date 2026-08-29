@@ -1,0 +1,49 @@
+/*
+  reference/framer-original/index.html's `.framer-tniSq.framer-72rtr7` —
+  measured directly from the compiled CSS. The original doesn't scale
+  fluidly; it steps between fixed pixel widths at each of its own five
+  breakpoint tiers (design-system-spec.html's caveat: "NOT conventional
+  Bootstrap/Tailwind breakpoints"). We reproduce that as a stepped
+  max-width rather than a single fluid width, which is the same effect for
+  any viewport at or above 1440px (centered, letterboxed) and very close to
+  it in between tiers.
+*/
+.frame {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--space-7); /* 32px */
+}
+
+@media (min-width: 1024px) and (max-width: 1439.98px) {
+  .frame {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .frame {
+    max-width: 768px;
+    padding: var(--space-6); /* 24px */
+  }
+}
+
+@media (min-width: 425px) and (max-width: 767.98px) {
+  .frame {
+    max-width: 425px;
+    padding: var(--space-5) var(--space-5) var(--space-7); /* 16px 16px 32px */
+  }
+}
+
+@media (min-width: 375px) and (max-width: 424.98px) {
+  .frame {
+    max-width: 375px;
+    padding: var(--space-6) var(--space-5); /* 24px 16px */
+  }
+}
+
+@media (max-width: 374.98px) {
+  .frame {
+    max-width: 320px;
+    padding: var(--space-6) var(--space-5); /* 24px 16px */
+  }
+}
