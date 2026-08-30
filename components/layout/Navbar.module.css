@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-7);
+}
+
+.brand {
+  font-size: var(--text-13);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.langSwitch {
+  display: flex;
+  align-items: center;
+  background: var(--color-bg-2);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  gap: 2px;
+}
+
+.langOption {
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--text-11);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.langOptionActive {
+  background: var(--color-bg-4);
+  color: var(--color-text-primary);
+}

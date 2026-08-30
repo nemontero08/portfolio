@@ -5,58 +5,71 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: var(--space-6);
+  gap: var(--space-5);
   width: 100%;
   height: 100%;
 }
 
-.hi {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.greeting {
-  font-size: var(--text-38);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-tight);
-  margin: 0;
-}
-
-.wave {
-  font-size: var(--text-26);
-  margin: 0;
-}
-
-.headline {
-  font-size: var(--text-26);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-default);
-  margin: 0;
-  color: var(--color-text-muted);
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-round);
-  background: var(--color-bg-4);
-  flex-shrink: 0;
-}
-
-.role {
-  display: flex;
-  gap: var(--space-2);
-  font-size: var(--text-11);
-  font-weight: var(--font-weight-semibold);
+.eyebrow {
+  font-family: var(--font-family-mono);
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: var(--tracking-eyebrow);
-  color: var(--color-accent);
+  color: var(--color-text-muted); /* #7a7775 */
   margin: 0;
+}
+
+.title {
+  font-family: var(--font-hanken-grotesk), var(--font-family-sans);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: var(--line-height-default);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/*
+  Underline accent on "how they work" specifically — a separate thin bar
+  positioned below the text via ::after (not text-decoration, not a
+  background/highlight behind the text; text color is untouched).
+  inline-block lets the bar's left/right:0 track the text's own width, so
+  it stays aligned to those words rather than a fixed-width bar that could
+  drift.
+*/
+.underline {
+  position: relative;
+  display: inline-block;
+}
+.underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px; /* small gap below the text */
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+.description {
+  font-size: 18px;
+  color: var(--color-text-primary); /* #e7e5e4 */
+  line-height: var(--line-height-default);
+  margin: 0;
+  max-width: 56ch;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.pill {
+  font-family: var(--font-family-mono);
+  font-size: var(--text-11);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-4);
 }

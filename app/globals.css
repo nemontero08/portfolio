@@ -39,6 +39,8 @@
 
   /* Typography — family (single family site-wide) */
   --font-family-sans: var(--font-inter), Inter, sans-serif;
+  /* mono accent for the new hero's eyebrow/pills — system stack, no webfont */
+  --font-family-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
 
   /* Typography — size scale */
   --text-38: 38px; /* hero greeting ("Hello, I'm Nico") */

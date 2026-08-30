@@ -1,13 +1,16 @@
 /*
-  reference/framer-original/index.html's .framer-8z2bhi ("Body") — measured
-  directly from the compiled CSS (reference/specs — not eyeballed):
-  12-column x 8-row grid, gap 12px (8px at the 1024 tier), switching to a
-  single-column stack at <1024px.
+  Desktop grid — this is a NEW custom layout (not extracted from the
+  original), per the redesign brief: 12 columns, 11 rows. Auto-placement in
+  DOM order + each item's span (see GridItem) reproduces the intended
+  arrangement without needing explicit grid-column/row-start — verified by
+  hand for this specific span/order combination in app/page.tsx.
+  <1024px still falls back to a single-column stack (unchanged, out of
+  scope for this pass).
 */
 .grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(50px, 1fr));
-  grid-template-rows: repeat(8, minmax(0, 1fr));
+  grid-template-rows: repeat(11, minmax(0, 1fr));
   gap: var(--space-4); /* 12px */
   width: 100%;
 }
