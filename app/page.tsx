@@ -11,12 +11,13 @@ import LinkedInCard from "@/components/sections/LinkedInCard";
 import LetsTalkCard from "@/components/sections/LetsTalkCard";
 import AboutMe from "@/components/sections/AboutMe";
 import HowItWorkTeaser from "@/components/sections/HowItWorkTeaser";
+import VitalmedRightColumn from "@/components/layout/VitalmedRightColumn";
 import Testimonials from "@/components/sections/Testimonials";
 
 /**
  * Desktop grid — NEW custom layout per redesign brief (not extracted from
  * reference/framer-original; that source only informs each card's own
- * internals, which are untouched here). 12 columns x 11 rows, auto-placed
+ * internals, which are untouched here). 12 columns x 12 rows, auto-placed
  * in DOM order using only column/row spans (no explicit grid-column/row
  * start) — verified by hand that this order+span combination lands every
  * card where the brief describes:
@@ -25,11 +26,14 @@ import Testimonials from "@/components/sections/Testimonials";
  * - Right column (1/3 width, 4 cols): Resume (1 row) + LinkedIn (1 row)
  *   stacked = 2 rows ("Row A"), then Let's Talk (2 rows) below ("Row B") —
  *   together matching Hero's 4-row height.
- * - Vitalmed (2/3, 8 cols, 3 rows) + a right column (1/3, 4 cols) split into
- *   About me (2 rows, ~66%) over How I Work teaser (1 row, ~33%) — together
- *   matching Vitalmed's 3-row height exactly, no extra grid row added.
+ * - Vitalmed (2/3, 8 cols, 4 rows — equalized to match the bottom content
+ *   row's height) + a right column (1/3, 4 cols, one grid cell) that
+ *   internally splits into About me (60%) over How I Work teaser (40%) via
+ *   flex-grow (see VitalmedRightColumn) — 60/40 isn't representable as
+ *   whole grid-row units, so it's not done with row-spans.
  * - Basalto + Lumine Gas (4 cols each = 8 total, matching the 2/3 column)
- *   + Testimonials (1/3, 4 cols), 4 rows — new row.
+ *   + Testimonials (1/3, 4 cols), 4 rows — unchanged, this is the row the
+ *   Vitalmed row was equalized to match.
  *
  * What-I-Do and Lab aren't part of this new desktop arrangement per the
  * brief — not deleted, just not placed here.
@@ -60,7 +64,7 @@ export default function Home() {
               <LetsTalkCard />
             </GridItem>
 
-            <GridItem colSpan={8} rowSpan={3} mobileOrder={3}>
+            <GridItem colSpan={8} rowSpan={4} mobileOrder={3}>
               <CaseStudyCard
                 background="15, 76, 182"
                 pillBackground="rgba(36, 36, 36, 0.5)"
@@ -71,12 +75,8 @@ export default function Home() {
               />
             </GridItem>
 
-            <GridItem colSpan={4} rowSpan={2} hiddenBelow1024>
-              <AboutMe />
-            </GridItem>
-
-            <GridItem colSpan={4} rowSpan={1}>
-              <HowItWorkTeaser />
+            <GridItem colSpan={4} rowSpan={4}>
+              <VitalmedRightColumn aboutMe={<AboutMe />} howItWork={<HowItWorkTeaser />} />
             </GridItem>
 
             <GridItem colSpan={4} rowSpan={4} mobileOrder={4}>
