@@ -1,0 +1,266 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for this section (.framer-13ivkdr-container) — not the
+   old spec. */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.eyebrow {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: var(--font-weight-medium); /* 500, confirmed */
+  font-size: 16px; /* inherited default, same situation as this page's other eyebrows */
+  letter-spacing: 1.26px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  margin: 0;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tituloLine1,
+.tituloLine2 {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-weight: 500; /* confirmed */
+  font-size: 32px; /* confirmed */
+  line-height: 40px; /* confirmed */
+  margin: 0;
+}
+
+.tituloLine1 {
+  color: rgb(204, 204, 204); /* confirmed */
+}
+
+.tituloLine2 {
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.bodyText {
+  font-size: 15px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgba(204, 204, 204, 0.8); /* confirmed */
+  margin: 0;
+}
+
+/* --- Table --- */
+
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+.headerStage,
+.headerBefore,
+.headerAfter {
+  display: flex;
+  align-items: center;
+  padding: 16px; /* confirmed */
+  background: rgb(20, 20, 20); /* confirmed */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+}
+
+.headerStage {
+  width: 20%; /* confirmed */
+  justify-content: flex-start;
+  border-right: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+}
+
+.headerBefore,
+.headerAfter {
+  width: 40%; /* confirmed */
+}
+
+.headerAfter {
+  border-left: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+}
+
+.headerText {
+  font-size: 12px; /* confirmed */
+  font-weight: var(--font-weight-light); /* 300, confirmed */
+  line-height: 18px; /* confirmed */
+  color: rgba(204, 204, 204, 0.3); /* confirmed */
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0; /* confirmed */
+  width: 100%;
+}
+
+.col1 {
+  align-self: stretch;
+  width: 20%; /* confirmed */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px; /* confirmed */
+  padding: 16px; /* confirmed */
+  border-right: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+}
+
+.stage {
+  font-size: 14px; /* confirmed */
+  color: rgba(255, 255, 255, 0.9); /* confirmed */
+  margin: 0;
+}
+
+.description {
+  font-size: 12px; /* confirmed */
+  color: rgba(204, 204, 204, 0.7); /* confirmed */
+  margin: 0;
+}
+
+.col {
+  width: 40%; /* confirmed */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px; /* confirmed */
+  padding: 16px; /* confirmed */
+}
+
+/* --- Feeling badge --- */
+
+.badge {
+  display: flex;
+  align-items: center;
+  width: min-content;
+  padding: 4px 8px; /* confirmed */
+  border: 1px solid; /* color set inline per feeling */
+  border-radius: 100px; /* confirmed */
+}
+
+.badgeText {
+  font-size: 12px; /* confirmed */
+  font-weight: var(--font-weight-light); /* 300, confirmed */
+  line-height: 18px; /* confirmed */
+  white-space: nowrap;
+  margin: 0;
+}
+
+.quote {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-size: 14px; /* confirmed */
+  color: rgba(204, 204, 204, 0.7); /* confirmed */
+  margin: 0;
+}
+
+/* --- Score bar --- */
+
+.barRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+.barTrack {
+  position: relative;
+  width: 300px; /* confirmed */
+  height: 3px; /* confirmed */
+  border-radius: 3px;
+  background: rgb(41, 41, 41); /* confirmed */
+  overflow: hidden;
+}
+
+.barFill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px; /* confirmed */
+  border-radius: 4px; /* confirmed */
+}
+
+.score {
+  font-size: 12px; /* confirmed */
+  font-weight: var(--font-weight-light); /* 300, confirmed */
+  line-height: 18px; /* confirmed */
+  color: rgba(204, 204, 204, 0.3); /* confirmed */
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* --- Row 4's extra AFTER-cell note --- */
+
+.note {
+  width: 100%;
+  padding: 8px 12px; /* confirmed */
+  background: rgba(0, 87, 184, 0.2); /* confirmed */
+  border: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+  border-radius: 8px; /* confirmed */
+}
+
+.noteText {
+  font-size: 12px; /* confirmed */
+  line-height: 14px; /* confirmed */
+  color: rgba(130, 180, 240, 0.8); /* confirmed */
+  margin: 0;
+}
+
+/* --- Experience curve chart --- */
+
+.curve {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px; /* confirmed */
+  width: 100%;
+  padding: 24px; /* confirmed */
+}
+
+.curveLabel {
+  font-size: 12px; /* confirmed */
+  font-weight: var(--font-weight-light); /* 300, confirmed */
+  line-height: 18px; /* confirmed */
+  color: rgba(204, 204, 204, 0.3); /* confirmed */
+  margin: 0;
+}
+
+.curveImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5.85; /* confirmed (936/160) */
+}
+
+.curveImage {
+  object-fit: cover;
+}

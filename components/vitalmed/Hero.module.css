@@ -1,0 +1,105 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for the Hero section (.framer-zNdrH, the Desktop
+   variant's own element — the *inner* box, not the outer <a> we
+   deliberately dropped) — not the old spec. */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px; /* confirmed, though only one in-flow child at this width */
+  width: 100%;
+  max-width: 1200px;
+  padding: var(--space-7); /* 32px, confirmed */
+  background: var(--color-case-vitalmed); /* #0057b8, confirmed — exact existing token */
+  border-radius: var(--radius-inner); /* 20px, confirmed */
+  overflow: clip; /* confirmed */
+}
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px; /* confirmed */
+  width: 60%; /* confirmed */
+}
+
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 682px; /* confirmed, this breakpoint */
+  max-width: 100%;
+}
+
+.heading {
+  font-size: 32px; /* confirmed */
+  letter-spacing: -0.01em; /* confirmed */
+  line-height: 1.25em; /* confirmed */
+  color: rgba(255, 255, 255, 0.88); /* confirmed */
+  margin: 0;
+}
+
+.subheadingGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px; /* confirmed */
+  padding-bottom: 24px; /* confirmed — space before the NDA badge */
+  width: 100%;
+}
+
+.subheading {
+  font-size: 18px; /* confirmed */
+  letter-spacing: -0.01em; /* confirmed */
+  line-height: 1.25em; /* confirmed */
+  color: rgba(255, 255, 255, 0.88); /* confirmed */
+  margin: 0;
+}
+
+/* inline-flex (not flex + width:min-content, which was collapsing to the
+   narrowest word and wrapping the label across ~6 lines) — shrink-wraps to
+   its content's natural single-line width, matching the source's own
+   white-space:pre on this text (confirmed below), never stretching to the
+   parent's width. */
+.ndaBadge {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px; /* confirmed */
+  padding: 4px 8px; /* confirmed */
+  background: rgba(0, 0, 0, 0.2); /* confirmed */
+  border-radius: 6px; /* confirmed */
+}
+
+.ndaIcon {
+  font-size: 20px; /* confirmed */
+  line-height: 1.25em;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.ndaText {
+  font-size: 12px; /* confirmed */
+  letter-spacing: -0.01em; /* confirmed */
+  line-height: 1.25em; /* confirmed */
+  color: rgba(255, 255, 255, 0.88); /* confirmed */
+  margin: 0;
+  white-space: nowrap; /* confirmed: white-space:pre in source — single line, never wraps */
+}
+
+/* Confirmed: position:absolute, NOT part of the normal flex flow next to
+   the text column — top:32px/right:32px of the card. */
+.imageWrap {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: 225px; /* confirmed, this breakpoint */
+  aspect-ratio: 0.467808; /* confirmed (683/1460, the image's real dimensions) */
+}
+
+.image {
+  object-fit: cover;
+}

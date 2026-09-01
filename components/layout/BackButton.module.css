@@ -1,0 +1,28 @@
+.wrap {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* confirmed centered, not left-aligned — see BackButton.tsx */
+  padding-top: var(--space-7); /* 32px, confirmed */
+}
+
+.button {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-round);
+  border: 1.01px solid var(--color-text-primary);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}

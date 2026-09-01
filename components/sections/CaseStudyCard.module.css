@@ -1,6 +1,8 @@
 .card {
   border-radius: var(--radius-outer); /* 12px */
   padding: var(--space-6); /* 24px */
+  position: relative;
+  overflow: clip; /* confirmed on the source's card too */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,16 +28,23 @@
   cursor: none;
 }
 
-.eyebrow {
-  font-size: var(--text-11);
-  font-weight: var(--font-weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-eyebrow);
+.titleLogo {
+  margin: 0 0 var(--space-2);
+}
+
+/* The project-name title — source: 28px, weight 800, its own display font
+   per card (Noto Serif for Basalto, Manrope for Lumine Gas). Pages override
+   font-size/font-family via inline style; 28px/800 stand as sane defaults. */
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 100%;
   margin: 0 0 var(--space-1);
 }
 
+/* Confirmed 16px, Inter, in source (the site's default text-preset size). */
 .heading {
-  font-size: var(--text-19);
+  font-size: 16px;
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-default);
   margin: 0;
@@ -51,15 +60,28 @@
   gap: var(--space-2);
 }
 
-.imagePlaceholder {
-  border-radius: var(--radius-inner); /* 20px */
-  background: rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--text-10);
-  color: inherit;
-  opacity: 0.6;
-  flex: 1;
-  min-height: 80px;
+/* Keeps text above the absolutely-positioned .imageWrap regardless of DOM
+   order — positioned elements stack above static content by default. */
+.textLayer {
+  position: relative;
+  z-index: 1;
+}
+
+/*
+  Confirmed position from the source (position:absolute, bottom:0, right:0,
+  flush with the card's corner — not parked off-card). Width is a
+  percentage of the card, not the source's literal 181px, since our grid
+  cell is much bigger than Framer's authored default — see CaseStudyCard.tsx.
+*/
+.imageWrap {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  width: 35%;
+}
+
+.image {
+  object-fit: contain;
+  object-position: bottom right;
 }

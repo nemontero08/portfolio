@@ -38,7 +38,16 @@ const containerVariants = {
   hover: { bottom: -38, right: -13, height: 100, gap: 8 },
 };
 
-const RESUME_HREF = "https://drive.google.com/file/d/1GBlxHIKzgw4Xv7DNqGKQj19GC0M40hPM/view?usp=sharing";
+// TODO(i18n): there are two CVs, one per language — swap RESUME_HREF to
+// CV_URLS[locale] once locale routing/switching is wired up. For now this
+// always links the English CV (the current default), regardless of
+// whatever locale ends up being detected/selected.
+const CV_URLS = {
+  en: "https://drive.google.com/file/d/1GBlxHIKzgw4Xv7DNqGKQj19GC0M40hPM/view",
+  es: "https://drive.google.com/file/d/1womkBKNM0JCoLzADmmMrJZS21rJR1vBj/view",
+} as const;
+
+const RESUME_HREF = CV_URLS.en;
 
 // reference/specs/resume-doc.svg, verbatim — the real drawing pulled from
 // the live site, already resolved to literal colors (no Framer CSS vars):

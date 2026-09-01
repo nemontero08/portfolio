@@ -1,0 +1,71 @@
+/* Outer hit area — can end up wider than its content (e.g. stretched full
+   width by a column-flex ancestor with no align-items override); flex-start
+   keeps .inner pinned to the left edge instead of centering when that
+   happens. */
+.copyBtn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit; /* both current usages set their own deep-blue via an ancestor */
+  font: inherit;
+}
+
+.copyBtn:focus {
+  outline: none;
+}
+
+/* Same 2px/offset-2px convention used elsewhere on the site (e.g.
+   Testimonials' card focus ring) — currentColor rather than the accent
+   token since both current usages sit on an accent-colored background,
+   where an accent-colored outline would be invisible. */
+.copyBtn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Content-sized wrapper for text + icon together, so the icon hugs the
+   text instead of the outer button's (possibly wider) right edge. */
+.inner {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Overlay stack: all three possible labels are present, positioned at the
+   same top-left corner, but only the ACTIVE one is in normal flow — the
+   other two are taken out of flow via position:absolute, so they don't
+   contribute to .emailStack's own width. That makes .emailStack (and so
+   the icon that follows it inside .inner) track the active label's own
+   width, not the widest of the three.
+   This used to be a CSS Grid stack sized to the WIDEST label instead —
+   that was needed back when .copyBtn itself was content-sized, so a
+   shrinking label would shrink the hover hit-area and flicker. Now that
+   .copyBtn is pinned to width:100% independent of its content, that's no
+   longer necessary: the outer hit-area can't resize no matter what this
+   inner width does, so it's safe to let it track the active label. */
+.emailStack {
+  position: relative;
+  display: inline-block;
+}
+
+.emailLayer {
+  font-size: var(--text-16);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+  text-align: left;
+  visibility: hidden;
+}
+
+.emailLayer:not([data-active="true"]) {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.emailLayer[data-active="true"] {
+  visibility: visible;
+}

@@ -1,0 +1,204 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for this section (.framer-1djg2f9-container) — not the
+   old spec. See Problem.tsx for the eyebrow/Vision-card font-size note
+   (inherited, not an explicit source value). */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.eyebrow {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: var(--font-weight-medium); /* 500, confirmed */
+  font-size: 16px; /* inherited default — see Problem.tsx note */
+  letter-spacing: 1.26px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  margin: 0;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* confirmed */
+}
+
+.tituloLine1,
+.tituloLine2 {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-weight: 500; /* confirmed */
+  font-size: 32px; /* confirmed */
+  line-height: 40px; /* confirmed */
+  margin: 0;
+}
+
+.tituloLine1 {
+  color: rgb(204, 204, 204); /* confirmed */
+}
+
+.tituloLine2 {
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+.bodyText {
+  font-size: 15px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgba(204, 204, 204, 0.8); /* confirmed */
+  margin: 0;
+}
+
+.mensaje {
+  font-style: italic; /* confirmed */
+  font-weight: var(--font-weight-medium); /* 500, confirmed */
+  font-size: 14px; /* confirmed */
+  line-height: 18px; /* confirmed */
+  color: rgba(255, 255, 255, 0.9); /* confirmed */
+  margin: 0;
+}
+
+.cosas {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+.colIzq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  gap: 10px; /* confirmed */
+  width: 40%; /* confirmed */
+}
+
+.visionCard {
+  flex: 1 0 0; /* confirmed */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px; /* confirmed */
+  padding: 24px 16px; /* confirmed */
+  background: var(--color-bg-2); /* #191a1a, confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}
+
+.visionTitle {
+  font-size: 14px; /* confirmed */
+  line-height: 16px; /* confirmed */
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+  margin: 0;
+}
+
+.visionBody {
+  font-size: 16px; /* inherited default — see Problem.tsx note */
+  line-height: 16px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+/* Confirmed: COL DER is its own card (bg-2, 12px radius) wrapping the
+   whole "Titulo" + flow list — no border. Checked directly: Cosas (the
+   row wrapping COL IZQ + COL DER together) and COL IZQ itself carry no
+   background/border of their own at that level — only COL DER does, and
+   individual Vision cards on the left. */
+.colDer {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px; /* confirmed */
+  padding: 24px 16px; /* confirmed */
+  background: var(--color-bg-2); /* #191a1a, confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}
+
+.derTitle {
+  font-size: 14px; /* confirmed */
+  line-height: 16px; /* confirmed */
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+  margin: 0;
+}
+
+.cuadro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0; /* confirmed */
+  width: min-content;
+}
+
+.itemGroup {
+  display: contents;
+}
+
+/* Confirmed: each row has its own inline-styled background/border/radius
+   in the source (missed on the first pass — only the shared combined
+   class rule, which is layout-only, was checked then). */
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 678px; /* confirmed */
+  padding: 8px 12px; /* confirmed */
+  background: rgb(32, 32, 32); /* confirmed */
+  border: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+  border-radius: 8px; /* confirmed */
+}
+
+.icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgb(41, 41, 41); /* confirmed */
+  border-radius: 6px; /* confirmed */
+}
+
+.iconoEmoji {
+  font-size: 10px; /* confirmed */
+  line-height: 10px; /* confirmed */
+  text-align: center;
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+.itemLabel {
+  font-size: 12px; /* confirmed */
+  line-height: 14px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+.linea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 678px; /* confirmed */
+  padding: 1px; /* confirmed */
+}

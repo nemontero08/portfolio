@@ -2,11 +2,17 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, type PanInfo } from "motion/react";
+import Image from "next/image";
 import styles from "./Testimonials.module.css";
 
 // Content reused verbatim from reference/framer-original/index.html — same
 // quotes, same authors. The carousel mechanism below is a new
 // implementation, not a copy of Framer's slider (per instructions).
+//
+// `photo` is each author's own avatar, resolved from the source (each
+// "Persona N" slide has its own <img src>, confirmed by position in the
+// DOM — NOT by alt text, which is a copy-paste bug in the original itself:
+// every avatar's alt="Foto Luciano Molina" except Luciano's and Leonel's).
 const TESTIMONIALS = [
   {
     quote: [
@@ -15,6 +21,7 @@ const TESTIMONIALS = [
     ],
     name: "Luciano Molina",
     role: "Product Manager at OneInfo Consulting",
+    photo: "/images/testimonial-luciano-molina.jpg",
   },
   {
     quote: [
@@ -24,6 +31,7 @@ const TESTIMONIALS = [
     ],
     name: "Franco Capristo",
     role: "Full-stack Developer at Estrategias Diferenciadas S.A.",
+    photo: "/images/testimonial-franco-capristo.jpg",
   },
   {
     quote: [
@@ -33,6 +41,7 @@ const TESTIMONIALS = [
     ],
     name: "Leonel Cappiello",
     role: "Full-stack Developer at OneInfo Consulting",
+    photo: "/images/testimonial-leonel-cappiello.jpg",
   },
   {
     quote: [
@@ -41,6 +50,7 @@ const TESTIMONIALS = [
     ],
     name: "Fabricio Menghi",
     role: "Tech lead at OneInfo Consulting",
+    photo: "/images/testimonial-fabricio-menghi.jpg",
   },
   {
     quote: [
@@ -49,8 +59,42 @@ const TESTIMONIALS = [
     ],
     name: "Dario Pérez",
     role: "Product Manager at Estrategias Diferenciadas S.A.",
+    photo: "/images/testimonial-dario-perez.jpg",
   },
 ];
+
+// One comma-mark glyph (closed path, from the source's outline icon —
+// see prior commit) rendered twice, reused for both rest (stroked) and
+// hover (filled) states so the two states share identical geometry.
+// viewBox is cropped to the glyph's own bounding box (x:3-21, y:3-21 in
+// the original 24x24 box) so it fills a 20x20 render box with no
+// leftover padding, instead of the original's 24x24 box.
+const COMMA_PATH = "M2 0C0.895 0 0 0.895 0 2L0 8C0 9.105 0.895 10 2 10C2.552 10 3 10.448 3 11L3 12C3 13.105 2.105 14 1 14C0.448 14 0 14.448 0 15L0 17C0 17.552 0.448 18 1 18C4.314 18 7 15.314 7 12L7 2C7 0.895 6.105 0 5 0Z";
+
+function QuoteIcon({ className, filled }: { className?: string; filled: boolean }) {
+  return (
+    <svg viewBox="3 3 18 18" className={className} aria-hidden>
+      <path
+        d={COMMA_PATH}
+        transform="translate(14 3)"
+        fill={filled ? "var(--color-accent)" : "none"}
+        stroke={filled ? "none" : "var(--color-accent)"}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d={COMMA_PATH}
+        transform="translate(3 3)"
+        fill={filled ? "var(--color-accent)" : "none"}
+        stroke={filled ? "none" : "var(--color-accent)"}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 const AUTOPLAY_MS = 5000;
 const RESUME_AFTER_MS = 10000;
@@ -127,7 +171,10 @@ export default function Testimonials() {
       tabIndex={0}
       onKeyDown={handleKeyDown}
     >
-      <div className={styles.quoteMark} aria-hidden />
+      <div className={styles.quoteMark}>
+        <QuoteIcon className={styles.quoteMarkOutline} filled={false} />
+        <QuoteIcon className={styles.quoteMarkFilled} filled />
+      </div>
       <div className={styles.viewport}>
         <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
@@ -152,8 +199,14 @@ export default function Testimonials() {
               ))}
             </div>
             <div className={styles.profile}>
-              <div className={styles.avatar} aria-hidden />
-              <div>
+              <Image
+                src={active.photo}
+                alt={active.name}
+                width={48}
+                height={48}
+                className={styles.avatar}
+              />
+              <div className={styles.profileText}>
                 <p className={styles.name}>{active.name}</p>
                 <p className={styles.role}>{active.role}</p>
               </div>

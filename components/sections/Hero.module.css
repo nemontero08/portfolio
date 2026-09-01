@@ -45,7 +45,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -8px; /* small gap below the text */
+  bottom: -4px; /* small gap below the text */
   height: 4px;
   background: var(--color-accent);
   border-radius: var(--radius-pill);

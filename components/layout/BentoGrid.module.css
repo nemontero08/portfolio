@@ -1,6 +1,6 @@
 /*
   Desktop grid — this is a NEW custom layout (not extracted from the
-  original), per the redesign brief: 12 columns, 12 rows. Auto-placement in
+  original), per the redesign brief: 12 columns, 11 rows. Auto-placement in
   DOM order + each item's span (see GridItem) reproduces the intended
   arrangement without needing explicit grid-column/row-start — verified by
   hand for this specific span/order combination in app/page.tsx.
@@ -10,7 +10,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(50px, 1fr));
-  grid-template-rows: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(11, minmax(0, 1fr));
   gap: var(--space-4); /* 12px */
   width: 100%;
 }

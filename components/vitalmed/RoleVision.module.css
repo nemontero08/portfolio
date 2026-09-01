@@ -1,0 +1,149 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for this section (.framer-1pd5jc6-container) — not the
+   old spec. */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3); /* 12px, confirmed — between Row 1 and Row 2 */
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 100%;
+  height: 140px; /* confirmed */
+  overflow: clip; /* confirmed */
+}
+
+.card {
+  flex: 1 0 0; /* confirmed — equal-width columns */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2); /* 8px, confirmed */
+  padding: var(--space-6); /* 24px, confirmed */
+  background: var(--color-bg-2); /* #191a1a, confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}
+
+.eyebrow {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: var(--font-weight-medium); /* 500, confirmed */
+  font-size: var(--text-12);
+  line-height: var(--line-height-compact); /* 1em, confirmed */
+  color: #666; /* confirmed literal — not the usual accent eyebrow color on this site, see RoleVision.tsx */
+  margin: 0;
+}
+
+.value {
+  font-size: var(--text-13);
+  font-weight: var(--font-weight-light); /* 300, confirmed */
+  line-height: 16px; /* confirmed */
+  color: var(--color-text-primary); /* rgb(231,229,228), confirmed */
+  margin: 0;
+}
+
+/* Shared by Sector's and Team's two-line body (bold tag line + value line). */
+.bodyGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* confirmed */
+  width: 100%;
+}
+
+.boldLine {
+  font-size: var(--text-16);
+  font-weight: var(--font-weight-bold); /* 700, confirmed */
+  line-height: var(--line-height-default); /* 120%, confirmed */
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Row 2 — confirmed NOT equal-flex columns like Row 1: a fixed 60%/470px
+   split, fixed 229px height. */
+.row2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 100%;
+  height: 229px; /* confirmed */
+}
+
+.teamCard {
+  width: 60%; /* confirmed */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2); /* 8px, confirmed */
+  padding: var(--space-6); /* 24px, confirmed */
+  background: var(--color-bg-2); /* #191a1a, confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}
+
+.impactCard {
+  width: 470px; /* confirmed */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3); /* 12px, confirmed */
+  /* no background/radius of its own — confirmed; each tile carries its own */
+}
+
+.impactRow {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3); /* 12px, confirmed */
+  width: 100%;
+}
+
+.tile {
+  flex: 1 0 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px; /* confirmed */
+  padding: var(--space-2); /* 8px, confirmed */
+  background: rgba(0, 87, 184, 0.2); /* confirmed — --color-case-vitalmed at 20% alpha */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}
+
+.tileNumber {
+  font-size: 20px; /* confirmed */
+  font-weight: 500; /* confirmed — Inter Medium */
+  line-height: 28px; /* confirmed */
+  color: rgb(130, 180, 240); /* confirmed literal, no matching token */
+  text-align: center;
+  margin: 0;
+}
+
+/* Confirmed distinct from .tileNumber: the "3 -> 1" tile is 18px, default
+   weight (no Inter-Medium override), not 20px/500 like the other 3. */
+.tileNumberRegular {
+  font-size: 18px; /* confirmed */
+  line-height: 28px; /* confirmed */
+  color: rgb(130, 180, 240);
+  text-align: center;
+  margin: 0;
+}
+
+.tileCaption {
+  font-size: var(--text-12);
+  line-height: 16px; /* confirmed */
+  color: rgb(130, 180, 240); /* confirmed literal */
+  text-align: center; /* confirmed */
+  margin: 0;
+}

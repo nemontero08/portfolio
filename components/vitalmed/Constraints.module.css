@@ -1,0 +1,222 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for this section (.framer-fyct3x-container) — not the
+   old spec. Shares several confirmed values with Problem.module.css
+   (eyebrow, title, Item card styling) — kept as separate literals here
+   rather than cross-importing, consistent with this project's convention
+   of small confirmed duplication over premature sharing. */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.eyebrow {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: var(--font-weight-medium); /* 500, confirmed */
+  font-size: 16px; /* inherited default, same situation as Problem's eyebrow */
+  letter-spacing: 1.26px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  margin: 0;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tituloLine1,
+.tituloLine2 {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-weight: 500; /* confirmed */
+  font-size: 32px; /* confirmed */
+  line-height: 40px; /* confirmed */
+  margin: 0;
+}
+
+.tituloLine1 {
+  color: rgb(204, 204, 204); /* confirmed */
+}
+
+.tituloLine2 {
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.bodyText {
+  font-size: 15px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgba(204, 204, 204, 0.8); /* confirmed */
+  margin: 0;
+}
+
+.cosas {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+/* Confirmed: equal-width (flex:1 0 0) columns here, unlike Problem's
+   40%/flex:1 split. COL DER carries its own padding directly; COL IZQ
+   doesn't — its padding lives on the inner .visionCard instead (confirmed
+   from source: COL IZQ's own wrapper has padding:0). */
+.colDer {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px; /* confirmed */
+  padding: 24px 16px; /* confirmed */
+}
+
+.colIzq {
+  flex: 1 0 0;
+  align-self: stretch;
+  display: flex;
+}
+
+.derTitle {
+  font-size: 14px; /* confirmed */
+  line-height: 16px; /* confirmed */
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+  margin: 0;
+}
+
+.derText {
+  font-size: 15px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgba(204, 204, 204, 0.8); /* confirmed */
+  margin: 0;
+}
+
+.cuadro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; /* confirmed — different from Problem's gap:0 */
+  width: 100%;
+}
+
+/* Confirmed: same card treatment as Problem's flow-step rows. */
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 100%;
+  padding: 8px 12px; /* confirmed */
+  background: rgb(32, 32, 32); /* confirmed */
+  border: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+  border-radius: 8px; /* confirmed */
+}
+
+.itemLabel {
+  flex: 1 0 0; /* confirmed — fills remaining row width, wraps if needed */
+  font-size: 12px; /* confirmed */
+  line-height: 14px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+/* Single Vision card wrapping the whole COL IZQ content — confirmed
+   bg-2/12px radius, same as Problem's Vision cards. */
+.visionCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px; /* confirmed */
+  background: var(--color-bg-2); /* #191a1a, confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+  padding: 24px 16px; /* confirmed */
+}
+
+.visionTitle {
+  font-size: 14px; /* confirmed */
+  line-height: 16px; /* confirmed */
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+  margin: 0;
+}
+
+.visionInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* confirmed */
+  width: 100%;
+  flex: 1 0 0;
+}
+
+.visionBody {
+  font-size: 16px; /* inherited default, same situation as Problem's Vision-card bodies */
+  line-height: 16px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px; /* confirmed */
+  width: 100%;
+  height: 250px; /* confirmed */
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* confirmed — left-aligned, unlike Role & Vision's centered Impact tiles */
+  gap: 4px; /* confirmed */
+  padding: 16px; /* confirmed */
+  background: rgba(0, 87, 184, 0.2); /* confirmed */
+  border-radius: 10px; /* confirmed — 10px here, not 12px */
+}
+
+.tileTitle {
+  font-size: 18px; /* confirmed */
+  font-weight: 500; /* confirmed */
+  line-height: 28px; /* confirmed */
+  color: rgb(130, 180, 240); /* confirmed */
+  margin: 0;
+}
+
+/* Confirmed: the "OPERATIONS" tile's title has no weight override in the
+   source, unlike the other 3 (UX/Legal/TECHNICAL, all weight 500). */
+.tileTitleRegular {
+  font-size: 18px; /* confirmed */
+  line-height: 28px; /* confirmed */
+  color: rgb(130, 180, 240); /* confirmed */
+  margin: 0;
+}
+
+.tileCaption {
+  font-size: 14px; /* confirmed */
+  line-height: 16px; /* confirmed */
+  text-align: left; /* confirmed */
+  color: rgb(130, 180, 240); /* confirmed */
+  margin: 0;
+}

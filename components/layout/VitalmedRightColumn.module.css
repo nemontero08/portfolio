@@ -1,8 +1,8 @@
 /*
-  60/40 split isn't representable as whole grid-row units within the shared
-  12x12 grid (4 rows only divides into 25% steps), so this single grid cell
-  (see app/page.tsx) internally splits itself via flex-grow (3:2 = 60:40)
-  instead. Gap matches the main grid's own gap token.
+  A 50/50 split isn't representable as whole grid-row units in every case
+  within the shared grid, so this single grid cell (see app/page.tsx)
+  internally splits itself via flex-grow instead. Gap matches the main
+  grid's own gap token.
 */
 .column {
   display: flex;
@@ -13,12 +13,12 @@
 }
 
 .aboutMeSlot {
-  flex: 3; /* 60% */
+  flex: 1; /* 50% */
   min-height: 0;
 }
 
 .howItWorkSlot {
-  flex: 2; /* 40% */
+  flex: 1; /* 50% */
   min-height: 0;
 }
 

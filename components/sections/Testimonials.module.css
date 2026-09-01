@@ -15,9 +15,31 @@
 }
 
 .quoteMark {
-  width: 24px;
+  position: relative;
+  width: 20px;
   height: 20px;
-  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.quoteMarkOutline,
+.quoteMarkFilled {
+  position: absolute;
+  inset: 0;
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.2s ease;
+}
+
+.quoteMarkFilled {
+  opacity: 0;
+}
+
+.card:hover .quoteMarkOutline {
+  opacity: 0;
+}
+
+.card:hover .quoteMarkFilled {
+  opacity: 1;
 }
 
 /* New carousel mechanism (not the original's slider) — one slide at a time. */
@@ -49,8 +71,10 @@
 
 .quoteLine {
   font-size: var(--text-13);
+  line-height: normal;
   color: var(--color-text-muted);
   margin: 0;
+  transition: color 0.2s ease;
 }
 
 .profile {
@@ -60,23 +84,39 @@
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-round);
   background: var(--color-bg-4);
   flex-shrink: 0;
+  object-fit: cover;
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2); /* 8px */
 }
 
 .name {
-  font-size: var(--text-13);
+  font-size: var(--text-16);
   font-weight: var(--font-weight-semibold);
   margin: 0;
+  transition: color 0.2s ease;
 }
 
 .role {
-  font-size: var(--text-11);
+  font-size: 14px; /* no matching token in the scale (10/11/12/13/16/19/26/38) */
   color: var(--color-text-faint);
   margin: 0;
+  transition: color 0.2s ease;
+}
+
+/* Text turns to the primary off-white on hover, reverts on mouse-out. */
+.card:hover .quoteLine,
+.card:hover .name,
+.card:hover .role {
+  color: var(--color-text-primary);
 }
 
 .dots {
@@ -92,10 +132,10 @@
   padding: 0;
   border: none;
   border-radius: var(--radius-round);
-  background: var(--color-hairline-strong);
+  background: var(--color-accent-soft); /* accent lavender, 7% alpha (its own documented purpose: "pagination track fill") */
   cursor: pointer;
 }
 
 .dotActive {
-  background: var(--color-text-primary);
+  background: var(--color-accent);
 }

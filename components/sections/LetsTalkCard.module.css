@@ -37,25 +37,7 @@
   line-height: 1;
 }
 
-.copyBtn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: var(--space-2);
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  color: inherit;
-  font: inherit;
-}
-
-.email {
-  font-size: var(--text-16);
-  font-weight: var(--font-weight-bold);
-  margin: 0;
-  white-space: nowrap;
-}
+/* .copyBtn/.email now live in components/ui/CopyBtn.module.css (shared). */
 
 /* Copy glyph — simple placeholder, real one to be swapped in later. */
 .copyIcon {

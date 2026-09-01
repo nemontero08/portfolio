@@ -1,0 +1,118 @@
+/* All values below confirmed against reference/framer-original/how-i-work/'s
+   own compiled CSS for this section (.framer-4x6xxy-container) — not the
+   old spec. Fonts: Space Grotesk (eyebrows) and Manrope (headings), loaded
+   in app/how-i-work/page.tsx and exposed as CSS variables. */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6); /* 24px, confirmed */
+  width: 60%; /* confirmed */
+}
+
+.eyebrow {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: var(--font-weight-medium); /* 500, confirmed */
+  font-size: var(--text-12);
+  line-height: var(--line-height-compact); /* 1em, confirmed */
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.introBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4); /* 16px, confirmed */
+  width: 100%;
+}
+
+.heading {
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+  font-weight: 700; /* confirmed */
+  font-size: var(--text-26);
+  line-height: var(--line-height-default); /* 120%, confirmed */
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.paragraph {
+  font-size: var(--text-16);
+  line-height: var(--line-height-default); /* 120%, confirmed */
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-4); /* 16px, confirmed */
+  width: 100%;
+  height: 295px; /* confirmed, this breakpoint */
+}
+
+.card {
+  flex: 1 0 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--space-6); /* 24px, confirmed */
+  background: var(--color-bg-2); /* #191a1a, confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+  /* no border — confirmed */
+}
+
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3); /* 10px, confirmed */
+  width: 100%;
+}
+
+.iconGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3); /* 10px, confirmed */
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4); /* 12px, confirmed */
+  background: rgba(183, 196, 255, 0.1); /* --color-accent at 10% alpha, confirmed — no existing token at this exact step (accent-soft is 7%) */
+  border-radius: 4px; /* confirmed */
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.cardEyebrow {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  font-weight: var(--font-weight-regular); /* 400, confirmed — regular, not medium like the section eyebrow */
+  font-size: var(--text-12);
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.cardTitle {
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+  font-weight: 700; /* confirmed */
+  font-size: var(--text-19);
+  line-height: 24px; /* confirmed */
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.cardDescription {
+  font-size: var(--text-16);
+  line-height: var(--line-height-default); /* 120%, confirmed */
+  color: var(--color-text-muted);
+  margin: 0;
+}

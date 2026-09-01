@@ -1,0 +1,53 @@
+/*
+  reference/framer-original/how-i-work/'s root (.framer-NR9ee.framer-1ruixnv)
+  and Body (.framer-1lt9hnm) wrappers — measured values, the ≥1440px
+  breakpoint only for this pass (matches the rest of the rebuild's
+  desktop-first rollout; smaller breakpoints are a later pass, same as the
+  home page).
+*/
+.root {
+  background: var(--color-bg-0); /* confirmed: html body background in the source */
+  min-height: 100vh;
+  max-width: 1440px; /* confirmed root width at this breakpoint */
+  margin: 0 auto;
+}
+
+.body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 86px; /* confirmed */
+  padding: 16px 32px 32px; /* confirmed */
+}
+
+.methodology,
+.principles,
+.contact {
+  width: 100%;
+  max-width: 1200px; /* confirmed on all three sections */
+  border-bottom: 1px solid var(--color-hairline-strong); /* confirmed on all three, incl. the accent-filled contact box */
+}
+
+.methodology {
+  display: flex;
+  flex-direction: column;
+  gap: 64px; /* confirmed */
+  padding: 0 0 32px;
+}
+
+.principles {
+  display: flex;
+  flex-direction: row; /* confirmed — a two-column layout at the top level */
+  gap: 16px; /* confirmed */
+  padding: 0 0 32px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-7); /* 32px, confirmed, all sides */
+  background: var(--color-accent); /* confirmed — a filled accent box, not the page background */
+  color: var(--color-accent-deep); /* #0038b6, confirmed — every text node in this section uses this value */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}

@@ -2,6 +2,7 @@
 
 import { useState, type CSSProperties, type ReactNode } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import Pill from "@/components/ui/Pill";
 import CursorFollowPill from "@/components/ui/CursorFollowPill";
 import styles from "./CaseStudyCard.module.css";
@@ -27,6 +28,29 @@ import styles from "./CaseStudyCard.module.css";
  * - Pill content order is `🛠️` THEN "Under construction" — confirmed via
  *   the compiled CSS's flex `order` (order:0 for the emoji, order:1 for the
  *   text), the reverse of their DOM order.
+ * - Vitalmed's phone mockup (`image` prop) is a single pre-rendered PNG
+ *   (377x345, real file, not a composited frame+screenshot) positioned
+ *   `position:absolute; bottom:0; right:0` in the source — flush with the
+ *   card's corner, not parked off-card. No rotate/transform exists anywhere
+ *   in the source for this element; whatever tilt is visible is baked into
+ *   the image asset itself. Source's fixed size (181x166px) is scaled up
+ *   here as a percentage of the card instead of reused literally — our
+ *   grid cell is far bigger than Framer's authored 336x274 default, and
+ *   the literal pixel size would read as lost/tiny rather than "corner
+ *   accent," which is a judgment call, not an extracted value.
+ * - "VITALMED" text does NOT exist anywhere in the captured markup's DOM —
+ *   verified by grepping the whole page for "vitalmed" (case-insensitive):
+ *   every match is the `href="vitalmed/"` URL. It turns out to be an SVG
+ *   logotype (vector letterforms), not text — reference/specs/vitalmed-logo.svg
+ *   — which is why the text search found nothing; wired in via `titleLogo`.
+ *
+ * CORRECTED text hierarchy for Basalto/Lumine Gas (previously backwards —
+ * see page.tsx for the exact per-card values pulled from source): each has
+ * a big TITLE (`title` prop — the project name, e.g. "BASALTO") in its own
+ * distinct display font at 28px/800 in the source, and a smaller SUBTITLE
+ * (`heading` prop, confirmed 16px, Inter, the site's default text preset)
+ * below it — there is no separate "eyebrow" at all; that was this
+ * component's own earlier misreading of the source, not something in it.
  */
 const TINT_TRANSITION = { type: "spring" as const, duration: 0.4, bounce: 0.2, delay: 0 };
 
@@ -42,10 +66,22 @@ interface CaseStudyCardProps {
   textColor?: string;
   pillBackground: string;
   pills: string[];
-  eyebrow?: string;
+  /** Optional wordmark/logo image, rendered in place of `title` (Vitalmed only). */
+  titleLogo?: ReactNode;
+  /** The big project-name title (Basalto/Lumine Gas). Mutually exclusive with titleLogo. */
+  title?: ReactNode;
+  /** Source default is 28px/800 — pages may override (see page.tsx). */
+  titleFontSize?: number;
+  titleFontFamily?: string;
+  /** The smaller subtitle text below the title (confirmed 16px in source for Basalto/Lumine). */
   heading: ReactNode;
-  /** Placeholder only — real assets aren't wired up yet. */
-  imagePlaceholder?: string;
+  headingFontSize?: number;
+  /** e.g. Lumine Gas's subtitle is 0.8 alpha of its title color in the source. */
+  headingOpacity?: number;
+  /** Decorative background pattern (Basalto/Lumine only) — see CardTexture. */
+  texture?: ReactNode;
+  /** Real mockup image — position:absolute, bottom-right corner, per the source. */
+  image?: { src: string; aspectRatio: number; alt?: string };
   /** Real link + tint hover. Mutually exclusive with underConstruction. */
   href?: string;
   /** No link; cursor:none + cursor-follow "Under construction" pill instead. */
@@ -57,9 +93,15 @@ export default function CaseStudyCard({
   textColor,
   pillBackground,
   pills,
-  eyebrow,
+  titleLogo,
+  title,
+  titleFontSize,
+  titleFontFamily,
   heading,
-  imagePlaceholder,
+  headingFontSize,
+  headingOpacity,
+  texture,
+  image,
   href,
   underConstruction = false,
 }: CaseStudyCardProps) {
@@ -68,18 +110,42 @@ export default function CaseStudyCard({
 
   const content = (
     <>
-      <div>
-        {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
-        <p className={styles.heading}>{heading}</p>
+      {texture}
+      <div className={styles.textLayer}>
+        {titleLogo && <div className={styles.titleLogo}>{titleLogo}</div>}
+        {title && (
+          <p
+            className={styles.title}
+            style={{
+              ...(titleFontSize ? { fontSize: titleFontSize } : undefined),
+              ...(titleFontFamily ? { fontFamily: titleFontFamily } : undefined),
+            }}
+          >
+            {title}
+          </p>
+        )}
+        <p
+          className={styles.heading}
+          style={{
+            ...(headingFontSize ? { fontSize: headingFontSize } : undefined),
+            ...(headingOpacity !== undefined ? { opacity: headingOpacity } : undefined),
+          }}
+        >
+          {heading}
+        </p>
       </div>
-      <div className={styles.pills}>
+      <div className={`${styles.pills} ${styles.textLayer}`}>
         {pills.map((pill) => (
           <Pill key={pill} background={pillBackground}>
             {pill}
           </Pill>
         ))}
       </div>
-      {imagePlaceholder && <div className={styles.imagePlaceholder}>{imagePlaceholder}</div>}
+      {image && (
+        <div className={styles.imageWrap} style={{ aspectRatio: image.aspectRatio }}>
+          <Image src={image.src} alt={image.alt ?? ""} fill className={styles.image} />
+        </div>
+      )}
     </>
   );
 

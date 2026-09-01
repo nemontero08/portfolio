@@ -1,0 +1,53 @@
+/*
+  reference/framer-original/vitalmed/'s root (.framer-XWm3w.framer-13b11hz)
+  and Body (.framer-1chmgsp) wrappers — measured values, the ≥1440px
+  breakpoint only for this pass (matches how-i-work's desktop-first
+  rollout; smaller breakpoints are a later pass).
+*/
+.root {
+  background: var(--color-bg-0); /* confirmed: same html body background as the other pages */
+  min-height: 100vh;
+  max-width: 1440px; /* confirmed root width at this breakpoint */
+  margin: 0 auto;
+}
+
+.body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px; /* confirmed — NOT the same as how-i-work's 86px */
+  padding: 16px 32px 32px; /* confirmed, same as how-i-work */
+}
+
+.hero,
+.roleVision,
+.problem,
+.constraints,
+.evolution,
+.userExperience,
+.solution,
+.productDecisions,
+.designSystem,
+.takeaways {
+  width: 100%;
+  max-width: 1200px; /* confirmed on every section, including Hero */
+}
+
+/* Confirmed via data-border on each section's own Desktop-variant element:
+   Hero and Role & Vision have NO divider; every section from The Problem
+   onward (including the last, Takeaways) does. Color is confirmed
+   different from how-i-work's --color-hairline-strong — a plain white
+   hairline here, not the warm-gray one — so it's a literal value rather
+   than a token reuse. */
+.problem,
+.constraints,
+.evolution,
+.userExperience,
+.solution,
+.productDecisions,
+.designSystem,
+.takeaways {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+  padding-bottom: 32px; /* confirmed */
+}
