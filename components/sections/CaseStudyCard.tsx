@@ -86,6 +86,8 @@ interface CaseStudyCardProps {
   href?: string;
   /** No link; cursor:none + cursor-follow "Under construction" pill instead. */
   underConstruction?: boolean;
+  /** Label for the cursor-follow pill, translated by the caller. Required when underConstruction is set. */
+  underConstructionLabel?: string;
 }
 
 export default function CaseStudyCard({
@@ -104,6 +106,7 @@ export default function CaseStudyCard({
   image,
   href,
   underConstruction = false,
+  underConstructionLabel,
 }: CaseStudyCardProps) {
   const [hovering, setHovering] = useState(false);
   const textStyle = textColor ? ({ color: textColor } as CSSProperties) : undefined;
@@ -158,9 +161,22 @@ export default function CaseStudyCard({
         onMouseLeave={() => setHovering(false)}
       >
         {content}
+        {/*
+          Touch devices (see CursorFollowPill.module.css's `(hover: none)`
+          rule) never show the cursor-follow pill below, since the
+          mouseenter/mouseleave state it depends on doesn't behave
+          reliably on tap — this static badge is its mobile replacement,
+          shown only via the mirrored `(hover: none)` rule in
+          CaseStudyCard.module.css, so "under construction" still reads on
+          mobile instead of silently disappearing.
+        */}
+        <div className={styles.staticBadge}>
+          <span aria-hidden>🛠️</span>
+          <span>{underConstructionLabel}</span>
+        </div>
         <CursorFollowPill active={hovering}>
           <span aria-hidden>🛠️</span>
-          <span>Under construction</span>
+          <span>{underConstructionLabel}</span>
         </CursorFollowPill>
       </div>
     );

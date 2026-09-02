@@ -24,3 +24,21 @@
   pointer-events: none;
   z-index: 9999;
 }
+
+/*
+  This one is a real mobile bug, not just a cosmetic quirk: the parent
+  card drives `active` off onMouseEnter/onMouseLeave, and many mobile
+  browsers fire a synthetic mouseenter on tap but never fire mouseleave
+  (no equivalent gesture on touch) — so a tap can leave `active` stuck
+  true, with the pill pinned whereever pointermove last put it (or (0,0)
+  top-left if it never fired, since a static tap doesn't move). Forcing
+  it hidden on touch sidesteps the whole state bug rather than trying to
+  patch the enter/leave logic for a device class it was never designed
+  for; the card's own static pills (project tags) still communicate the
+  card's content without it.
+*/
+@media (hover: none) {
+  .pill {
+    display: none;
+  }
+}

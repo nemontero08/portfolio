@@ -58,3 +58,15 @@
   aspect-ratio: 97.648 / 99.955;
   flex-shrink: 0;
 }
+
+/*
+  Same reasoning as AboutMe's photo: no real hover on touch, and the
+  document graphic is already clipped/hidden at rest by .pill's
+  overflow:hidden — this just guarantees it stays hidden on touch
+  regardless of any stuck-hover-state quirk in a given mobile browser.
+*/
+@media (hover: none) {
+  .docContainer {
+    display: none;
+  }
+}

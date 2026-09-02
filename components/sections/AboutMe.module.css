@@ -40,3 +40,18 @@
 .photoImage {
   object-fit: cover;
 }
+
+/*
+  Touch devices have no real hover, so whileHover never reliably fires
+  (and some mobile browsers "stick" a hover state after a tap with no
+  clean way to un-trigger it). The photo already sits fully outside the
+  card at rest and is clipped by .card's overflow:clip, so hiding it here
+  too is belt-and-suspenders — guarantees it never renders on touch
+  regardless of any hover-state quirk, rather than relying solely on
+  position.
+*/
+@media (hover: none) {
+  .photo {
+    display: none;
+  }
+}

@@ -73,3 +73,18 @@
   border-radius: var(--radius-pill);
   padding: var(--space-2) var(--space-4);
 }
+
+/*
+  Home mobile pass (375-425px): no original to extract this from (this
+  whole layout is a new custom design). The desktop 64px title reads as
+  a sensible display size on the wide bento cell it was designed for, but
+  wraps to 2-3 short lines and dominates the whole viewport at 375-425px
+  width. --text-38 is an existing, already-measured token literally
+  labeled "hero greeting" in globals.css — unused elsewhere — so it's the
+  natural fit here rather than an arbitrary new value.
+*/
+@media (max-width: 425px) {
+  .title {
+    font-size: var(--text-38);
+  }
+}

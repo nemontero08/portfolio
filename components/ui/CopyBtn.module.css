@@ -69,3 +69,18 @@
 .emailLayer[data-active="true"] {
   visibility: visible;
 }
+
+/*
+  Home mobile pass (375-425px), but shared with how-i-work/vitalmed's
+  ContactCTA since both reuse this component: the full email address at
+  16px bold with nowrap is right at the edge of overflowing a mobile
+  card's content width (~295px on the home page's Let's Talk card at
+  375px) — dropping to --text-13 keeps it legible while guaranteeing it
+  fits instead of bleeding past the card (this component has no
+  overflow:hidden of its own to fall back on).
+*/
+@media (max-width: 425px) {
+  .emailLayer {
+    font-size: var(--text-13);
+  }
+}

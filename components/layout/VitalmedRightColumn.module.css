@@ -28,3 +28,18 @@
     display: none;
   }
 }
+
+/*
+  Home mobile pass (375-425px): un-hidden here. The <1024px hide above is
+  a leftover from the pre-redesign layout (the original Framer capture's
+  own surprising "About/Lab only visible at 1024/1440" quirk — see
+  GridItem.module.css). That doesn't apply to this NEW custom layout, and
+  hiding real DOM content would contradict this pass's own "stack
+  everything in DOM order" instruction — flag if About me should actually
+  stay hidden on mobile instead.
+*/
+@media (max-width: 425px) {
+  .aboutMeSlot {
+    display: block;
+  }
+}

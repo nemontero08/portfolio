@@ -17,6 +17,20 @@
 }
 
 /*
+  Home page mobile pass (375-425px): this is a NEW custom layout with no
+  original to copy, so per instruction the stack uses plain DOM/source
+  order here — overriding the legacy --mobile-order value above (which
+  predates the bento redesign and no longer reflects a real intended
+  order for these cards). See app/[locale]/page.tsx for the resulting
+  top-to-bottom order.
+*/
+@media (max-width: 425px) {
+  .item {
+    order: 0;
+  }
+}
+
+/*
   "sobre mi" (About) and "Lab" carry this exact hidden-breakpoint class
   combination in the captured HTML at every occurrence found
   (hidden-5u7pj5 hidden-jz6qyq hidden-1h9x2qg hidden-ozure3) — i.e. visible

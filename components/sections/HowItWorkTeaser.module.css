@@ -68,3 +68,14 @@
   height: 184px;
   transform-origin: 50% 50%;
 }
+
+/*
+  No real hover on touch. The gear starts at opacity:0 AND is clipped by
+  .card's overflow:clip, so it's already hidden at rest — this just
+  guarantees it on touch regardless of any stuck-hover-state quirk.
+*/
+@media (hover: none) {
+  .gear {
+    display: none;
+  }
+}

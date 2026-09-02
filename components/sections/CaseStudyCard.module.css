@@ -85,3 +85,33 @@
   object-fit: contain;
   object-position: bottom right;
 }
+
+/*
+  Mobile-only static replacement for the cursor-follow "under
+  construction" pill (see CaseStudyCard.tsx and
+  CursorFollowPill.module.css's matching `(hover: none)` rule) — same
+  visual treatment as that pill, just pinned to a fixed corner instead of
+  tracking a pointer that doesn't meaningfully exist on touch.
+*/
+.staticBadge {
+  display: none;
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 2;
+  align-items: center;
+  gap: 8px;
+  background: rgb(36, 36, 36);
+  color: rgb(204, 204, 204);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: 20px;
+  padding: 12px;
+}
+
+@media (hover: none) {
+  .staticBadge {
+    display: flex;
+  }
+}

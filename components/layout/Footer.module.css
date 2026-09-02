@@ -30,3 +30,16 @@
 .link:hover {
   color: var(--color-text-primary);
 }
+
+/*
+  Home mobile pass (375-425px): no original to extract (new component).
+  The copyright line + 3 links in one row is tight enough at 375px to
+  risk wrapping mid-row; stacking them is the sensible default.
+*/
+@media (max-width: 425px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+}
