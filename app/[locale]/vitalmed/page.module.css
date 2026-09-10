@@ -51,3 +51,41 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
   padding-bottom: 32px; /* confirmed */
 }
+
+/* The closing Contact CTA is NOT part of the original capture — see
+   page.tsx's header comment. Its own box (background/padding/radius) is
+   self-contained in the shared ContactCTA component, so unlike the
+   sections above this only needs the shared width/divider shell — no
+   padding-bottom, matching how-i-work's own .contact treatment of the
+   same block. */
+.contact {
+  width: 100%;
+  max-width: 1200px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Mobile (≤425px): confirmed via source's own @media rules on the root
+   Body wrapper (.framer-1chmgsp) — horizontal padding drops from 32px to
+   16px (matching how-i-work's identical treatment); vertical
+   padding/gap and every section's divider/max-width stay unchanged. This
+   rule stops at 425 since the tablet pass below now owns 426-1023, the
+   rest of that shared range. */
+@media (max-width: 425px) {
+  .body {
+    padding: 16px 16px 32px;
+  }
+}
+
+/*
+  Tablet pass (426-1023px). 426-767px is source's own confirmed
+  `(min-width:425px) and (max-width:767.98px)` rule — the same 16px 16px
+  32px value as the ≤425 block above, repeated for this sub-range.
+  768-1023px has NO override in source at all — it falls straight
+  through to the base/desktop padding (16px 32px 32px), already this
+  file's default, so no rule is needed for that sub-range.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .body {
+    padding: 16px 16px 32px;
+  }
+}

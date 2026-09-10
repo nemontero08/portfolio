@@ -220,3 +220,146 @@
   color: rgb(130, 180, 240); /* confirmed */
   margin: 0;
 }
+
+/* Mobile (≤425px, confirmed identical between source's "Mobile" and
+   "MOBILE L" variants — this rule stops at 425 since the tablet pass
+   below now owns 426-1023, the rest of that shared range): Cosas stacks
+   COL DER above COL IZQ (row->column, matching every other section);
+   both columns go full-width.
+   .grid is a DELIBERATE, CONFIRMED exception, same category as Role &
+   Vision's Impact tiles: the compiled CSS has NO override at all for
+   .grid or its two row wrappers at Mobile/MOBILE L (only Tablet gets
+   one, see the tablet block below) — the 2x2 UX/Legal/Operations/
+   Technical tile arrangement and its fixed 250px height are reproduced
+   unchanged down to 375px, not assumed to stack. */
+@media (max-width: 425px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colDer {
+    flex: none;
+    width: 100%;
+    gap: 16px; /* confirmed */
+  }
+
+  .colIzq {
+    flex: none;
+    width: 100%;
+    height: min-content; /* confirmed */
+  }
+
+  .visionCard {
+    flex: none;
+    height: min-content; /* confirmed */
+  }
+
+  /* NOT in source — a bug fix, not a fidelity transcription (unlike
+     everything else in this file). The base .grid rule's implicit
+     `1fr 1fr` columns have an implicit min-width of `auto`, which
+     resolves to each column's content-based minimum (driven by the
+     longest unbreakable word — "Implementable"/"TECHNICAL" on the right
+     column). Below ~326px that minimum exceeds the available half-width
+     and the grid overflows past the viewport's right edge (confirmed:
+     the Legal/Technical tiles' own right edge, not some unrelated
+     element, is exactly what pushes past 320px). minmax(0, 1fr) drops
+     that implicit minimum to 0, so the columns shrink and wrap instead
+     of forcing overflow — confirmed via measurement to introduce zero
+     visual change from 326px up to the 1024px desktop breakpoint (where
+     this rule doesn't apply anyway), since minmax(0,1fr) only differs
+     from 1fr when content would already have forced overflow.
+
+     Second, separate bug fix on the same rule: the base .grid also
+     carries a fixed height:250px, never relaxed below the 768-1023.98
+     Tablet override further down (height:min-content there). With
+     grid-template-rows:1fr 1fr, each row's implicit `auto` minimum is
+     its own content's min-content height — row 1 (UX/Legal) needs more
+     than row 2 (Operations/Technical) once captions wrap several lines
+     in this narrow column, so at 320px the two rows' own minimums (e.g.
+     160px + 112px, confirmed via measurement) already sum past the
+     fixed 250px budget before the 12px row gap is even added. The grid
+     forces each row to its content minimum regardless, so the fixed
+     height doesn't shrink the rows proportionally — it just stops being
+     true, and the tiles render past the box's own declared bottom edge.
+     height:min-content here (matching the Tablet override's own value)
+     lets the grid size itself to whatever its two rows actually need,
+     removing the forced squeeze without changing card padding — this
+     was confirmed comfortable at 320px in both EN and ES even before
+     the .tileTitle size drop below was requested as a separate,
+     deliberate design choice (not because 18px was still cramped). */
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    height: min-content;
+  }
+
+  /* NOT in source — a deliberate design change requested for mobile
+     only, not a fidelity transcription or an overflow fix (the grid was
+     already confirmed to fit at 18px, see above). Caption size (14px)
+     is untouched. */
+  .tileTitle,
+  .tileTitleRegular {
+    font-size: 16px;
+  }
+}
+
+/*
+  Tablet pass (426-1023px). 426-767px is source's own "MOBILE L" variant
+  — confirmed identical to the ≤425 block above, repeated verbatim.
+
+  768-1023px (source's real "Tablet" variant): the same Cosas
+  row->column stack applies (confirmed — Tablet is NOT an exception here,
+  unlike .grid below), and COL DER stays width:100% but its gap has no
+  override at this variant, so it keeps the desktop 8px value (unlike
+  MOBILE L's confirmed 16px). .grid itself DOES get a real Tablet-only
+  override, still not stacking (no flex-direction change, still 2x2) but
+  its fixed 250px height becomes auto (height:min-content) — a Tablet-
+  specific relaxation that doesn't exist at true mobile.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colDer {
+    flex: none;
+    width: 100%;
+    gap: 16px; /* confirmed */
+  }
+
+  .colIzq {
+    flex: none;
+    width: 100%;
+    height: min-content; /* confirmed */
+  }
+
+  .visionCard {
+    flex: none;
+    height: min-content; /* confirmed */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colDer {
+    flex: none;
+    width: 100%; /* gap stays desktop's 8px — no override confirmed at this variant */
+  }
+
+  .colIzq {
+    flex: none;
+    width: 100%;
+    height: min-content; /* confirmed */
+  }
+
+  .visionCard {
+    flex: none;
+    height: min-content; /* confirmed */
+  }
+
+  .grid {
+    height: min-content; /* confirmed — Tablet-only relaxation of the fixed 250px, still 2x2 (no flex-direction override) */
+  }
+}

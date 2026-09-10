@@ -32,6 +32,32 @@
   margin: 0 0 var(--space-2);
 }
 
+/*
+  Mobile pass 2 (<=425px): Vitalmed-only logo shrink. The SVG's own height
+  (default 20px, see VitalmedLogo.tsx) is set via an inline style prop, not
+  CSS, so !important is required to win over it — same pattern as
+  vitalmed/Hero.module.css's own .logo override. width:auto (already the
+  component's default) keeps the ~7.21 aspect ratio.
+*/
+@media (max-width: 425px) {
+  .titleLogo svg {
+    height: 25px !important;
+    width: auto !important;
+  }
+}
+
+/*
+  Home tablet pass (426-1023.98px, same tier as tabletSpan/tabletMinHeight
+  elsewhere in this project — not literally 768-1024): same override
+  mechanism as the mobile block above, just a different target height.
+*/
+@media (min-width: 426px) and (max-width: 1023.98px) {
+  .titleLogo svg {
+    height: 32px !important;
+    width: auto !important;
+  }
+}
+
 /* The project-name title — source: 28px, weight 800, its own display font
    per card (Noto Serif for Basalto, Manrope for Lumine Gas). Pages override
    font-size/font-family via inline style; 28px/800 stand as sane defaults. */
@@ -40,6 +66,40 @@
   font-weight: 800;
   line-height: 100%;
   margin: 0 0 var(--space-1);
+}
+
+/*
+  Mobile pass 2 (<=425px): BASALTO/Lumine Gas titles are styled TEXT (a
+  plain <p>, page.tsx passes titleFontSize={32} as an inline style, all
+  breakpoints) — NOT an SVG/image like Vitalmed's logo, so "25px tall"
+  isn't a literal box height here. Approximated via font-size using the
+  common ~0.7 cap-height-to-em ratio for grotesk/serif display faces
+  (both titles are all-caps or have no descenders, so their visible
+  glyph height ≈ cap-height): 25 / 0.7 ≈ 36px. Not a measured value —
+  flagged as an approximation, fine-tune by eye if it reads off.
+  !important wins over the inline 32px at mobile only; tablet/desktop
+  keep that inline 32px untouched.
+*/
+@media (max-width: 425px) {
+  .title {
+    font-size: 36px !important;
+  }
+}
+
+/*
+  Home tablet pass (426-1023px), now also mobile pass 2 (<=425px):
+  "BASALTO" (32px, no space to wrap on) is right at the edge of
+  overflowing its column at the narrow end of this range, where Basalto
+  sits at half-width (see page.tsx's tabletSpan={1}/mobileSpan={1}) —
+  widened from the original tablet-only range since mobile's Basalto/
+  Lumine pair is just as narrow. Scoped below 1024px only (not desktop,
+  which this pass must leave untouched) even though it'd be a no-op there
+  too.
+*/
+@media (max-width: 1023.98px) {
+  .title {
+    overflow-wrap: break-word;
+  }
 }
 
 /* Confirmed 16px, Inter, in source (the site's default text-preset size). */
@@ -54,10 +114,109 @@
   font-weight: var(--font-weight-bold);
 }
 
+/*
+  Mobile pass 2 (<=425px): Vitalmed's subtitle is bumped to 19px via an
+  inline style (see page.tsx's headingFontSize={19}), overriding this
+  class's own 16px default — !important is required here to win back over
+  that inline value at mobile. Basalto/Lumine pass no headingFontSize, so
+  they're already at this class's 16px default and this rule is a no-op
+  for them.
+*/
+@media (max-width: 425px) {
+  .heading {
+    font-size: 16px !important;
+  }
+}
+
 .pills {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+}
+
+/*
+  Zero-height, flex-basis:0 by default so this line-break marker (see
+  CaseStudyCard.tsx — rendered between the 1st and 2nd pill) takes no
+  space and forces no wrap at tablet/desktop. Only mobile below flips it
+  to flex-basis:100%, which forces the flex-wrap row to break right after
+  the first pill without stretching that pill itself (a flex-basis:100%
+  sibling, not a width on the pill).
+*/
+.pillBreak {
+  flex-basis: 0;
+  width: 0;
+  height: 0;
+}
+
+/*
+  Mobile pass 2 (<=425px): explicit left-aligned wrap, scoped to mobile
+  only (tablet/desktop already read fine unmodified). Reported bug: pills
+  were wrapping unevenly (e.g. one alone on a row, two together on the
+  next), reading as broken/forced columns. The container was already a
+  single flex-wrap row with no per-pill width/basis forcing a column
+  count — the uneven line breaks are just each pill's own natural text
+  width at mobile's card width. justify-content/align-content default to
+  "normal" (flex-start-equivalent) here already, but pin them explicitly
+  rather than lean on that default, so every row — including a trailing
+  single "orphan" pill — is guaranteed to hug the left edge instead of
+  drifting to center/space-between under any inherited override.
+*/
+@media (max-width: 425px) {
+  .pills {
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+
+  /* Forces the 1-then-2 wrap requested for mobile — see .pillBreak above. */
+  .pillBreak {
+    flex-basis: 100%;
+  }
+
+  /*
+    Vitalmed-only (see CaseStudyCard.tsx's denseTagsMobile prop, set only
+    on the home page's Vitalmed instance in page.tsx) — tightens gap here
+    on .tagsDense itself, and font-size/padding on its pill children via a
+    plain descendant selector (`> span`, matching Pill.tsx's rendered
+    `<span>` structurally rather than importing Pill.module.css's own
+    scoped class name). Specificity (one class + one type selector) beats
+    Pill.module.css's single-class `.pill` rule regardless of stylesheet
+    order, so no !important needed here — unlike the inline-style
+    overrides above. Basalto/Lumine don't get this class, so their pills
+    are untouched.
+  */
+  .tagsDense {
+    gap: 4px;
+  }
+
+  /*
+    :not(.pillBreak) excludes the zero-height line-break marker above,
+    which is also a direct-child span — without this exclusion, the 8px
+    padding here would give that marker a visible 16px height instead of
+    staying zero-height.
+  */
+  .tagsDense > span:not(.pillBreak) {
+    font-size: 10px;
+    padding: 8px;
+  }
+}
+
+/*
+  Home tablet pass (426-1023.98px): Vitalmed-only 1+2 pill wrap, mirroring
+  the mobile block above exactly (same .pillBreak marker, same
+  justify/align pin) — just scoped via `.active` (the class unique to
+  Vitalmed's card among the three, see .active above) instead of applying
+  to every card's .pills, since Basalto/Lumine weren't asked for this at
+  tablet.
+*/
+@media (min-width: 426px) and (max-width: 1023.98px) {
+  .active .pills {
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+
+  .active .pillBreak {
+    flex-basis: 100%;
+  }
 }
 
 /* Keeps text above the absolutely-positioned .imageWrap regardless of DOM
@@ -79,6 +238,19 @@
   right: 0;
   z-index: 0;
   width: 35%;
+}
+
+/*
+  Mobile pass 2 (<=425px): Vitalmed phone mockup only — the sole card
+  using .imageWrap (Basalto/Lumine use the separate CardTexture SVG,
+  untouched here). Was 26% (an earlier percentage-based reduction from
+  desktop's 35%); now a literal px target per Nico's measured spec.
+  Tablet/desktop keep the unmodified 35%.
+*/
+@media (max-width: 425px) {
+  .imageWrap {
+    width: 116px;
+  }
 }
 
 .image {
@@ -113,5 +285,42 @@
 @media (hover: none) {
   .staticBadge {
     display: flex;
+  }
+}
+
+/*
+  Home tablet pass (426-1023px), now also mobile pass 2 (<=425px): neither
+  range has a reliable real "hover" to drive the cursor-follow pill above
+  (and testing tablet by simply resizing a desktop browser window doesn't
+  match `(hover: none)` either, since a real mouse is still present) — the
+  under-construction indicator needs to be always visible here rather than
+  interaction-gated, and dead centered on the card instead of pinned to a
+  corner, per Nico's note (mobile previously kept the corner-pinned
+  .staticBadge from the `(hover: none)` rule below — this now overrides
+  that at mobile too, matching tablet). Reuses the existing .staticBadge
+  element (no new markup): unsets its corner position in favor of the
+  standard absolute-centering pattern (top/left 50% +
+  translate(-50%,-50%)), which centers it regardless of its own intrinsic
+  size. Placed after the (hover: none) block so it wins the `display`
+  tie-break on an actual touch device, where both conditions are true at
+  once.
+
+  The 0.85 opacity is the other half of the same restored treatment —
+  applied to the whole card only below 1024px, not desktop's real hover
+  state (tint handled separately).
+*/
+@media (max-width: 1023.98px) {
+  .staticBadge {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+  }
+
+  .underConstruction {
+    opacity: 0.85;
   }
 }

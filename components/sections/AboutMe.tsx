@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import styles from "./AboutMe.module.css";
 
 /**
@@ -59,12 +60,14 @@ const photoVariants = {
 };
 
 export default function AboutMe() {
+  const t = useTranslations("home.aboutMe");
+
   return (
     <motion.div className={styles.card} initial="rest" whileHover="hover">
       <div>
-        <h4 className={styles.title}>About me</h4>
+        <h4 className={styles.title}>{t("title")}</h4>
         <motion.p className={styles.description} variants={cardTextVariants} transition={TRANSITION}>
-          Product Designer focused on digital products, complex systems, and clarity-driven experiences.
+          {t("description")}
         </motion.p>
       </div>
       <motion.div className={styles.photo} variants={photoVariants} transition={TRANSITION}>

@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import styles from "./Problem.module.css";
 
 /**
@@ -30,16 +31,9 @@ import styles from "./Problem.module.css";
  * missing, nothing to flag.
  */
 
-const TIMELINE_STEPS = [
-  { emoji: "🌐", label: "Initial web form" },
-  { emoji: "💬", label: "Contact and follow-up via WhatsApp" },
-  { emoji: "📷", label: "ID photos via message" },
-  { emoji: "🔗", label: "Biometric validation on external platform" },
-  { emoji: "📄", label: "PDF to print, sign, and scan" },
-  { emoji: "💳", label: "Banking details via WhatsApp" },
-  { emoji: "🏥", label: "Manual review by medical audit team" },
-  { emoji: "⌨️", label: "Manual entry into internal system" },
-];
+// Emoji are decorative and identical in both locales — paired with the
+// translated timeline labels (vitalmed.problem.timeline) by index.
+const TIMELINE_EMOJI = ["🌐", "💬", "📷", "🔗", "📄", "💳", "🏥", "⌨️"];
 
 function ConnectorLine() {
   return (
@@ -51,53 +45,49 @@ function ConnectorLine() {
   );
 }
 
-export default function Problem() {
+export default async function Problem() {
+  const t = await getTranslations("vitalmed.problem");
+  const timeline = t.raw("timeline") as string[];
+
   return (
     <div className={styles.section}>
       <div className={styles.texto}>
-        <p className={styles.eyebrow}>THE PROBLEM</p>
+        <p className={styles.eyebrow}>{t("eyebrow")}</p>
         <div className={styles.titulo}>
-          <p className={styles.tituloLine1}>Onboarding didn&apos;t live in a system.</p>
-          <p className={styles.tituloLine2}>It lived across tools.</p>
+          <p className={styles.tituloLine1}>{t("titleLine1")}</p>
+          <p className={styles.tituloLine2}>{t("titleLine2")}</p>
         </div>
         <div className={styles.body}>
-          <p className={styles.bodyText}>
-            The process started with a web form, continued on WhatsApp with an advisor, included PDFs to print and
-            sign, validations on external platforms, and manual review by the medical audit team. For the user:
-            opaque, slow, unpredictable. For the organization: total dependency on manual effort, no traceability,
-            no metrics
-          </p>
-          <p className={styles.mensaje}>The problem wasn&apos;t visual. It was structural</p>
+          <p className={styles.bodyText}>{t("body")}</p>
+          <p className={styles.mensaje}>{t("mensaje")}</p>
         </div>
       </div>
 
       <div className={styles.cosas}>
         <div className={styles.colIzq}>
           <div className={styles.visionCard}>
-            <p className={styles.visionTitle}> USER EXPERIENCE</p>
-            <p className={styles.visionBody}>
-              A long, fragmented journey with no status visibility, unexpected steps, and no clear confirmation
-            </p>
+            <p className={styles.visionTitle}> {t("userExperience.title")}</p>
+            <p className={styles.visionBody}>{t("userExperience.body")}</p>
           </div>
           <div className={styles.visionCard}>
-            <p className={styles.visionTitle}>ORGANIZATION</p>
-            <p className={styles.visionBody}>Total dependency on human intervention. </p>
-            <p className={styles.visionBody}>Traceability through conversations. Variable timelines. No metrics</p>
+            <p className={styles.visionTitle}>{t("organization.title")}</p>
+            <p className={styles.visionBody}>{t("organization.body1")} </p>
+            <p className={styles.visionBody}>{t("organization.body2")}</p>
           </div>
         </div>
 
         <div className={styles.colDer}>
-          <p className={styles.derTitle}>ORIGINAL FLOW — 8 STEPS · 5 DIFFERENT CHANNELS</p>
+          <p className={styles.derTitle}>{t("timelineTitle")}</p>
           <div className={styles.cuadro}>
-            {TIMELINE_STEPS.map((step, i) => (
-              <div key={step.label} className={styles.itemGroup}>
+            {timeline.map((label, i) => (
+              <div key={label} className={styles.itemGroup}>
                 <div className={styles.item}>
                   <div className={styles.icono}>
-                    <p className={styles.iconoEmoji}>{step.emoji}</p>
+                    <p className={styles.iconoEmoji}>{TIMELINE_EMOJI[i]}</p>
                   </div>
-                  <p className={styles.itemLabel}>{step.label}</p>
+                  <p className={styles.itemLabel}>{label}</p>
                 </div>
-                {i < TIMELINE_STEPS.length - 1 && <ConnectorLine />}
+                {i < timeline.length - 1 && <ConnectorLine />}
               </div>
             ))}
           </div>

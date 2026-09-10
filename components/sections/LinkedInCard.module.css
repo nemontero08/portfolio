@@ -48,3 +48,37 @@
   image-rendering: pixelated;
   flex-shrink: 0;
 }
+
+/*
+  Mobile (<=425px, same bucket as BentoGrid/GridItem's mobile pass): per
+  Nico's request, render the card's existing HOVER appearance (blue brand
+  background rgb(14, 118, 168) + white "in" mark — see cardVariants /
+  hoverMarkVariants in LinkedInCard.tsx) as the permanent resting state,
+  since there's no hover on touch, and drop the text label. These are the
+  exact values already used for hover — not new colors/art.
+
+  LinkedInCard.tsx drives backgroundColor and each .mark's opacity via
+  Motion inline styles every frame (same situation as ResumeButton's
+  .docContainer — see that file's comment), so !important is required to
+  win over whatever rest/hover variant Motion computes underneath. The
+  two .mark divs share one class with no other selector to key off, so
+  :first-child (REST_FILL, gray) / :last-child (HOVER_FILL, white) target
+  them by their fixed DOM order in LinkedInCard.tsx.
+*/
+@media (max-width: 425px) {
+  .card {
+    background-color: rgb(14, 118, 168) !important;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .mark:first-child {
+    opacity: 0 !important;
+  }
+
+  .mark:last-child {
+    opacity: 1 !important;
+  }
+}

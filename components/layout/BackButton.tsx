@@ -1,7 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Link } from "@/i18n/navigation";
 import styles from "./BackButton.module.css";
+
+const MotionLink = motion.create(Link);
 
 const TRANSITION = { type: "spring" as const, duration: 0.4, bounce: 0.2, delay: 0 };
 
@@ -36,7 +39,7 @@ const backgroundVariants = {
 export default function BackButton() {
   return (
     <div className={styles.wrap}>
-      <motion.a
+      <MotionLink
         href="/"
         aria-label="Back to home"
         className={styles.button}
@@ -49,7 +52,7 @@ export default function BackButton() {
           <path d="M5 12H19" stroke="rgb(217, 219, 222)" strokeWidth={2} strokeLinecap="round" />
           <path d="M12 5V19" stroke="rgb(217, 219, 222)" strokeWidth={2} strokeLinecap="round" />
         </svg>
-      </motion.a>
+      </MotionLink>
     </div>
   );
 }

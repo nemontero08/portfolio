@@ -1,0 +1,310 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for this section (.framer-2dvwlj "Desktop" variant,
+   under the "THE SOLUTION" eyebrow) — resolved via proper cascade
+   simulation over the source-order rules that actually apply to this
+   page's "framer-SJTaY" Desktop variant, not guessed. See Solution.tsx
+   for the eyebrow/label font note (Inter medium, confirmed via
+   --font-selector — not Space Grotesk). */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.eyebrow {
+  font-weight: var(--font-weight-medium); /* 500, confirmed */
+  font-size: 16px; /* inherited default, same convention as the other sections */
+  letter-spacing: 1.26px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  margin: 0;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* confirmed */
+}
+
+.tituloLine1,
+.tituloLine2 {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-weight: 500; /* confirmed */
+  font-size: 32px; /* confirmed */
+  line-height: 40px; /* confirmed */
+  margin: 0;
+}
+
+.tituloLine1 {
+  color: rgb(204, 204, 204); /* confirmed */
+}
+
+.tituloLine2 {
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+.bodyText {
+  font-size: 15px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgba(204, 204, 204, 0.8); /* confirmed */
+  margin: 0;
+}
+
+/* "Cosas" card: width:100% of its 1200px section (NOT a fixed 896px —
+   double-checked, an 896px value exists in the source CSS but only under
+   an unrelated breakpoint variant's scoped selector, doesn't apply here),
+   padding 43px each side -> 1114px inner content width, which matches the
+   flow rows' own confirmed 1114px width exactly. */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+  padding: 43px; /* confirmed */
+  background: rgb(20, 20, 20); /* confirmed */
+  border-radius: 20px; /* confirmed */
+}
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* confirmed */
+  align-items: center;
+  width: 100%;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 300px; /* confirmed */
+}
+
+/* aspect-ratio confirmed (.468232, ~300x641px at this width) — a phone-
+   screenshot mockup; no border-radius on the box in source (checked
+   directly, none set), so left square. */
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.468232;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.label {
+  font-weight: var(--font-weight-medium); /* 500, confirmed */
+  font-size: 16px; /* inherited default */
+  letter-spacing: 1.26px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  white-space: pre; /* confirmed — single line, no wrap */
+  margin: 0;
+}
+
+/* "Data confirmation" only: confirmed real <strong> (bold) + centered
+   text-alignment in source, unlike every other step label. */
+.labelEmphasis {
+  composes: label;
+  font-weight: 700;
+  text-align: center;
+}
+
+.iconButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; /* confirmed */
+  height: 48px; /* confirmed */
+  background: rgba(0, 87, 184, 0.1); /* confirmed */
+  border: 1.01px solid rgba(0, 87, 184, 0.24); /* confirmed */
+  border-radius: 50%;
+}
+
+/* Desktop/confirmed rest state: rotates per-instance (--arrow-rotate, set
+   inline from the ArrowIcon component's `rotate` prop — 45deg within
+   rows 1/3, -135deg within row 2, 135deg for the two row-turn
+   indicators; all confirmed per-instance from source, see Solution.tsx).
+   Overridden to a single fixed rotate(135deg) — pointing down — wherever
+   .row/.turnRight/.turnLeft stack to a column below, see those media
+   blocks: once every step sits in one vertical file, the desktop
+   choreography's left/right/turn distinction no longer applies. */
+.arrowIcon {
+  transform: rotate(var(--arrow-rotate));
+}
+
+/* Turn-between-rows indicators: confirmed right-aligned after row 1,
+   left-aligned after row 2 (each wraps a single IconButton in its own
+   300px-wide slot, matching a step column's width). */
+.turnRight {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.turnLeft {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.turnSlot {
+  display: flex;
+  justify-content: center;
+  width: 300px; /* confirmed */
+}
+
+/* Closing callout: confirmed full 1px border (not background-only), plus
+   background and radius. */
+.callout {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 100%;
+  padding: 8px 12px; /* confirmed */
+  background: rgba(0, 87, 184, 0.2); /* confirmed */
+  border: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+  border-radius: 8px; /* confirmed */
+}
+
+.calloutText {
+  font-size: 18px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgba(130, 180, 240, 0.8); /* confirmed */
+  margin: 0;
+}
+
+/* Mobile (≤767px, confirmed identical between source's "MOBILE L"
+   (375-424.98/425-767.98) and "Mobile S" (<374.98) variants): each
+   .row's 3 side-by-side steps stack into a column (confirmed override on
+   all 3 row wrappers: flex-direction:column, gap:12px, width:100%);
+   .turnRight/.turnLeft's slot centers instead of aligning to an edge
+   (confirmed: justify-content:center) since there's no longer a second
+   column to point the turn toward.
+   .step's fixed 300px width has NO confirmed override at this
+   breakpoint — Framer's own 393px-wide mobile canvas (43px card padding
+   each side) leaves exactly 307px, just enough to fit it unchanged. This
+   app's actual mobile layout has extra page-level padding on top of
+   that (see page.module.css), which would make a literal fixed 300px
+   overflow a real 375-393px viewport — width:100% here is a text-
+   safety/overflow deviation from that unconfirmed-safe literal value,
+   not a discovered source value; visual max size is unchanged since
+   300px was already this step's natural width. */
+@media (max-width: 425px) {
+  .row {
+    flex-direction: column;
+    gap: 12px; /* confirmed */
+  }
+
+  .step {
+    width: 100%;
+  }
+
+  .turnRight,
+  .turnLeft {
+    justify-content: center; /* confirmed */
+  }
+
+  .turnSlot {
+    width: 100%; /* confirmed */
+  }
+
+  /* NOT in source — a bug fix, not a fidelity transcription. See
+     .arrowIcon's base rule: every step is one vertical file now, so
+     every arrow between them points down, regardless of its desktop
+     --arrow-rotate value. */
+  .arrowIcon {
+    transform: rotate(135deg);
+  }
+}
+
+/*
+  Tablet pass (426-1023px). 426-767px is source's own "MOBILE L" variant
+  (hash v-4lpu1j) — confirmed identical to the ≤425 block above, repeated
+  verbatim.
+
+  768-1023px (source's real "Tablet" variant, hash v-1afir02 — found
+  nested inside the Desktop chunk's own ssr-variant wrapper, same
+  "mislabeled/hidden-list-only" pattern as User Experience's Tablet
+  variant, not a plain top-level "Tablet"-named block) is a completely
+  DIFFERENT strategy from mobile: the 3-per-row layout does NOT stack —
+  .row/.turnRight/.turnLeft keep their desktop flex-direction/
+  justify-content untouched (no override exists for any of them at this
+  variant). Instead, everything scales down proportionally: steps
+  300px->192px, the connecting icon buttons 48px->32px, turnSlot
+  300px->192px to match. (The icon glyph inside each button also shrinks
+  further, 19px->16px, in source — not reproduced here, a decorative
+  detail not worth the added plumbing at this component's scope.)
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .step {
+    width: 100%;
+  }
+
+  .turnRight,
+  .turnLeft {
+    justify-content: center;
+  }
+
+  .turnSlot {
+    width: 100%;
+  }
+
+  /* NOT in source — same bug fix as the ≤425 block above, repeated for
+     this twin "MOBILE L" range where .row also stacks. */
+  .arrowIcon {
+    transform: rotate(135deg);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .step {
+    width: 192px; /* confirmed, scaled down from 300px — not full-width like mobile */
+  }
+
+  .iconButton {
+    width: 32px; /* confirmed, scaled down from 48px */
+    height: 32px; /* confirmed */
+  }
+
+  .turnSlot {
+    width: 192px; /* confirmed, matches the scaled-down step width */
+  }
+}

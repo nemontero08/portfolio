@@ -1,0 +1,446 @@
+{
+  "home": {
+    "hero": {
+      "eyebrow": "PRODUCT DESIGNER · UX/UI · REMOTE",
+      "title": "I design complex products, starting with <emphasis>how they work</emphasis>.",
+      "paragraph": "I used to write the code, now I design the product — that's why I start with how it works, not how it looks. I work across B2B and B2C, from dashboards and operational tools to complex flows.",
+      "pills": ["3+ years in product", "B2B · B2C · SaaS", "ex-developer · full-stack"]
+    },
+    "aboutMe": {
+      "title": "About me",
+      "description": "Product Designer focused on digital products, complex systems, and clarity-driven experiences."
+    },
+    "howItWorkTeaser": {
+      "title": "How I work",
+      "description": "Process, methodology and design philosophy"
+    },
+    "letsTalkCard": {
+      "title": "Let's talk"
+    },
+    "whatIDo": {
+      "eyebrow": "WHAT I DO",
+      "items": [
+        {
+          "title": "Product Design",
+          "description": "I design digital products combining strategy, user experience, metrics and business to create products that grow and scale."
+        },
+        {
+          "title": "UX/UI Design",
+          "description": "I design digital products end to end, combining business, users and technology to create scalable, high-impact solutions."
+        },
+        {
+          "title": "Design Systems",
+          "description": "I build scalable design systems with components, tokens, and documentation to maintain consistency and speed across digital products."
+        },
+        {
+          "title": "Web & Framer",
+          "description": "I design and develop fast, responsive websites and landing pages using Framer and no-code tools."
+        },
+        {
+          "title": "Branding & visual identity",
+          "description": "I design visual identities, brand systems, and digital assets for products and companies."
+        },
+        {
+          "title": "Illustration",
+          "description": "I create custom illustrations and iconography for interfaces, brands, and digital products."
+        }
+      ]
+    },
+    "lab": {
+      "title": "Lab",
+      "description": "Ideas, experiments and learning"
+    },
+    "caseStudies": {
+      "vitalmed": {
+        "heading": "Turning a bureaucratic process into a digital enrollment",
+        "pills": ["Web App", "Onboarding", "Healthtech"]
+      },
+      "basalto": {
+        "title": "BASALTO",
+        "heading": "Loyalty platform",
+        "pills": ["Web App", "Loyalty", "Engagement"],
+        "underConstruction": "Under construction"
+      },
+      "lumineGas": {
+        "title": "Lumine Gas",
+        "heading": "Ordering system",
+        "pills": ["Mobile App", "Web App", "Ordering"],
+        "underConstruction": "Under construction"
+      }
+    },
+    "testimonials": [
+      {
+        "quote": [
+          "Nicolás is a very proactive person with a great ability to interpret needs and turn them into digital products.",
+          "He has excellent command of design, prototyping, and management tools, and a strong attention to detail."
+        ],
+        "name": "Luciano Molina",
+        "role": "Product Manager at OneInfo Consulting"
+      },
+      {
+        "quote": [
+          "Nicolás consistently delivered quality results.",
+          "He has excellent UX/UI judgment and, combined with his programming knowledge, is a very well-rounded professional.",
+          "He's reliable, responsible, and very easy to work with as a team."
+        ],
+        "name": "Franco Capristo",
+        "role": "Full-stack Developer at Estrategias Diferenciadas S.A."
+      },
+      {
+        "quote": [
+          "Nico stood out for his deep understanding of the business and client needs, becoming a key reference throughout the process.",
+          "He created excellent interactive prototypes and helped document the process clearly.",
+          "He's a very collaborative and easy person to work with."
+        ],
+        "name": "Leonel Cappiello",
+        "role": "Full-stack Developer at OneInfo Consulting"
+      },
+      {
+        "quote": [
+          "Nicolás stood out for his ability to turn ideas into clear and effective user experiences.",
+          "His commitment to quality, continuous improvement, and collaborative attitude made him a key part of the team."
+        ],
+        "name": "Fabricio Menghi",
+        "role": "Tech lead at OneInfo Consulting"
+      },
+      {
+        "quote": [
+          "Nicolás combines technical programming knowledge with UX/UI design, which allows him to come up with user-centered solutions that are also technically viable.",
+          "He's a great collaborator and someone who is very easy to work with to achieve excellent results."
+        ],
+        "name": "Dario Pérez",
+        "role": "Product Manager at Estrategias Diferenciadas S.A."
+      }
+    ]
+  },
+  "vitalmed": {
+    "hero": {
+      "heading": "From fragmented process to digital onboarding",
+      "subheading1": "An onboarding process that lived across forms, WhatsApp, and PDFs.",
+      "subheading2": "The result was a mobile-only flow — structured, automated, and measurable.",
+      "ndaText": "Protected by NDA — name changed, real process"
+    },
+    "roleVision": {
+      "role": {
+        "eyebrow": "ROLE",
+        "value": "Product Designer — End-to-end redesign of the digital onboarding, from process analysis to mobile-first flow design"
+      },
+      "vision": {
+        "eyebrow": "VISION",
+        "value": "Turn onboarding into a measurable digital product, aligned with current standards for subscription service onboarding"
+      },
+      "sector": {
+        "eyebrow": "SECTOR · PLATFORM",
+        "boldLine": "Health · Healthtech · Onboarding",
+        "value": "Web app mobile-only"
+      },
+      "team": {
+        "eyebrow": "TEAM · COLLABORATION",
+        "boldLine": "Legal · Operations · Medical Audit · Development",
+        "value": "Redesign of the operational process, experience architecture, and mobile-first flow. Cross-functional work across teams with legal, technical, and regulatory constraints"
+      },
+      "metrics": [
+        { "number": "-40%", "caption": "Reduction in health declaration questions" },
+        { "number": "0", "caption": "Manual interventions needed" },
+        { "number": "3 -> 1", "caption": "Legal documents consolidated into one" },
+        { "number": "Onboarding in 15 min", "caption": "Process reduced from days to minutes" }
+      ]
+    },
+    "problem": {
+      "eyebrow": "THE PROBLEM",
+      "titleLine1": "Onboarding didn't live in a system.",
+      "titleLine2": "It lived across tools.",
+      "body": "The process started with a web form, continued on WhatsApp with an advisor, included PDFs to print and sign, validations on external platforms, and manual review by the medical audit team. For the user: opaque, slow, unpredictable. For the organization: total dependency on manual effort, no traceability, no metrics",
+      "mensaje": "The problem wasn't visual. It was structural",
+      "userExperience": {
+        "title": "USER EXPERIENCE",
+        "body": "A long, fragmented journey with no status visibility, unexpected steps, and no clear confirmation"
+      },
+      "organization": {
+        "title": "ORGANIZATION",
+        "body1": "Total dependency on human intervention.",
+        "body2": "Traceability through conversations. Variable timelines. No metrics"
+      },
+      "timelineTitle": "ORIGINAL FLOW — 8 STEPS · 5 DIFFERENT CHANNELS",
+      "timeline": [
+        "Initial web form",
+        "Contact and follow-up via WhatsApp",
+        "ID photos via message",
+        "Biometric validation on external platform",
+        "PDF to print, sign, and scan",
+        "Banking details via WhatsApp",
+        "Manual review by medical audit team",
+        "Manual entry into internal system"
+      ]
+    },
+    "constraints": {
+      "eyebrow": "CONSTRAINTS",
+      "titleLine1": "Redesigning didn't mean",
+      "titleLine2": "starting from scratch.",
+      "body": "The project was shaped by a strict legal framework, legacy systems, mandatory medical review, and multiple teams with competing priorities. Plus a leadership change mid-process",
+      "balanceTitle": "THE CONSTANT BALANCE",
+      "balanceText": "Every decision ran through four variables in constant tension",
+      "items": [
+        "Strict legal framework",
+        "Mandatory and extensive health declarations",
+        "Digital signature with formal validation",
+        "Legacy systems in production",
+        "Medical review for sensitive answers",
+        "Multiple teams with a say in decisions",
+        "Leadership change mid-process"
+      ],
+      "userExperienceTitle": "USER EXPERIENCE",
+      "userExperienceBody": "A long, fragmented journey with no status visibility, unexpected steps, and no clear confirmation.",
+      "grid": [
+        { "title": "UX", "caption": "Clear experience, solvable without unnecessary friction" },
+        { "title": "Legal", "caption": "No manual intervention for simple cases" },
+        { "title": "OPERATIONS", "caption": "Viable for the teams running it" },
+        { "title": "TECHNICAL", "caption": "Implementable within existing systems" }
+      ]
+    },
+    "howItEvolved": {
+      "eyebrow": "HOW IT EVOLVED",
+      "titleLine1": "Three moments,",
+      "titleLine2": "one conclusion.",
+      "body": "The project was shaped by a strict legal framework, legacy systems, mandatory medical review, and multiple teams with competing priorities. Plus a leadership change mid-process.",
+      "phases": [
+        {
+          "label": "DISCOVERY",
+          "heading": "Diagnosis of the original process",
+          "body": "Mapping of internal states, analysis of validations and friction between teams. Fintech onboarding benchmark. No formal interviews: the starting point was the operational process, not the user",
+          "item": "Finding: the process follows internal logic, not user logic"
+        },
+        {
+          "label": " ITERATION 01 — ORGANIZING COMPLEXITY",
+          "heading": "Structuring the chaos without changing the model",
+          "body": " platform with four modules and visible states for the first time: identity, health declaration, payment, signature. The process gained clarity. The model remained intact",
+          "item": "Organizing wasn't simplifying",
+          "screenshots": ["Identity verification start", "Home screen", "Health declaration start"]
+        },
+        {
+          "label": "ITERATION 02 — REDUCING FRICTION",
+          "heading": "Simplifying within the system",
+          "body": "A question-by-question review with the legal team. −40% of questions and three documents consolidated into one. A real reduction in cognitive load, not just visual. The flow was still long",
+          "item": "The problem was still the model"
+        },
+        {
+          "label": "THE STRATEGIC SHIFT",
+          "heading": "With the leadership change, the question changed",
+          "body": "The goal stopped being to optimize the existing process. It became replacing it.  The user profile already handled complex processes independently. The expected standard was high.",
+          "item": "Decision: redesign onboarding as a fintech-style mobile-only flow"
+        }
+      ],
+      "closing": "The product stopped being a bureaucratic process and became an onboarding",
+      "compare": {
+        "beforeLabel": "BEFORE",
+        "beforeText": "How do we optimize the current process?",
+        "afterLabel": "AFTER",
+        "afterText": "Does it make sense for onboarding to keep working like a bureaucratic form?"
+      }
+    },
+    "userExperience": {
+      "eyebrow": "USER EXPERIENCE",
+      "titleLine1": "How the user feels",
+      "titleLine2": "at each stage of the flow.",
+      "body": "The design didn't just solve the structure. It actively changed the user's emotional state at every critical stage.",
+      "tableHeaders": ["STAGE", "BEFORE", "AFTER"],
+      "rows": [
+        {
+          "stage": "1. Onboarding start",
+          "description": "Firs contact",
+          "before": { "label": "😕 Confused", "quote": "\"What do I need to prepare? How long does it take?\"", "score": "2/10" },
+          "after": { "label": "🔵 Oriented", "quote": "\"I can see the steps. I know how long it'll take. I can start.\"", "score": "7/10" }
+        },
+        {
+          "stage": "2. Identity validation",
+          "description": "ID, data & biometrics",
+          "before": { "label": "😰 Anxious", "quote": "\"They asked for my info via WhatsApp, my ID photo by message, and sent me to another app for biometrics.\"", "score": "1.5/10" },
+          "after": { "label": "🔒 Confident", "quote": "\"I scanned my ID, the data filled in automatically, and the validation happened within the same app.\"", "score": "8/10" }
+        },
+        {
+          "stage": "3. Health declaration",
+          "description": "Medical questions",
+          "before": { "label": "😓 Exhausted", "quote": "\"There are so many questions. I don't understand why so many.\"", "score": "1/10" },
+          "after": { "label": "😌 Calm", "quote": "\"The questions are few and clear. I'm halfway through.\"", "score": "6.5/10" }
+        },
+        {
+          "stage": "4.  Medical review",
+          "description": "No pre-existing conditions",
+          "before": { "label": "😟 Worried", "quote": "\"They didn't tell me anything. Am I still in the process? Did they reject me?\"", "score": "0.5/10" },
+          "after": { "label": "⚡ Invisible", "quote": "\"I didn't even notice it. I went straight to the next step.\"", "score": "9.2/10" },
+          "afterNote": "If there are no pre-existing conditions, validation happens in the background. The user doesn't wait."
+        },
+        {
+          "stage": "5. Signature & payment",
+          "description": "Onboarding completion",
+          "before": { "label": "😤 Frustrated", "quote": "\"I have to print, sign, and scan. In 2025.\"", "score": "1/10" },
+          "after": { "label": "✅ Satisfied", "quote": "\"I signed and paid in two steps. Done. Easy.\"", "score": "9/10" }
+        }
+      ],
+      "curveLabel": "EXPERIENCE CURVE — BEFORE VS AFTER"
+    },
+    "solution": {
+      "eyebrow": "THE SOLUTION",
+      "titleLine1": "A linear flow.",
+      "titleLine2": "A single session.",
+      "body1": "For simple cases, onboarding is completed entirely on mobile. When a validation fails or requires medical judgment, the case is automatically escalated. The advisor stops handling documents and focuses on the cases that actually need them",
+      "body2": "Onboarding stopped being a sequence of manual tasks and became a system with rules, states, and automated decisions",
+      "steps": [
+        "Onboarding intro",
+        "ID SCAN",
+        "Biometric validation",
+        "Summary",
+        "Health declaration",
+        "Data confirmation",
+        "Signature",
+        "Payment",
+        "Completion"
+      ],
+      "callout": "⚡ We automated the repetitive and reserved the human touch for what's critical"
+    },
+    "productDecisions": {
+      "eyebrow": "PRODUCT DECISIONS",
+      "title": "Structural decisions",
+      "decisions": [
+        {
+          "title": "Mobile-only",
+          "description": "Driven by real user behavior. Focusing on one channel forced necessary simplification",
+          "tradeOff": " Trade-off: limited desktop experience"
+        },
+        {
+          "title": "Legal simplification",
+          "description": "Worked out with the legal team, not imposed. Every reduction required regulatory justification",
+          "tradeOff": "Trade-off: slow review process"
+        },
+        {
+          "title": "Selective automation",
+          "description": "Low-risk validations automated. Medical exceptions assisted. The goal wasn't to remove humans — it was to redefine when they're needed",
+          "tradeOff": "Trade-off: complex technical integration"
+        },
+        {
+          "title": "Linear and visible flow",
+          "description": "In a process involving sensitive data, transparency isn't aesthetic — it's trust",
+          "tradeOff": "Trade-off: less flexibility in step order"
+        }
+      ],
+      "quoteLabel": "WHAT CHANGED",
+      "quoteText": "We automated the repetitive. We reserved the human touch for what's critical",
+      "metricsLabel": "A SYSTEM BUILT TO MEASURE",
+      "metrics": [
+        { "title": "Time per stage", "description": "Identify where drop-offs happen with real data" },
+        { "title": "Drop-off by step", "description": "Detect friction and prioritize with evidence" },
+        { "title": "Real-time states", "description": "Full visibility for the operations team" },
+        { "title": "Scalability", "description": "Architecture ready for other segments" }
+      ]
+    },
+    "designSystem": {
+      "eyebrow": "UI & DESIGN SYSTEM",
+      "titleLine1": "UI to support, ",
+      "titleLine2": "not to stand out",
+      "body1": "The visual system was designed to convey clarity and trust within a sensitive process",
+      "body2": "Red was avoided as a dominant color in critical moments to prevent premature associations with rejection or failure",
+      "body3": "Instead, we used a neutral color scale with emphasis on informational states and explicit messaging, prioritizing textual clarity over implicit emotional signals. Alerts were handled with moderate tones and specific copy, ensuring clear feedback without adding unnecessary friction",
+      "animationsLabel": "Animations & illustrations",
+      "uiKitLabel": "UI KIT"
+    },
+    "takeaways": {
+      "eyebrow": "TAKEAWAYS",
+      "titleLine1": "What the project",
+      "titleLine2": "left behind",
+      "items": [
+        {
+          "number": "1",
+          "title": "The problem wasn't the UI. It was the model",
+          "description": "Improving the interface of a broken process doesn't make it less broken. The real progress came when the whole model was questioned, not when the existing flow was optimized"
+        },
+        {
+          "number": "2",
+          "title": "Organizing wasn't simplifying",
+          "description": "Giving visual shape to complexity doesn't reduce complexity. The first iteration confirmed it: the process had a new form, but it was still the same process"
+        },
+        {
+          "number": "3",
+          "title": "Digitizing wasn't enough",
+          "description": "Moving a physical process to a screen doesn't make it a digital product. The operational model needed to change, not just the channel"
+        },
+        {
+          "number": "4",
+          "title": "The impact was in the system, not the screens",
+          "description": "Turning a scattered process into a measurable product — with metrics, the ability to evolve, and clear ownership over every part of the flow"
+        }
+      ],
+      "quote": "When the problem is structural, design has to go further than the interface",
+      "attribution": "VITALMED · Case Study · 2025"
+    }
+  },
+  "howIWork": {
+    "methodology": {
+      "eyebrow": "METHODOLOGY & FLOW",
+      "heading": "I turn complex processes into digital products",
+      "paragraph": "I design as a decision system, not a screen production line. Before opening Figma, I define the problem, the flows, and the decisions that actually impact the business.",
+      "steps": [
+        {
+          "eyebrow": "01 / STRATEGY",
+          "title": "Map",
+          "description": "Understand the problem, the business goals, and the real needs of the end user."
+        },
+        {
+          "eyebrow": "02 / ARCHITECTURE",
+          "title": "Flows",
+          "description": "Define navigation and touchpoints to ensure minimal friction."
+        },
+        {
+          "eyebrow": "03 / PROTOTYPING",
+          "title": "Wireframes",
+          "description": "Visual structure without aesthetic distractions to validate information hierarchy."
+        },
+        {
+          "eyebrow": "04 / DELIVERY",
+          "title": "Launch",
+          "description": "High-fidelity design, technical documentation, and precise handoff for engineering."
+        }
+      ]
+    },
+    "principles": {
+      "heading": "Non-negotiable principles",
+      "body": "My work follows a set of rules that ensure the final result is not just beautiful, but functional and scalable.",
+      "whereEyebrow": "WHERE I WORK BEST",
+      "whereBody": "I work best with teams that value data-driven design, technical transparency, and fast iteration. My ideal environment is one where design has a seat at the strategy table.",
+      "wontFindHeading": "What you won't find",
+      "wontFindIntro": "My process is rigorous. For results to be high-impact, there are certain practices I've chosen to leave out of my workflow.",
+      "wontFindItems": [
+        "Decorative design: If an element doesn't have a clear function, it doesn't exist in my interface.",
+        "Creative ego: I prioritize business goals and usability over my personal aesthetic preferences.",
+        "Lack of documentation: I don't deliver messy files. Every component is named and documented for engineering."
+      ],
+      "cards": [
+        {
+          "title": "Diagnosis",
+          "description": "I don't start designing without understanding the \"why.\" Every pixel responds to a previously diagnosed need."
+        },
+        {
+          "title": "Decisions",
+          "description": "Every design decision is grounded. I don't use trends for the sake of it, but for their communicative effectiveness."
+        },
+        {
+          "title": "Focus",
+          "description": "I cut the noise. Good design is what allows the user to complete their task with the least mental effort possible."
+        },
+        {
+          "title": "Cycles",
+          "description": "Design is never \"done.\" I work in continuous improvement cycles based on feedback and metrics."
+        },
+        {
+          "title": "Components",
+          "description": "I design for the future. I build atomic component libraries that allow products to scale without losing visual consistency."
+        }
+      ]
+    }
+  },
+  "contactCTA": {
+    "eyebrow": "LET'S WORK TOGETHER",
+    "heading": "Let's talk.",
+    "paragraph": "I work best with founders or product teams at an early or growth stage, with a concrete operational problem that design can solve. If you're looking for just pretty screens, I'm probably not the right fit.",
+    "typicalProjects": "Typical projects: digital onboarding · B2B platforms · operational process redesign · systems with technical or legal constraints."
+  }
+}

@@ -7,6 +7,27 @@
   max-width rather than a single fluid width, which is the same effect for
   any viewport at or above 1440px (centered, letterboxed) and very close to
   it in between tiers.
+
+  Home tablet pass (426-1023px): the two tiers below that fall in this
+  range (768-1023.98 and 425-767.98) are changed from that stepped/capped
+  width to max-width:100% — this component is Home-only (not shared with
+  how-i-work/vitalmed), and the capped widths below were extracted from
+  the ORIGINAL single-column Framer page, which has nothing to do with
+  the new 2-column bento grid this pass introduces (see
+  BentoGrid/GridItem.module.css). Capping content at 425px for the whole
+  425-767.98 range would leave the new 2-column grid squeezed into a
+  centered 425px column with dead margin on either side at, say, 600px
+  viewport — undermining "reads well at ~768px, reflows sanely across
+  426-1023". The 425-767.98 tier's own lower bound is intentionally left
+  at 425 (not 426) — it needs to stay flush against the 424.98 upper
+  bound of the mobile tier right below it, or a 1px gap opens up at
+  exactly 425px with neither tier matching. BentoGrid/GridItem's own
+  mobile/tablet split (max-width:425px / min-width:426px) is a different,
+  harmless 1px seam: at exactly 425px the frame here is already fluid
+  while the grid above is still single-column, which is invisible in
+  practice. Padding values are kept as the already-confirmed ones; only
+  the width cap changes. Untouched: the base rule and the >=1024 tiers
+  above, and the <=424.98px mobile tier below.
 */
 .frame {
   max-width: 1440px;
@@ -22,14 +43,14 @@
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .frame {
-    max-width: 768px;
+    max-width: 100%;
     padding: var(--space-6); /* 24px */
   }
 }
 
 @media (min-width: 425px) and (max-width: 767.98px) {
   .frame {
-    max-width: 425px;
+    max-width: 100%;
     padding: var(--space-5) var(--space-5) var(--space-7); /* 16px 16px 32px */
   }
 }

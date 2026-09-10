@@ -55,3 +55,23 @@
     display: none;
   }
 }
+
+/*
+  Home tablet pass (426-1023px): the revealed (hover) photo size is
+  130x130 / 16.2px radius (see photoVariants in AboutMe.tsx) — per Nico's
+  note, 5% smaller here specifically: 130*0.95=123.5, 16.2*0.95=15.39.
+  Motion drives width/height/borderRadius via inline styles every frame,
+  not CSS, so !important is required to win over them. Only these three
+  props are touched — the rest (bottom/right/rotate) stay exactly as
+  Motion computes them, so the photo still slides to the same corner,
+  just slightly smaller once revealed. The rest (hidden) state also
+  renders at this forced size, but that's invisible either way — it sits
+  fully outside the card, clipped by .card's overflow:clip.
+*/
+@media (min-width: 426px) and (max-width: 1023.98px) {
+  .photo {
+    width: 123.5px !important;
+    height: 123.5px !important;
+    border-radius: 15.39px !important;
+  }
+}

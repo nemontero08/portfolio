@@ -103,3 +103,182 @@
 .image {
   object-fit: cover;
 }
+
+/* Mobile (≤425px, confirmed identical between the source's "Mobile M"
+   375-424 and "Mobile L" 425-767 variants — this rule stops at 425 since
+   the tablet pass below now owns 426-767, the rest of "Mobile L"'s own
+   range): the phone photo is not repositioned — it's removed from the
+   DOM entirely. Confirmed directly: zero <img> tags anywhere in either
+   mobile variant's markup, vs 1-2 in the Desktop/Laptop/Tablet variants.
+   Text column takes the full width it freed up. Heading font-size drops
+   32px->18px (confirmed explicit override); the two subheading lines
+   lose their explicit 18px override and fall through to the site's
+   inherited default (16px, same convention as every other "no explicit
+   --framer-font-size" text node elsewhere on this page) — reproduced as
+   16px. NDA badge (icon + text) keeps its desktop font sizes unchanged —
+   confirmed no override exists for it at any mobile breakpoint. */
+@media (max-width: 425px) {
+  .card {
+    /*
+      Confirmed-but-flagged gap, now backfilled: the source's own Mobile
+      variant (same one the ≤425 and 426-767.98 ranges both reproduce —
+      see the tablet block's own note below) uses 24px 16px here, not
+      desktop's 32px uniform value. Missed in the original mobile pass;
+      relevant now because that extra 16px/side was eating into the
+      already-tight budget at 320-375px viewports.
+    */
+    padding: 24px 16px;
+  }
+
+  .textColumn {
+    width: 100%;
+    gap: 14px; /* confirmed */
+  }
+
+  .headingGroup {
+    width: 100%;
+  }
+
+  .heading {
+    font-size: 18px; /* confirmed */
+  }
+
+  .subheadingGroup {
+    gap: 8px; /* confirmed */
+  }
+
+  .subheading {
+    font-size: 16px; /* inherited default, confirmed no explicit override at this breakpoint */
+  }
+
+  .imageWrap {
+    display: none; /* confirmed absent from source at this breakpoint */
+  }
+
+  /*
+    Bug: VitalmedLogo takes height as a plain inline style prop (48px,
+    the Desktop value — see VitalmedHero.tsx) with width:auto computed
+    from its own viewBox aspect ratio (~7.21:1), so at 48px tall it's
+    ~346px wide — a FIXED width that doesn't shrink with the viewport.
+    At 320-375px, once .textColumn's real available width (~224-295px
+    after this card's own padding above) is narrower than that, the
+    wordmark overflowed and got clipped by .card's overflow:clip
+    ("VITALME"/"VITALM"). !important wins over the inline style, same
+    mechanism as the tablet block's own .logo override below. Letting
+    both width and height go auto (rather than pinning a specific
+    smaller height) falls through to the SVG's own intrinsic
+    viewBox-derived size (~177x24.6px) whenever the container is wide
+    enough for it — true from 320px up — with max-width:100% as the
+    hard backstop for anything narrower still.
+  */
+  .logo {
+    height: auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+
+  /*
+    The NDA badge's text is white-space:nowrap by design (confirmed
+    single-line in source — see .ndaText above), which is fine once
+    there's enough width for the full sentence on one line, but at
+    320-375px it doesn't fit and was overflowing/clipping past the
+    card edge. Letting it wrap here (mobile-only) keeps the badge intact
+    instead of cutting text off; max-width on the badge itself lets the
+    wrap actually happen instead of the inline-flex box just growing
+    past its container.
+  */
+  .ndaBadge {
+    max-width: 100%;
+  }
+
+  .ndaText {
+    white-space: normal;
+  }
+}
+
+/*
+  Tablet pass (426-1023px). Two genuinely different sub-ranges in source,
+  not one uniform tablet treatment:
+
+  426-767px is still source's own "Mobile" variant (hash z7170/xqcgcb) —
+  the SAME variant the ≤425 block above reproduces, just its own upper
+  half. textColumn/headingGroup/heading/subheadingGroup/imageWrap repeat
+  the mobile values (confirmed identical to the ≤425 block, not
+  re-derived); NEWLY confirmed here (missed in the original mobile pass,
+  out of scope to backfill there per this pass's "keep mobile as-is"):
+  .card's padding is actually 24px 16px at this variant, not the desktop
+  32px uniform value the ≤425 block never overrides either. .subheading
+  also gets an explicit width:100% at this variant (absent at Desktop,
+  where it's unset/shrink-to-fit).
+
+  768-1023px is source's real, distinct "Tablet" variant (hash 1bhqjbg) —
+  a genuine third layout, not a scaled mobile or desktop: textColumn goes
+  to 70% (not 100% like mobile, not 60% like desktop — matches Laptop's
+  own confirmed 70%), the heading/subheading font-sizes stay at their
+  DESKTOP values (32px/18px — no override found, confirmed NOT a mobile-
+  style downscale), the phone image STAYS VISIBLE (unlike mobile's
+  display:none) at a smaller confirmed 185px (down from 225px, right
+  offset 24px instead of 32px, top unchanged at 32px, aspect ratio
+  preserved), and the VITALMED logo grows slightly to a confirmed 54px
+  tall (up from 48px) — forced via !important since VitalmedLogo takes
+  height as a plain inline style prop, which a class selector can't
+  otherwise beat.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .card {
+    padding: 24px 16px; /* confirmed */
+  }
+
+  .textColumn {
+    width: 100%;
+    gap: 14px; /* confirmed */
+  }
+
+  .headingGroup {
+    width: 100%;
+  }
+
+  .heading {
+    font-size: 18px; /* confirmed */
+  }
+
+  .subheadingGroup {
+    gap: 8px; /* confirmed */
+  }
+
+  .subheading {
+    font-size: 16px; /* inherited default, confirmed no explicit override at this variant */
+    width: 100%; /* confirmed */
+  }
+
+  .imageWrap {
+    display: none; /* confirmed absent from source at this variant */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .card {
+    padding: 32px 24px; /* confirmed */
+  }
+
+  .textColumn {
+    width: 70%; /* confirmed — matches Laptop, not Desktop's 60% or Mobile's 100% */
+  }
+
+  .headingGroup {
+    width: 100%; /* confirmed */
+  }
+
+  .subheading {
+    width: 100%; /* confirmed */
+  }
+
+  .logo {
+    height: 54px !important; /* confirmed — see class comment above */
+  }
+
+  .imageWrap {
+    right: 24px; /* confirmed, was 32px */
+    width: 185px; /* confirmed, was 225px — aspect-ratio preserves height */
+  }
+}

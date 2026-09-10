@@ -147,3 +147,182 @@
   text-align: center; /* confirmed */
   margin: 0;
 }
+
+/* Mobile (≤425px, confirmed identical between source's "Mobile" 375-424
+   and "Mobile L" 425-767 variants — this rule stops at 425 since the
+   tablet pass below now owns 426-767, the rest of "Mobile L"'s own
+   range): Row 1's three cards and Row 2's Team card stack into a single
+   column (matching every other section's row->column pattern). The
+   Impact card is the one deliberate exception, confirmed directly, not
+   assumed from the general pattern: its own 2x2 grid of 4 metric tiles
+   STAYS side-by-side in pairs (each .impactRow keeps flex-direction:row)
+   — only the gaps shrink. The Impact card also gains its own card
+   background/radius at this breakpoint (confirmed: rgb(25,26,26)/12px
+   directly on the source's "Row 3" wrapper, unlike desktop where only
+   the individual tiles carry a background), giving it the same visual
+   treatment as the other cards once it's no longer sitting flush against
+   the Team card. */
+@media (max-width: 425px) {
+  .row {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /*
+    Bug fix: .row's own align-items:center (confirmed correct at desktop,
+    where flex-direction:row makes it a VERTICAL-centering rule) silently
+    became a HORIZONTAL shrink-to-fit rule once this block flips the row
+    to flex-direction:column — .card never got its own width set (only
+    flex:1 0 0, a main-axis property that's meaningless once the axis
+    flips), so each of the 3 cards collapsed to its own content width
+    instead of the full row width, then got centered. Role/Vision's short
+    single-line values happened to still look plausible; Sector's two-line
+    bodyGroup (bold platform line + value line) is longer and read as
+    cramped/undersized in that narrow, off-center box. Row 2's equivalent
+    cards (.teamCard/.impactCard below) already carry their own
+    width:100% override here — this brings Row 1's cards in line with
+    that same, already-correct pattern.
+  */
+  .card {
+    width: 100%;
+  }
+
+  .row2 {
+    flex-direction: column;
+    height: auto;
+    gap: var(--space-3); /* 12px, confirmed — same as .section's Row1/Row2 gap */
+  }
+
+  .teamCard {
+    width: 100%;
+  }
+
+  .impactCard {
+    width: 100%;
+    padding: var(--space-6); /* 24px, confirmed */
+    background: var(--color-bg-2); /* rgb(25,26,26), confirmed */
+    border-radius: var(--radius-outer); /* 12px, confirmed */
+  }
+
+  .impactRow {
+    gap: var(--space-2); /* 8px, confirmed */
+  }
+}
+
+/*
+  Tablet pass (426-1023px). 426-767px is source's own "Mobile L" variant
+  (hash z7170/2b0vr8) — confirmed identical to the ≤425 block above, so
+  it's just repeated verbatim for this sub-range.
+
+  768-1023px (source's real "Tablet" variant, hash 1bhqjbg) is
+  surprisingly minimal: Row 1's three cards and Row 2 do NOT stack —
+  every width/flex-direction/height rule from Row 1's .row and Row 2's
+  .row2/.teamCard stays exactly as Desktop. The only confirmed change at
+  this variant: Team and Impact SWAP visual order (order:0/order:1 in the
+  compiled CSS — Impact card moves to the left, Team card to the right),
+  and the Impact card's wrapper carries the same own-background/radius
+  treatment already confirmed at mobile (present directly in this
+  variant's own markup, not inferred from the mobile pattern).
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .row {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .row2 {
+    flex-direction: column;
+    height: auto;
+    gap: var(--space-3);
+  }
+
+  .teamCard {
+    width: 100%;
+  }
+
+  .impactCard {
+    width: 100%;
+    padding: var(--space-6);
+    background: var(--color-bg-2);
+    border-radius: var(--radius-outer);
+  }
+
+  .impactRow {
+    gap: var(--space-2);
+  }
+}
+
+/*
+  Real Tablet (768-1023.98) fix — this range previously just inherited
+  Desktop's row/row2 rules unmodified (the old .impactCard/.teamCard
+  order swap above was wrong: it re-created Desktop's OWN bento, just
+  with Impact/Team flipped — not what source actually does here).
+
+  Extracted directly from reference/framer-original/vitalmed/index.html's
+  own Tablet SSR variant (hash v-1pfka6w) — a markup tree genuinely
+  DIFFERENT from Desktop's, not just resized: Row 1 holds only Role +
+  Sector (2 equal cards, confirmed via that variant's own .framer-1w7k7qp
+  wrapper containing exactly 2 children); Row 2 holds Vision + Team as 2
+  EQUAL cards (flex:1 0 0 each, confirmed — NOT Desktop's 60%/470px
+  split), with Vision rendered left of Team via a variant-scoped CSS
+  order swap (.framer-v-1pfka6w .framer-1rk47zs{order:0} /
+  .framer-1fg2j5o{order:1} — confirmed in source, DOM order there is
+  actually Team-then-Vision, order is what flips it); Row 3 ("Impacto")
+  is a single full-width block containing the same 2x2 metric-tile grid
+  already implemented, unchanged.
+
+  NOTE per explicit instruction: 1024-1439.98 ("Laptop" in source) is
+  confirmed structurally IDENTICAL to Desktop (reuses Desktop's own
+  framer-kyr8xr/framer-vbas9b/framer-h5zkzb classes verbatim) — the
+  clean 2-column layout below is NOT applied there, matching source;
+  1024 keeps the existing bento, untouched by this media query.
+
+  Implementation: .row/.row2 go display:contents (their cards become
+  direct grid items of .section, now a 2-column grid) instead of
+  restructuring the JSX, then `order` reproduces the exact confirmed
+  Role→Sector→Vision→Team→Impact sequence — the same technique the
+  source itself uses for the Vision/Team swap, not an invented trick.
+  Root width: source's own Tablet variant is 640px, an internal Framer
+  canvas value relative to ITS OWN padding system — not transplanted
+  here, since this rebuild's page-level padding differs; .section stays
+  width:100% of its normal container instead, consistent with every
+  other section on this page.
+*/
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch; /* NOT in source (a grid concept, source is flexbox) — overrides .section's base align-items:center (meant for the old flex-column stack), which otherwise centers each row's shorter card instead of stretching it to match its row-mate's height, breaking "equal height per row" */
+    gap: var(--space-3); /* 12px — confirmed unchanged, matches .framer-1c2jdl6's own base gap */
+  }
+
+  .row,
+  .row2 {
+    display: contents;
+  }
+
+  .card {
+    height: auto; /* grid row stretch (default align-items) now equalizes each row's card heights instead of flex's height:100% */
+  }
+
+  .row > .card:nth-child(3) {
+    order: 1; /* Sector — confirmed 2nd in Row 1 at this variant */
+  }
+
+  .row > .card:nth-child(2) {
+    order: 2; /* Vision — confirmed moved into Row 2, left slot */
+  }
+
+  .teamCard {
+    order: 3; /* confirmed right slot, next to Vision */
+    width: 100%; /* equal-width with Vision — confirmed, not Desktop's 60% split */
+    height: auto;
+  }
+
+  .impactCard {
+    order: 4;
+    grid-column: 1 / -1; /* confirmed: Row 3 is a single full-width block */
+    width: 100%; /* not Desktop's fixed 470px */
+    height: 229px; /* confirmed source value for this row at Tablet */
+  }
+}

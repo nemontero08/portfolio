@@ -75,16 +75,38 @@
 }
 
 /*
-  Home mobile pass (375-425px): no original to extract this from (this
-  whole layout is a new custom design). The desktop 64px title reads as
-  a sensible display size on the wide bento cell it was designed for, but
-  wraps to 2-3 short lines and dominates the whole viewport at 375-425px
-  width. --text-38 is an existing, already-measured token literally
-  labeled "hero greeting" in globals.css — unused elsewhere — so it's the
-  natural fit here rather than an arbitrary new value.
+  Home mobile pass (<=425px, no min-width floor — also covers 320px): no
+  original to extract this from (this whole layout is a new custom
+  design). The desktop 64px title reads as a sensible display size on the
+  wide bento cell it was designed for, but dominates the whole viewport
+  at phone widths, so it steps down to 28px; the 18px description also
+  steps down to 16px at the same breakpoint for the same reason.
+
+  .card has no nested title/description-only wrapper — eyebrow, title,
+  description, and pills are all direct children of the same flex column,
+  sharing one `gap` (32px, --space-7) for every adjacent pair. There's no
+  margin-based spacing anywhere in this component (every child has
+  margin:0) — gap is the only spacing mechanism, so the 24px mobile value
+  below is applied there. Note this also narrows the eyebrow-title and
+  description-pills gaps to 24px, not just title-description, since all
+  three pairs share this single value.
+
+  text-wrap:balance on .title lets the browser choose line breaks that
+  even out line length (avoiding a stranded last word) instead of the
+  default greedy wrap — adapts per language automatically, no manual
+  breaks.
 */
 @media (max-width: 425px) {
+  .card {
+    gap: 24px;
+  }
+
   .title {
-    font-size: var(--text-38);
+    font-size: 28px;
+    text-wrap: balance;
+  }
+
+  .description {
+    font-size: 16px;
   }
 }

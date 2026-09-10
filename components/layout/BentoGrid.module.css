@@ -1,11 +1,14 @@
 /*
-  Desktop grid — this is a NEW custom layout (not extracted from the
-  original), per the redesign brief: 12 columns, 11 rows. Auto-placement in
-  DOM order + each item's span (see GridItem) reproduces the intended
-  arrangement without needing explicit grid-column/row-start — verified by
-  hand for this specific span/order combination in app/page.tsx.
-  <1024px still falls back to a single-column stack (unchanged, out of
-  scope for this pass).
+  Desktop grid (>=1024px) — this is a NEW custom layout (not extracted
+  from the original), per the redesign brief: 12 columns, 11 rows.
+  Auto-placement in DOM order + each item's span (see GridItem) reproduces
+  the intended arrangement without needing explicit grid-column/row-start
+  — verified by hand for this specific span/order combination in
+  app/[locale]/page.tsx. Unchanged by the tablet/mobile passes below.
+
+  426-1023px (tablet pass) and <=425px (mobile pass) each get their own
+  dedicated reflow below — also NEW layouts with no original to copy,
+  chosen as a sensible in-between/stack rather than extracted.
 */
 .grid {
   display: grid;
@@ -21,10 +24,51 @@
   }
 }
 
-@media (max-width: 1023.98px) {
+/*
+  Tablet (426-1023px): a real 2-column CSS grid, not a single stack — see
+  GridItem.module.css's --tablet-col-span (1 = half, 2 = full) and
+  --tablet-row-span (1 or 2) for how each card is assigned to it, and
+  app/[locale]/page.tsx for the chosen values per card. grid-auto-rows:auto
+  (rather than desktop's fixed 11-row template) since row heights aren't
+  meaningful once each row's content varies this much at 2 columns — every
+  row sizes compactly to its own tallest item's content, no dead space.
+
+  grid-template-rows must be reset to `none` here — the base .grid rule
+  above sets an explicit `repeat(11, minmax(0, 1fr))` unconditionally, and
+  this block previously left that property alone, so it kept applying
+  underneath grid-auto-rows even at tablet widths. With an explicit
+  11-row template still in force, every card landed in one of those large
+  equal-fraction tracks instead of an auto/content-sized one, which is
+  what produced the huge equal-height cards and dead vertical space this
+  block exists to avoid.
+*/
+@media (min-width: 426px) and (max-width: 1023.98px) {
   .grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    gap: var(--space-4);
+  }
+}
+
+/*
+  Mobile pass 2 (<=425px): switched from a plain single-column flex stack
+  to the same kind of 2-column CSS grid as the tablet block above, now
+  that mobile also needs a real reorder plus a side-by-side pair (Resume +
+  LinkedIn) — a flex column stack can't place two items side by side
+  without extra wrapper markup, but this grid does it for free via
+  --mobile-col-span (1 = half, pairs with the next 1-span item in
+  --mobile-order sequence; 2 = full width). Same grid-auto-rows: auto
+  reasoning as tablet: row heights aren't meaningful once content varies
+  this much, so every row sizes compactly to its own content.
+*/
+@media (max-width: 425px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: auto;
     gap: var(--space-4);
   }
 }

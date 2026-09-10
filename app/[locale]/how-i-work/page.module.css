@@ -1,0 +1,128 @@
+/*
+  reference/framer-original/how-i-work/'s root (.framer-NR9ee.framer-1ruixnv)
+  and Body (.framer-1lt9hnm) wrappers — measured values, the ≥1440px
+  breakpoint only for this pass (matches the rest of the rebuild's
+  desktop-first rollout; smaller breakpoints are a later pass, same as the
+  home page).
+*/
+.root {
+  background: var(--color-bg-0); /* confirmed: html body background in the source */
+  min-height: 100vh;
+  max-width: 1440px; /* confirmed root width at this breakpoint */
+  margin: 0 auto;
+}
+
+.body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 86px; /* confirmed */
+  padding: 16px 32px 32px; /* confirmed */
+}
+
+.methodology,
+.principles,
+.contact {
+  width: 100%;
+  max-width: 1200px; /* confirmed on all three sections */
+  border-bottom: 1px solid var(--color-hairline-strong); /* confirmed on all three, incl. the accent-filled contact box */
+}
+
+.methodology {
+  display: flex;
+  flex-direction: column;
+  gap: 64px; /* confirmed */
+  padding: 0 0 32px;
+}
+
+/* Grid, not flex: "What you won't find" (.wontFind) needs to sit inside
+   the left column at desktop but reorder to AFTER the card grid at
+   mobile (confirmed real reorder in source, not just a stack — see
+   Principles.module.css). Grid-template-areas handles both without
+   duplicating markup. At desktop this reproduces the original flex
+   layout's exact result: "right" spans both rows, matching its previous
+   stretch-to-tallest-sibling behavior. */
+.principles {
+  display: grid;
+  grid-template-columns: 40% 1fr; /* confirmed */
+  grid-template-areas:
+    "left right"
+    "wontfind right";
+  gap: 16px; /* confirmed */
+  padding: 0 0 32px;
+}
+
+/* .contact's own box (background/padding/radius/color) now lives in the
+   shared ContactCTA component (components/sections/ContactCTA.module.css)
+   — this section only needs the generic width/divider shell shared with
+   the other two sections above. */
+
+/* Mobile (≤425px): confirmed from reference/framer-original/how-i-work/'s
+   own compiled CSS (the root Body wrapper's per-breakpoint rules) — gap
+   86px->64px, horizontal padding 32px->16px, identical across every
+   breakpoint from 425px down to the narrowest captured (<374px) — this
+   rule stops at 425 since the tablet pass below now owns 426-1023, the
+   rest of that shared range (768-1023 turns out NOT to share the padding
+   part — see that block's own comment). .principles reflows to a single
+   column: intro+"where I work best" first, then the card grid, then
+   "What you won't find" last (matching source's confirmed reorder). */
+@media (max-width: 425px) {
+  .body {
+    gap: 64px;
+    padding: 16px 16px 32px;
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "wontfind";
+  }
+}
+
+/*
+  Tablet pass (426-1023px). Re-verified directly against source's own
+  root Body wrapper media rules (not assumed from the ≤425 block above) —
+  this uncovered a real gap in the original mobile pass's own comment,
+  which claimed the padding change "identical... from 768px down"; source
+  actually only drops padding to 16px 16px 32px starting at 425px — at
+  768-1023px the gap alone changes (86px->64px), padding stays the
+  desktop 16px 32px 32px. Not touching the ≤425 block itself to fix that
+  claim, per this pass's own "don't touch mobile" scope — just noting it
+  here since it's directly relevant to getting 768-1023 right.
+
+  .principles: confirmed to collapse to the same single-column stack as
+  mobile across BOTH sub-ranges (the section's own top-level layout goes
+  flex-direction:column at both source's true Tablet variant and its
+  Mobile-L-equivalent for 426-767) — reused unchanged.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .body {
+    gap: 64px;
+    padding: 16px 16px 32px;
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "wontfind";
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .body {
+    gap: 64px; /* confirmed — padding stays desktop's 16px 32px 32px, no override at this variant */
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "wontfind";
+  }
+}

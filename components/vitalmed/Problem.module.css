@@ -202,3 +202,98 @@
   width: 678px; /* confirmed */
   padding: 1px; /* confirmed */
 }
+
+/* Mobile (≤425px, confirmed identical across every non-desktop variant
+   found for this section — v-1xasv4r(Laptop)/v-mfsbri(Tablet)/
+   v-18aw2oc(MOBILE L)/v-1d9lqxd(Mobile) all apply the same width:100%
+   override to Cuadro/Item/Linea — this rule stops at 425 since the
+   tablet pass below now owns 426-1023, the rest of that shared range).
+   Cosas stacks COL IZQ above COL DER (row->column, matching every other
+   section); COL IZQ and COL DER both go full-width. The Item/Linea
+   timeline pieces carry a FIXED 678px width at desktop — confirmed to
+   become width:100% at mobile, not left fixed (that fixed value would
+   otherwise overflow a 375-425px viewport). */
+@media (max-width: 425px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colIzq {
+    width: 100%;
+  }
+
+  .colDer {
+    flex: none;
+    width: 100%;
+    gap: 16px; /* confirmed */
+  }
+
+  .cuadro {
+    width: 100%;
+  }
+
+  .item,
+  .linea {
+    width: 100%;
+  }
+}
+
+/*
+  Tablet pass (426-1023px): confirmed functionally identical to the
+  mobile block above across BOTH source sub-variants in this range
+  (v-mfsbri/Tablet for 768-1023, v-18aw2oc/MOBILE L for 426-767 — same
+  cascade-resolution check as the original mobile pass, just re-run
+  against these two hashes specifically) — same row->column stack, same
+  width:100% overflow-safety on the 678px-fixed Item/Linea. The one real
+  difference: COL DER's gap only grows to 16px at MOBILE L (426-767) —
+  Tablet (768-1023) has no gap override in source, so it keeps the
+  desktop 8px value.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colIzq {
+    width: 100%;
+  }
+
+  .colDer {
+    flex: none;
+    width: 100%;
+    gap: 16px; /* confirmed */
+  }
+
+  .cuadro {
+    width: 100%;
+  }
+
+  .item,
+  .linea {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colIzq {
+    width: 100%;
+  }
+
+  .colDer {
+    flex: none;
+    width: 100%; /* gap stays desktop's 8px — no override confirmed at this variant */
+  }
+
+  .cuadro {
+    width: 100%;
+  }
+
+  .item,
+  .linea {
+    width: 100%;
+  }
+}

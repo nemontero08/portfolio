@@ -1,4 +1,4 @@
-import { Space_Grotesk, IBM_Plex_Serif } from "next/font/google";
+import { Space_Grotesk, IBM_Plex_Serif, Manrope } from "next/font/google";
 import styles from "./page.module.css";
 import BackButton from "@/components/layout/BackButton";
 import VitalmedHero from "@/components/vitalmed/Hero";
@@ -7,10 +7,18 @@ import Problem from "@/components/vitalmed/Problem";
 import Constraints from "@/components/vitalmed/Constraints";
 import HowItEvolved from "@/components/vitalmed/HowItEvolved";
 import UserExperience from "@/components/vitalmed/UserExperience";
+import Solution from "@/components/vitalmed/Solution";
+import ProductDecisions from "@/components/vitalmed/ProductDecisions";
+import DesignSystem from "@/components/vitalmed/DesignSystem";
+import Takeaways from "@/components/vitalmed/Takeaways";
+import ContactCTA from "@/components/sections/ContactCTA";
 
 // This page's own confirmed eyebrow font (Role & Vision's three eyebrow
 // labels, ROLE/VISION/SECTOR · PLATFORM — Space Grotesk medium, 12px).
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500"], variable: "--font-space-grotesk" });
+// Weight 700 is added for the closing ContactCTA's CopyBtn email text
+// (same shared component/weight as how-i-work — not part of this page's
+// own capture, see the Contact CTA note below).
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-space-grotesk" });
 // The Problem section's title font (italic serif, confirmed).
 const ibmPlexSerif = IBM_Plex_Serif({
   subsets: ["latin"],
@@ -18,6 +26,9 @@ const ibmPlexSerif = IBM_Plex_Serif({
   style: ["italic"],
   variable: "--font-ibm-plex-serif",
 });
+// Loaded solely for the closing ContactCTA's heading (weight 700) — this
+// page has no Manrope usage of its own in the original capture.
+const manrope = Manrope({ subsets: ["latin"], weight: ["700"], variable: "--font-manrope" });
 
 /**
  * FIRST PASS: recon + scaffold only. Same approach as /how-i-work — this
@@ -49,10 +60,16 @@ const ibmPlexSerif = IBM_Plex_Serif({
  * 9.  UI & Design System — "UI & DESIGN SYSTEM" (owns all 3 Lottie
  *     animations, under its "Animations & illustrations" sub-block)
  * 10. Takeaways        — "TAKEAWAYS"
+ *
+ * A closing Contact CTA (the shared lavender components/sections/ContactCTA,
+ * "LET'S WORK TOGETHER" / "Let's talk.") follows Takeaways. This is NOT
+ * part of the original capture — the real Vitalmed page ends at Takeaways
+ * — it's an intentional addition for cross-page consistency with
+ * how-i-work, which closes on the same block.
  */
 export default function VitalmedPage() {
   return (
-    <main className={`${styles.root} ${spaceGrotesk.variable} ${ibmPlexSerif.variable}`}>
+    <main className={`${styles.root} ${spaceGrotesk.variable} ${ibmPlexSerif.variable} ${manrope.variable}`}>
       <BackButton />
       <div className={styles.body}>
         <section className={styles.hero} aria-label="Hero">
@@ -73,10 +90,21 @@ export default function VitalmedPage() {
         <section className={styles.userExperience} aria-label="User experience">
           <UserExperience />
         </section>
-        <section className={styles.solution} aria-label="The solution" />
-        <section className={styles.productDecisions} aria-label="Product decisions" />
-        <section className={styles.designSystem} aria-label="UI and design system" />
-        <section className={styles.takeaways} aria-label="Takeaways" />
+        <section className={styles.solution} aria-label="The solution">
+          <Solution />
+        </section>
+        <section className={styles.productDecisions} aria-label="Product decisions">
+          <ProductDecisions />
+        </section>
+        <section className={styles.designSystem} aria-label="UI and design system">
+          <DesignSystem />
+        </section>
+        <section className={styles.takeaways} aria-label="Takeaways">
+          <Takeaways />
+        </section>
+        <section className={styles.contact} aria-label="Contact">
+          <ContactCTA />
+        </section>
       </div>
     </main>
   );

@@ -1,16 +1,20 @@
 /* All values below confirmed against reference/framer-original/how-i-work/'s
    own compiled CSS for this section (.framer-nkc5pu-container) — not the
-   old spec. Text color (deep blue, --color-accent-deep) is set once on
-   .box in app/how-i-work/page.module.css's .contact rule and inherited
-   here, since every text node in the source independently confirms the
-   same rgb(0, 56, 182) value. */
+   old spec. The box's background/padding/radius/color used to live in
+   how-i-work's own page.module.css `.contact` rule; folded in here so this
+   component is fully self-contained (single source of truth for any page
+   that closes on this block) — same confirmed values, just relocated. */
 
 .box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-7); /* 32px — APPROXIMATED, see Contact.tsx doc comment */
+  gap: var(--space-7); /* 32px — APPROXIMATED, see ContactCTA.tsx doc comment */
   width: 100%;
+  padding: var(--space-7); /* 32px, confirmed, all sides */
+  background: var(--color-accent); /* confirmed — a filled accent box, not the page background */
+  color: var(--color-accent-deep); /* #0038b6, confirmed — every text node in this section uses this value */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
 }
 
 .intro {

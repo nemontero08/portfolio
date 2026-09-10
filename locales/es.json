@@ -1,0 +1,446 @@
+{
+  "home": {
+    "hero": {
+      "eyebrow": "PRODUCT DESIGNER · UX/UI · REMOTE",
+      "title": "Diseño productos complejos, empezando por <emphasis>cómo funcionan</emphasis>.",
+      "paragraph": "Antes escribía el código, ahora diseño el producto — por eso empiezo por cómo funciona, no por cómo se ve. Trabajo en B2B y B2C, desde dashboards y herramientas operativas hasta flujos complejos.",
+      "pills": ["3+ años en producto", "B2B · B2C · SaaS", "ex-developer · full-stack"]
+    },
+    "aboutMe": {
+      "title": "Sobre mí",
+      "description": "Product Designer enfocado en productos digitales, sistemas complejos y experiencias claras."
+    },
+    "howItWorkTeaser": {
+      "title": "Cómo trabajo",
+      "description": "Proceso, metodología y filosofía de diseño"
+    },
+    "letsTalkCard": {
+      "title": "¿Hablamos?"
+    },
+    "whatIDo": {
+      "eyebrow": "QUÉ HAGO",
+      "items": [
+        {
+          "title": "Product Design",
+          "description": "Diseño productos digitales combinando estrategia, experiencia de usuario, métricas y negocio para crear productos que crezcan y escalen."
+        },
+        {
+          "title": "UX/UI Design",
+          "description": "Diseño productos digitales de punta a punta, combinando negocio, usuarios y tecnología para crear soluciones escalables y con impacto."
+        },
+        {
+          "title": "Design Systems",
+          "description": "Creo sistemas de diseño escalables con componentes, tokens y documentación para mantener consistencia y velocidad en productos digitales."
+        },
+        {
+          "title": "Web & Framer",
+          "description": "Diseño y desarrollo sitios web y landing pages rápidas y responsivas utilizando Framer y herramientas no-code."
+        },
+        {
+          "title": "Branding e Identidad Visual",
+          "description": "Diseño identidades visuales, sistemas de marca y assets digitales para productos y empresas."
+        },
+        {
+          "title": "Ilustración",
+          "description": "Creo ilustraciones e iconografía personalizada para interfaces, marcas y productos digitales."
+        }
+      ]
+    },
+    "lab": {
+      "title": "Laboratorio",
+      "description": "Ideas, pruebas y aprendizaje"
+    },
+    "caseStudies": {
+      "vitalmed": {
+        "heading": "Transformación de un trámite a un alta digital",
+        "pills": ["Web App", "Onboarding", "Healthtech"]
+      },
+      "basalto": {
+        "title": "BASALTO",
+        "heading": "Plataforma de fidelización",
+        "pills": ["Web App", "Loyalty", "Engagement"],
+        "underConstruction": "En construcción"
+      },
+      "lumineGas": {
+        "title": "Lumine Gas",
+        "heading": "Sistema de pedidos",
+        "pills": ["Mobile App", "Web App", "Ordering"],
+        "underConstruction": "En construcción"
+      }
+    },
+    "testimonials": [
+      {
+        "quote": [
+          "Nicolás es una persona muy proactiva, con una gran capacidad para interpretar necesidades y transformarlas en productos digitales.",
+          "Tiene excelente manejo de herramientas de diseño, prototipado y gestión, y una gran atención al detalle."
+        ],
+        "name": "Luciano Molina",
+        "role": "Product Manager en OneInfo Consulting"
+      },
+      {
+        "quote": [
+          "Nicolás siempre entregó resultados de calidad.",
+          "Tiene un excelente criterio en UX/UI y, junto con sus conocimientos en programación, es un profesional muy completo.",
+          "Es confiable, responsable y muy fácil trabajar con él en equipo."
+        ],
+        "name": "Franco Capristo",
+        "role": "Full-stack Developer en Estrategias Diferenciadas S.A."
+      },
+      {
+        "quote": [
+          "Nico se destacó por su gran entendimiento del negocio y de las necesidades del cliente, siendo un referente clave en el proceso.",
+          "Realizó prototipos interactivos excelentes y ayudó a documentar el proceso de forma clara.",
+          "Es una persona muy colaborativa y fácil de trabajar."
+        ],
+        "name": "Leonel Cappiello",
+        "role": "Full-stack Developer en OneInfo Consulting"
+      },
+      {
+        "quote": [
+          "Nicolás se destacó por su capacidad para convertir ideas en experiencias de usuario claras y efectivas.",
+          "Su compromiso con la calidad, la mejora continua y su actitud colaborativa lo hicieron una pieza clave del equipo."
+        ],
+        "name": "Fabricio Menghi",
+        "role": "Tech lead en OneInfo Consulting"
+      },
+      {
+        "quote": [
+          "Nicolás combina conocimientos técnicos de programación con diseño UX/UI, lo que le permite idear soluciones centradas en el usuario que también son viables técnicamente.",
+          "Es un gran colaborador y alguien con quien es muy fácil trabajar para lograr excelentes resultados."
+        ],
+        "name": "Dario Pérez",
+        "role": "Product Manager en Estrategias Diferenciadas S.A."
+      }
+    ]
+  },
+  "vitalmed": {
+    "hero": {
+      "heading": "De trámite fragmentado a onboarding digital",
+      "subheading1": "Un proceso de alta que vivía entre formularios, WhatsApp y PDFs.",
+      "subheading2": "El resultado fue un flujo mobile-only, estructurado, automatizado y medible.",
+      "ndaText": "Protegido por NDA — Nombre modificado, proceso real"
+    },
+    "roleVision": {
+      "role": {
+        "eyebrow": "ROL",
+        "value": "Product Designer — Rediseño end-to-end de alta digital, desde el análisis del proceso hasta el diseño del flujo mobile-only."
+      },
+      "vision": {
+        "eyebrow": "VISIÓN",
+        "value": "Convertir el alta en un producto digital medible, alineado con los estándares actuales de onboarding en servicios de suscripción."
+      },
+      "sector": {
+        "eyebrow": "SECTOR · PLATAFORMA",
+        "boldLine": "Salud · Healthtech · Onboarding",
+        "value": "Web app mobile-only"
+      },
+      "team": {
+        "eyebrow": "EQUIPO · COLABORACIÓN",
+        "boldLine": "Legales · Operaciones · Auditoría médica · Desarrollo",
+        "value": "Rediseño del proceso operativo, la arquitectura de experiencia y el flujo mobile-first. Trabajo transversal entre áreas con restricciones legales, técnicas y regulatorias."
+      },
+      "metrics": [
+        { "number": "-40%", "caption": "Reducción de preguntas en la declaración jurada" },
+        { "number": "0", "caption": "Casos simples completados sin intervención manual" },
+        { "number": "3 -> 1", "caption": "Documentos legales consolidados en uno" },
+        { "number": "Alta en 15 min", "caption": "Proceso reducido de días a minutos" }
+      ]
+    },
+    "problem": {
+      "eyebrow": "EL PROBLEMA",
+      "titleLine1": "El alta no vivía en un sistema.",
+      "titleLine2": "Vivía entre herramientas.",
+      "body": "El proceso comenzaba en un formulario web, seguía por WhatsApp con un asesor, incluía PDFs para imprimir y firmar, validaciones en plataformas externas y revisión manual por auditoría médica. Para el usuario: opaco, largo, impredecible. Para la organización: dependencia humana total, sin trazabilidad, sin métricas.",
+      "mensaje": "El problema no era visual. Era estructural.",
+      "userExperience": {
+        "title": "EXPERIENCIA DEL USUARIO",
+        "body": "Recorrido largo y fragmentado, sin visibilidad del estado, con pasos inesperados y sin confirmación clara."
+      },
+      "organization": {
+        "title": "ORGANIZACIÓN",
+        "body1": "Dependencia total de intervención humana.",
+        "body2": "Trazabilidad por conversaciones. Tiempos variables. Sin métricas."
+      },
+      "timelineTitle": "FLUJO ORIGINAL — 8 PASOS · 5 CANALES DISTINTOS",
+      "timeline": [
+        "Formulario web inicial",
+        "Contacto y seguimiento por WhatsApp",
+        "Fotos del DNI por mensaje",
+        "Validación biométrica en plataforma externa",
+        "PDF para imprimir, firmar y escanear",
+        "Datos bancarios por WhatsApp",
+        "Revisión manual por auditoría médica",
+        "Carga manual en sistema interno"
+      ]
+    },
+    "constraints": {
+      "eyebrow": "RESTRICCIONES",
+      "titleLine1": "Rediseñar no implicaba",
+      "titleLine2": "empezar desde cero.",
+      "body": "El proyecto estaba condicionado por un marco legal estricto, sistemas legacy, revisión médica obligatoria y múltiples áreas con prioridades distintas. Más un cambio de liderazgo durante el proceso.",
+      "balanceTitle": "EL EQUILIBRIO PERMANENTE",
+      "balanceText": "Cada decisión pasó por cuatro variables en tensión permanente.",
+      "items": [
+        "Marco legal estricto",
+        "Declaraciones juradas obligatorias y extensas",
+        "Firma digital con validación formal",
+        "Sistemas legacy en producción",
+        "Revisión médica para respuestas sensibles",
+        "Múltiples áreas con voz en las decisiones",
+        "Cambio de liderazgo durante el proceso"
+      ],
+      "userExperienceTitle": "EXPERIENCIA DEL USUARIO",
+      "userExperienceBody": "Recorrido largo y fragmentado, sin visibilidad del estado, con pasos inesperados y sin confirmación clara.",
+      "grid": [
+        { "title": "UX", "caption": "Experiencia clara, resoluble sin fricción necesaria" },
+        { "title": "Legal", "caption": "Sin intervención manual en casos simples" },
+        { "title": "OPERACIÓN", "caption": "Viable para los equipos que lo ejecutan" },
+        { "title": "TÉCNICA", "caption": "Implementable dentro de los sistemas actuales" }
+      ]
+    },
+    "howItEvolved": {
+      "eyebrow": "CÓMO EVOLUCIONÓ",
+      "titleLine1": "Tres momentos,",
+      "titleLine2": "una sola conclusión.",
+      "body": "El proyecto estaba condicionado por un marco legal estricto, sistemas legacy, revisión médica obligatoria y múltiples áreas con prioridades distintas. Más un cambio de liderazgo durante el proceso.",
+      "phases": [
+        {
+          "label": "DISCOVERY",
+          "heading": "Diagnóstico del proceso original.",
+          "body": "Mapeo de estados internos, análisis de validaciones y fricciones entre áreas. Benchmark de onboarding fintech. Sin entrevistas formales: el punto de partida fue el proceso operativo, no el usuario.",
+          "item": "Hallazgo: el proceso responde a la lógica interna, no al usuario."
+        },
+        {
+          "label": "ITERACIÓN 01 — ORDENAR LA COMPLEJIDAD",
+          "heading": "Estructurar el caos sin cambiar el modelo.",
+          "body": "Plataforma con cuatro módulos y estados visibles por primera vez: identidad, declaración jurada, pago, firma. El proceso ganó claridad. El modelo seguía intacto.",
+          "item": "Organizar no era simplificar",
+          "screenshots": ["Inicio verificación de identidad", "Pantalla de inicio", "Inicio de declaración jurada"]
+        },
+        {
+          "label": "ITERACIÓN 02 — REDUCIR FRICCIÓN",
+          "heading": "Simplificar dentro del sistema.",
+          "body": "Revisión con el equipo legal pregunta por pregunta. −40% de preguntas y tres documentos consolidados en uno. Reducción real de carga cognitiva, no solo visual. El flujo seguía siendo largo.",
+          "item": "El problema seguía siendo el modelo."
+        },
+        {
+          "label": "EL CAMBIO ESTRATÉGICO",
+          "heading": "Con el cambio de liderazgo, cambió la pregunta.",
+          "body": "El objetivo dejó de ser optimizar el proceso existente. Pasó a ser reemplazarlo. El perfil del usuario ya resolvía procesos complejos de forma autónoma. El estándar esperado era alto.",
+          "item": "Decisión: rediseñar el alta como onboarding mobile-only estilo fintech."
+        }
+      ],
+      "closing": "El producto dejó de ser un trámite y pasó a ser un onboarding.",
+      "compare": {
+        "beforeLabel": "ANTES",
+        "beforeText": "¿Cómo optimizamos el proceso actual?",
+        "afterLabel": "DESPUÉS",
+        "afterText": "¿Tiene sentido que el alta siga funcionando como un trámite?"
+      }
+    },
+    "userExperience": {
+      "eyebrow": "EXPERIENCIA DEL USUARIO",
+      "titleLine1": "Cómo se siente el usuario",
+      "titleLine2": "en cada etapa del flujo.",
+      "body": "El diseño no solo resolvió la estructura. Cambió activamente el estado emocional del usuario en cada etapa crítica.",
+      "tableHeaders": ["ETAPA", "ANTES", "DESPUÉS"],
+      "rows": [
+        {
+          "stage": "1. Inicio del alta",
+          "description": "Primer contacto",
+          "before": { "label": "😕 Confundido", "quote": "\"¿Qué tengo que preparar? ¿Cuánto tarda?\"", "score": "2/10" },
+          "after": { "label": "🔵 Orientado", "quote": "\"Veo los pasos, sé cuánto voy a tardar. Puedo empezar.\"", "score": "7/10" }
+        },
+        {
+          "stage": "2. Validación de identidad",
+          "description": "DNI, datos y biometría",
+          "before": { "label": "😰 Ansioso", "quote": "\"Me pidieron datos por WhatsApp, foto del DNI por mensaje y me mandaron a otra app para la biometría.\"", "score": "1.5/10" },
+          "after": { "label": "🔒 Confiado", "quote": "\"Escaneé el DNI, los datos se cargaron solos y la validación fue dentro de la misma app.\"", "score": "8/10" }
+        },
+        {
+          "stage": "3. Declaración jurada",
+          "description": "Preguntas médicas",
+          "before": { "label": "😓 Agotado", "quote": "\"Son muchísimas preguntas. No entiendo por qué tantas.\"", "score": "1/10" },
+          "after": { "label": "😌 Tranquilo", "quote": "\"Son pocas preguntas y claras. Voy por la mitad.\"", "score": "6.5/10" }
+        },
+        {
+          "stage": "4. Revisión médica",
+          "description": "Casos sin preexistencias",
+          "before": { "label": "😟 Preocupado", "quote": "\"No me dijeron nada. ¿Sigo en proceso? ¿Me rechazaron?\"", "score": "0.5/10" },
+          "after": { "label": "⚡ Invisible", "quote": "\"Ni lo noté. Seguí directamente al siguiente paso.\"", "score": "9.2/10" },
+          "afterNote": "Si no hay preexistencias, la validación ocurre en segundo plano. El usuario no espera."
+        },
+        {
+          "stage": "5. Firma y pago",
+          "description": "Cierre del alta",
+          "before": { "label": "😤 Frustrado", "quote": "\"Tengo que imprimir, firmar y escanear. En pleno 2025.\"", "score": "1/10" },
+          "after": { "label": "✅ Satisfecho", "quote": "\"Firmé y pagué en dos pasos. Ya está. Fácil.\"", "score": "9/10" }
+        }
+      ],
+      "curveLabel": "CURVA DE EXPERIENCIA — ANTES VS DESPUÉS"
+    },
+    "solution": {
+      "eyebrow": "LA SOLUCIÓN",
+      "titleLine1": "Un flujo lineal.",
+      "titleLine2": "Una sola sesión.",
+      "body1": "Para casos simples, el alta se resuelve completamente en mobile. Cuando una validación falla o requiere criterio médico, el caso se deriva automáticamente. El asesor deja de operar documentos y pasa a resolver los casos que realmente lo necesitan.",
+      "body2": "El alta dejó de ser una secuencia de tareas manuales y pasó a ser un sistema con reglas, estados y decisiones automatizadas.",
+      "steps": [
+        "Introducción al alta",
+        "Escaneo del DNI",
+        "Validación biométrica",
+        "Resumen",
+        "Declaración jurada",
+        "Confirmación de datos",
+        "Firma",
+        "Pago",
+        "Final"
+      ],
+      "callout": "⚡ Automatizamos lo repetitivo y reservamos lo humano para lo crítico."
+    },
+    "productDecisions": {
+      "eyebrow": "DECISIONES DE PRODUCTO",
+      "title": "Decisiones estructurales",
+      "decisions": [
+        {
+          "title": "Mobile-only",
+          "description": "Respondía a comportamiento real del usuario. Concentrar en un canal forzó simplificación necesaria.",
+          "tradeOff": "Trade-off: desktop con experiencia limitada"
+        },
+        {
+          "title": "Simplificación legal",
+          "description": "Trabajada con el equipo legal, no impuesta. Cada reducción requirió justificación normativa",
+          "tradeOff": "Trade-off: proceso de revisión lento"
+        },
+        {
+          "title": "Automatización selectiva",
+          "description": "Validaciones de bajo riesgo automatizadas. Excepciones médicas asistidas. No era eliminar lo humano, era redefinir cuándo.",
+          "tradeOff": "Trade-off: integración técnica compleja"
+        },
+        {
+          "title": "Flujo lineal y visible",
+          "description": "En un proceso con datos sensibles, la transparencia no es estética, es confianza.",
+          "tradeOff": "Trade-off: menos flexibilidad de orden"
+        }
+      ],
+      "quoteLabel": "LO QUE CAMBIÓ",
+      "quoteText": "Automatizamos lo repetitivo. Reservamos lo humano para lo crítico.",
+      "metricsLabel": "EL SISTEMA PREPARADO PARA MEDIR",
+      "metrics": [
+        { "title": "Tiempos por etapa", "description": "Identificar dónde se frena con datos reales." },
+        { "title": "Abandono por paso", "description": "Detectar fricciones y priorizar con evidencia." },
+        { "title": "Estados en tiempo real", "description": "Visibilidad total para el equipo operativo." },
+        { "title": "Escalabilidad", "description": "Arquitectura preparada para otros segmentos." }
+      ]
+    },
+    "designSystem": {
+      "eyebrow": "UI Y SISTEMA DE DISEÑO",
+      "titleLine1": "UI para acompañar, ",
+      "titleLine2": "no para destacar.",
+      "body1": "El sistema visual fue diseñado para transmitir claridad y confianza dentro de un proceso sensible.",
+      "body2": "Se evitó el color rojo como color dominante en momentos críticos para no generar interpretaciones prematuras de rechazo o desaprobación.",
+      "body3": "En su lugar, utilizamos una escala cromática neutra con énfasis en estados informativos y mensajes explícitos, priorizando claridad textual por sobre señales emocionales implícitas. Las alertas se resolvieron con tonos moderados y copy específico, asegurando feedback claro sin añadir fricción innecesaria al proceso.",
+      "animationsLabel": "Animaciones e ilustraciones",
+      "uiKitLabel": "UI KIT"
+    },
+    "takeaways": {
+      "eyebrow": "APRENDIZAJES",
+      "titleLine1": "Lo que el proyecto",
+      "titleLine2": "dejó",
+      "items": [
+        {
+          "number": "1",
+          "title": "El problema no era la UI. Era el modelo.",
+          "description": "Mejorar la interfaz de un proceso roto no lo hace menos roto. El verdadero avance llegó cuando se cuestionó el modelo completo, no cuando se optimizó el flujo existente."
+        },
+        {
+          "number": "2",
+          "title": "Organizar no era simplificar.",
+          "description": "Darle forma visual a la complejidad no reduce la complejidad. La primera iteración lo confirmó: el proceso tenía forma nueva, pero seguía siendo el mismo proceso."
+        },
+        {
+          "number": "3",
+          "title": "Digitalizar no era suficiente.",
+          "description": "Mover un trámite físico a una pantalla no lo convierte en producto digital. Se necesitaba cambiar el modelo de operación, no solo el canal."
+        },
+        {
+          "number": "4",
+          "title": "El impacto estuvo en el sistema, no en las pantallas.",
+          "description": "Convertir un trámite disperso en un producto medible, con métricas, capacidad de evolucionar y responsabilidad clara sobre cada parte del proceso."
+        }
+      ],
+      "quote": "Cuando el problema es estructural, el diseño tiene que ir más lejos que la interfaz.",
+      "attribution": "VITALMED · Caso de estudio · 2025"
+    }
+  },
+  "howIWork": {
+    "methodology": {
+      "eyebrow": "METODOLOGÍA Y FLUJO",
+      "heading": "Transformo procesos complejos en productos digitales",
+      "paragraph": "Diseño como sistema de decisiones, no como producción de pantallas. Antes de abrir Figma, defino el problema, los flujos y las decisiones que realmente impactan el negocio.",
+      "steps": [
+        {
+          "eyebrow": "01 / ESTRATEGIA",
+          "title": "Mapear",
+          "description": "Entender el problema, los objetivos de negocio y las necesidades reales del usuario final."
+        },
+        {
+          "eyebrow": "02 / ARQUITECTURA",
+          "title": "Flujos",
+          "description": "Definir la navegación y los puntos de contacto para asegurar una fricción mínima."
+        },
+        {
+          "eyebrow": "03 / PROTOTIPADO",
+          "title": "Wireframes",
+          "description": "Estructura visual sin distracciones estéticas para validar la jerarquía de información."
+        },
+        {
+          "eyebrow": "04 / DELIVERY",
+          "title": "Lanzamiento",
+          "description": "Diseño de alta fidelidad, documentación técnica y handoff preciso para ingeniería."
+        }
+      ]
+    },
+    "principles": {
+      "heading": "Principios innegociables",
+      "body": "Mi trabajo se rige por un conjunto de reglas que garantizan que el resultado final no solo sea bello, sino funcional y escalable.",
+      "whereEyebrow": "DONDE TRABAJO MEJOR",
+      "whereBody": "Me integro en equipos que valoran el diseño basado en datos, la transparencia técnica y la iteración rápida. Mi entorno ideal es aquel donde el diseño tiene voz en la mesa de estrategia.",
+      "wontFindHeading": "Lo que no vas a encontrar",
+      "wontFindIntro": "Mi proceso es riguroso. Para que los resultados sean de alto impacto, hay ciertas prácticas que he decidido excluir de mi flujo de trabajo.",
+      "wontFindItems": [
+        "Diseños decorativos: Si un elemento no tiene una función clara, no existe en mi interfaz.",
+        "Ego creativo: Priorizo los objetivos de negocio y la facilidad de uso sobre mis preferencias estéticas personales.",
+        "Falta de documentación: No entrego archivos \"sucios\". Todo componente está nombrado y documentado para ingeniería."
+      ],
+      "cards": [
+        {
+          "title": "Diagnóstico",
+          "description": "No empiezo a diseñar sin entender el \"por qué\". Cada píxel responde a una necesidad diagnosticada previamente."
+        },
+        {
+          "title": "Decisiones",
+          "description": "Cada decisión de diseño es fundamentada. No uso tendencias por moda, sino por su efectividad comunicativa."
+        },
+        {
+          "title": "Foco",
+          "description": "Elimino el ruido. El buen diseño es aquel que permite al usuario cumplir su tarea con el menor esfuerzo mental posible."
+        },
+        {
+          "title": "Ciclos",
+          "description": "El diseño nunca está \"terminado\". Trabajo en ciclos de mejora continua basados en feedback y métricas."
+        },
+        {
+          "title": "Componentes",
+          "description": "Diseño para el futuro. Creo librerías de componentes atómicos que permiten escalar productos sin perder la consistencia visual."
+        }
+      ]
+    }
+  },
+  "contactCTA": {
+    "eyebrow": "TRABAJEMOS JUNTOS",
+    "heading": "¿Hablamos?",
+    "paragraph": "Trabajo mejor con founders o equipos de producto en etapa early o de crecimiento, con un problema operativo concreto que el diseño puede resolver. Si estás buscando solo pantallas bonitas, probablemente no soy la persona indicada.",
+    "typicalProjects": "Proyectos típicos: onboarding digital · plataformas B2B · rediseño de procesos operativos · sistemas con restricciones técnicas o legales."
+  }
+}

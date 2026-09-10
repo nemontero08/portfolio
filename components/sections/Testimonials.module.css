@@ -63,6 +63,36 @@
   cursor: grabbing;
 }
 
+/*
+  Home tablet pass (426-1023px), now also mobile pass 2 (<=425px, this
+  card's own full-width mobile row — see page.tsx): see the comment above
+  this element in Testimonials.tsx. Below 1024px, .viewport's flex:1 with
+  no explicit parent height needs this to establish a real content-driven
+  minimum height (the longest quote, in whichever locale, sets it); at
+  1024px+ desktop keeps its height from the explicit bento row-span
+  instead, so .sizer stays inert there. No effect on the real .slide's own
+  crossfade/drag behavior above.
+*/
+.sizer {
+  display: none;
+}
+
+@media (max-width: 1023.98px) {
+  .sizer {
+    display: grid;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .sizerSlide {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+}
+
 .quote {
   display: flex;
   flex-direction: column;

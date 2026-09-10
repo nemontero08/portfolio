@@ -1,4 +1,5 @@
 import { Hanken_Grotesk } from "next/font/google";
+import { getTranslations } from "next-intl/server";
 import styles from "./Hero.module.css";
 
 // Headline-only accent font — the rest of the site stays on Inter.
@@ -9,21 +10,25 @@ const hankenGrotesk = Hanken_Grotesk({
 });
 
 // New custom hero content (redesign phase) — not from reference/framer-original.
-export default function Hero() {
+export default async function Hero() {
+  const t = await getTranslations("home.hero");
+  const pills = t.raw("pills") as string[];
+
   return (
     <div className={styles.card}>
-      <p className={styles.eyebrow}>PRODUCT DESIGNER · UX/UI · REMOTE</p>
+      <p className={styles.eyebrow}>{t("eyebrow")}</p>
       <h1 className={`${styles.title} ${hankenGrotesk.variable}`}>
-        I design complex products, starting with <span className={styles.underline}>how they work</span>.
+        {t.rich("title", {
+          emphasis: (chunks) => <span className={styles.underline}>{chunks}</span>,
+        })}
       </h1>
-      <p className={styles.description}>
-        I used to write the code, now I design the product — that&apos;s why I start with how it works, not
-        how it looks. I work across B2B and B2C, from dashboards and operational tools to complex flows.
-      </p>
+      <p className={styles.description}>{t("paragraph")}</p>
       <div className={styles.pills}>
-        <span className={styles.pill}>3+ years in product</span>
-        <span className={styles.pill}>B2B · B2C · SaaS</span>
-        <span className={styles.pill}>ex-developer · full-stack</span>
+        {pills.map((pill) => (
+          <span className={styles.pill} key={pill}>
+            {pill}
+          </span>
+        ))}
       </div>
     </div>
   );

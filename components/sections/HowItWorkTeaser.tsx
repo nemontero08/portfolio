@@ -1,7 +1,11 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import styles from "./HowItWorkTeaser.module.css";
+
+const MotionLink = motion.create(Link);
 
 /**
  * All values below confirmed against the live original's DevTools (not
@@ -65,18 +69,20 @@ function GearArt() {
 }
 
 export default function HowItWorkTeaser() {
+  const t = useTranslations("home.howItWorkTeaser");
+
   return (
-    <motion.a className={styles.card} href="/how-i-work" initial="rest" whileHover="hover">
+    <MotionLink className={styles.card} href="/how-i-work" initial="rest" whileHover="hover">
       <div className={styles.textGroup}>
-        <h4 className={styles.title}>How I work</h4>
+        <h4 className={styles.title}>{t("title")}</h4>
         <motion.p className={styles.description} variants={descriptionVariants} transition={TRANSITION}>
-          Process, methodology and design philosophy
+          {t("description")}
         </motion.p>
       </div>
       <motion.div className={styles.circle} variants={circleVariants} transition={TRANSITION}>
         <ArrowIcon />
       </motion.div>
       <GearArt />
-    </motion.a>
+    </MotionLink>
   );
 }

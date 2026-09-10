@@ -30,16 +30,39 @@
 }
 
 /*
-  Home mobile pass (375-425px): un-hidden here. The <1024px hide above is
-  a leftover from the pre-redesign layout (the original Framer capture's
-  own surprising "About/Lab only visible at 1024/1440" quirk — see
-  GridItem.module.css). That doesn't apply to this NEW custom layout, and
-  hiding real DOM content would contradict this pass's own "stack
-  everything in DOM order" instruction — flag if About me should actually
-  stay hidden on mobile instead.
+  Mobile pass 2 (<=425px): unlike tablet below, About me stays hidden here
+  — its own mobile placement is still TBD (Nico confirming) rather than
+  guessed at. The whole VitalmedRightColumn GridItem is hidden at this
+  breakpoint (see hiddenAtMobile in app/[locale]/page.tsx and
+  GridItem.module.css's .hiddenAtMobile), so this rule never actually
+  needs to fire — How I Work instead renders via its own standalone
+  mobileOnly GridItem, a separate instance of the same component. Once
+  About me's mobile placement is decided, it'll need its own standalone
+  GridItem the same way, rather than reviving this slot's mobile un-hide.
 */
-@media (max-width: 425px) {
+
+/*
+  Home tablet pass (426-1023px): un-hidden here too, same reasoning as the
+  mobile override above — "keep all cards/content intact, reflow only"
+  means About me shouldn't silently disappear just because it's under
+  1024px. This card is a half-width tablet cell sized to 362px (Nico's
+  measured spec — see page.tsx's tabletSpan={1}/tabletMinHeight={362},
+  matching Testimonials beside it), so both slots split that cell's
+  height 50/50 (see .aboutMeSlot/.howItWorkSlot's shared flex:1 above).
+
+  Per the tablet-stacking-order brief this column reads How I Work (top)
+  then About me (bottom) — reversed from the desktop 60/40 About-me-on-top
+  arrangement — so this range also flips the two slots' flex order,
+  independent of their fixed DOM order (About me first) used by every
+  other breakpoint.
+*/
+@media (min-width: 426px) and (max-width: 1023.98px) {
   .aboutMeSlot {
     display: block;
+    order: 2;
+  }
+
+  .howItWorkSlot {
+    order: 1;
   }
 }

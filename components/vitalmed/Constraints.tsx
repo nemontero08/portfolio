@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import styles from "./Constraints.module.css";
 
 /**
@@ -18,23 +19,12 @@ import styles from "./Constraints.module.css";
  * with no external asset needed.
  */
 
-const CONSTRAINTS = [
-  "Strict legal framework",
-  "Mandatory and extensive health declarations",
-  "Digital signature with formal validation",
-  "Legacy systems in production",
-  "Medical review for sensitive answers",
-  "Multiple teams with a say in decisions",
-  "Leadership change mid-process",
-];
+// Confirmed: the 3rd tile's (OPERATIONS/OPERACIÓN) title has no weight
+// override in the source, unlike the other 3 — kept as a local flag,
+// indexed to match vitalmed.constraints.grid's order in the JSON.
+const BALANCE_TILE_BOLD_TITLE = [true, true, false, true];
 
-const BALANCE_TILES: { title: string; body: string; boldTitle: boolean }[] = [
-  { title: "UX", body: "Clear experience, solvable without unnecessary friction", boldTitle: true },
-  { title: "Legal", body: "No manual intervention for simple cases", boldTitle: true },
-  // Confirmed: this one's title has no weight override in the source, unlike the other 3.
-  { title: "OPERATIONS", body: "Viable for the teams running it", boldTitle: false },
-  { title: "TECHNICAL", body: "Implementable within existing systems", boldTitle: true },
-];
+type BalanceTile = { title: string; caption: string };
 
 function Dot() {
   return (
@@ -44,29 +34,30 @@ function Dot() {
   );
 }
 
-export default function Constraints() {
+export default async function Constraints() {
+  const t = await getTranslations("vitalmed.constraints");
+  const items = t.raw("items") as string[];
+  const grid = t.raw("grid") as BalanceTile[];
+
   return (
     <div className={styles.section}>
       <div className={styles.texto}>
-        <p className={styles.eyebrow}>CONSTRAINTS</p>
+        <p className={styles.eyebrow}>{t("eyebrow")}</p>
         <div className={styles.titulo}>
-          <p className={styles.tituloLine1}>Redesigning didn&apos;t mean</p>
-          <p className={styles.tituloLine2}>starting from scratch.</p>
+          <p className={styles.tituloLine1}>{t("titleLine1")}</p>
+          <p className={styles.tituloLine2}>{t("titleLine2")}</p>
         </div>
         <div className={styles.body}>
-          <p className={styles.bodyText}>
-            The project was shaped by a strict legal framework, legacy systems, mandatory medical review, and
-            multiple teams with competing priorities. Plus a leadership change mid-process
-          </p>
+          <p className={styles.bodyText}>{t("body")}</p>
         </div>
       </div>
 
       <div className={styles.cosas}>
         <div className={styles.colDer}>
-          <p className={styles.derTitle}>THE CONSTANT BALANCE</p>
-          <p className={styles.derText}>Every decision ran through four variables in constant tension</p>
+          <p className={styles.derTitle}>{t("balanceTitle")}</p>
+          <p className={styles.derText}>{t("balanceText")}</p>
           <div className={styles.cuadro}>
-            {CONSTRAINTS.map((label) => (
+            {items.map((label) => (
               <div key={label} className={styles.item}>
                 <Dot />
                 <p className={styles.itemLabel}>{label}</p>
@@ -77,16 +68,16 @@ export default function Constraints() {
 
         <div className={styles.colIzq}>
           <div className={styles.visionCard}>
-            <p className={styles.visionTitle}>USER EXPERIENCE</p>
+            <p className={styles.visionTitle}>{t("userExperienceTitle")}</p>
             <div className={styles.visionInner}>
-              <p className={styles.visionBody}>
-                A long, fragmented journey with no status visibility, unexpected steps, and no clear confirmation.
-              </p>
+              <p className={styles.visionBody}>{t("userExperienceBody")}</p>
               <div className={styles.grid}>
-                {BALANCE_TILES.map((tile) => (
+                {grid.map((tile, i) => (
                   <div key={tile.title} className={styles.tile}>
-                    <p className={tile.boldTitle ? styles.tileTitle : styles.tileTitleRegular}>{tile.title}</p>
-                    <p className={styles.tileCaption}>{tile.body}</p>
+                    <p className={BALANCE_TILE_BOLD_TITLE[i] ? styles.tileTitle : styles.tileTitleRegular}>
+                      {tile.title}
+                    </p>
+                    <p className={styles.tileCaption}>{tile.caption}</p>
                   </div>
                 ))}
               </div>

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
+import IterationScreenshotsCarousel from "./IterationScreenshotsCarousel";
 import styles from "./HowItEvolved.module.css";
 
 /**
@@ -37,53 +39,39 @@ import styles from "./HowItEvolved.module.css";
  * a placeholder.
  */
 
-type Phase = {
+type TranslatedPhase = {
   label: string;
   heading: string;
   body: string;
   item: string;
-  accent?: boolean;
-  glow?: boolean;
-  screenshots?: { src: string; caption: string }[];
+  screenshots?: string[];
 };
 
-const PHASES: Phase[] = [
+type Phase = TranslatedPhase & {
+  accent?: boolean;
+  glow?: boolean;
+  screenshotImages?: string[];
+};
+
+// Structural-only data (image paths, accent/glow flags) that isn't
+// translatable content — merged with vitalmed.howItEvolved.phases (label/
+// heading/body/item/screenshot captions) by index at render time.
+const PHASE_META: { accent?: boolean; glow?: boolean; screenshotImages?: string[] }[] = [
+  {},
   {
-    label: "DISCOVERY",
-    heading: "Diagnosis of the original process",
-    body: "Mapping of internal states, analysis of validations and friction between teams. Fintech onboarding benchmark. No formal interviews: the starting point was the operational process, not the user",
-    item: "Finding: the process follows internal logic, not user logic",
-  },
-  {
-    label: " ITERATION 01 — ORGANIZING COMPLEXITY",
-    heading: "Structuring the chaos without changing the model",
-    body: " platform with four modules and visible states for the first time: identity, health declaration, payment, signature. The process gained clarity. The model remained intact",
-    item: "Organizing wasn't simplifying",
-    screenshots: [
-      { src: "/images/vitalmed-flow-identity.png", caption: "Identity verification start" },
-      { src: "/images/vitalmed-flow-home.png", caption: "Home screen" },
-      { src: "/images/vitalmed-flow-identity.png", caption: "Health declaration start" },
+    screenshotImages: [
+      "/images/vitalmed-flow-identity.png",
+      "/images/vitalmed-flow-home.png",
+      "/images/vitalmed-flow-identity.png",
     ],
   },
-  {
-    label: "ITERATION 02 — REDUCING FRICTION",
-    heading: "Simplifying within the system",
-    body: "A question-by-question review with the legal team. −40% of questions and three documents consolidated into one. A real reduction in cognitive load, not just visual. The flow was still long",
-    item: "The problem was still the model",
-  },
-  {
-    label: "THE STRATEGIC SHIFT",
-    heading: "With the leadership change, the question changed",
-    body: "The goal stopped being to optimize the existing process. It became replacing it.  The user profile already handled complex processes independently. The expected standard was high.",
-    item: "Decision: redesign onboarding as a fintech-style mobile-only flow",
-    accent: true,
-    glow: true,
-  },
+  {},
+  { accent: true, glow: true },
 ];
 
 function ArrowIcon() {
   return (
-    <svg viewBox="0 0 24 24" width={24} height={24} style={{ transform: "rotate(45deg)" }} aria-hidden>
+    <svg viewBox="0 0 24 24" width={24} height={24} className={styles.arrowIcon} aria-hidden>
       <path
         d="M7 7H17V17"
         fill="none"
@@ -118,57 +106,71 @@ function PhaseBlock({ phase }: { phase: Phase }) {
         <div className={phase.accent ? styles.itemAccent : styles.item}>
           <p className={phase.accent ? styles.itemTextAccent : styles.itemText}>{phase.item}</p>
         </div>
-        {phase.screenshots && (
-          <div className={styles.screenshots}>
-            {phase.screenshots.map((s, i) => (
-              <div key={i} className={styles.screenshot}>
-                <div className={styles.screenshotImageWrap}>
-                  <Image src={s.src} alt="" fill className={styles.screenshotImage} />
+        {phase.screenshots && phase.screenshotImages && (
+          <>
+            {/* Desktop (≥768px): all 3 side by side, unchanged. */}
+            <div className={styles.screenshots}>
+              {phase.screenshots.map((caption, i) => (
+                <div key={i} className={styles.screenshot}>
+                  <div className={styles.screenshotImageWrap}>
+                    <Image src={phase.screenshotImages![i]} alt="" fill className={styles.screenshotImage} />
+                  </div>
+                  <p className={styles.screenshotCaption}>{caption}</p>
                 </div>
-                <p className={styles.screenshotCaption}>{s.caption}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+            {/* Mobile (≤767px): swipeable carousel instead — see .carousel
+                in HowItEvolved.module.css for the display:none toggle
+                between this and .screenshots above. */}
+            <IterationScreenshotsCarousel
+              items={phase.screenshots.map((caption, i) => ({
+                key: caption,
+                src: phase.screenshotImages![i],
+                caption,
+              }))}
+            />
+          </>
         )}
       </div>
     </div>
   );
 }
 
-export default function HowItEvolved() {
+export default async function HowItEvolved() {
+  const t = await getTranslations("vitalmed.howItEvolved");
+  const translatedPhases = t.raw("phases") as TranslatedPhase[];
+  const phases: Phase[] = translatedPhases.map((phase, i) => ({ ...phase, ...PHASE_META[i] }));
+
   return (
     <div className={styles.section}>
       <div className={styles.texto}>
-        <p className={styles.eyebrow}>HOW IT EVOLVED</p>
+        <p className={styles.eyebrow}>{t("eyebrow")}</p>
         <div className={styles.titulo}>
-          <p className={styles.tituloLine1}>Three moments,</p>
-          <p className={styles.tituloLine2}>one conclusion.</p>
+          <p className={styles.tituloLine1}>{t("titleLine1")}</p>
+          <p className={styles.tituloLine2}>{t("titleLine2")}</p>
         </div>
         <div className={styles.body}>
-          <p className={styles.bodyText}>
-            The project was shaped by a strict legal framework, legacy systems, mandatory medical review, and
-            multiple teams with competing priorities. Plus a leadership change mid-process.
-          </p>
+          <p className={styles.bodyText}>{t("body")}</p>
         </div>
       </div>
 
-      {PHASES.map((phase) => (
+      {phases.map((phase) => (
         <PhaseBlock key={phase.label} phase={phase} />
       ))}
 
-      <p className={styles.closing}>The product stopped being a bureaucratic process and became an onboarding</p>
+      <p className={styles.closing}>{t("closing")}</p>
 
       <div className={styles.compareCard}>
         <div className={styles.compareCol}>
-          <p className={styles.beforeLabel}>BEFORE</p>
-          <p className={styles.beforeText}>How do we optimize the current process?</p>
+          <p className={styles.beforeLabel}>{t("compare.beforeLabel")}</p>
+          <p className={styles.beforeText}>{t("compare.beforeText")}</p>
         </div>
         <div className={styles.iconButton}>
           <ArrowIcon />
         </div>
         <div className={styles.compareCol}>
-          <p className={styles.afterLabel}>AFTER</p>
-          <p className={styles.afterText}>Does it make sense for onboarding to keep working like a bureaucratic form?</p>
+          <p className={styles.afterLabel}>{t("compare.afterLabel")}</p>
+          <p className={styles.afterText}>{t("compare.afterText")}</p>
         </div>
       </div>
     </div>

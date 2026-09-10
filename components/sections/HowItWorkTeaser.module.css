@@ -79,3 +79,27 @@
     display: none;
   }
 }
+
+/*
+  Home tablet pass (426-1023px), now also mobile pass 2 (<=425px, this
+  card's own standalone mobile GridItem — see page.tsx): the gear is
+  normally a hover reveal (opacity 0->1, rotate 0->141deg, both driven by
+  Motion — see gearVariants in HowItWorkTeaser.tsx), but neither range has
+  reliable real hover to trigger it. Per Nico's note, freeze it
+  always-visible at its post-animation end state (rotated, revealed) — at
+  0.90 opacity rather than the desktop hover state's 1. Motion drives
+  opacity/transform via inline styles every frame, not CSS, so
+  !important is required to win over them regardless of whatever
+  whileHover state Motion computes underneath (an actual pointer hover
+  here would still update the DOM's style attribute, but never outrank
+  these values in the cascade). Comes after the (hover: none) rule above
+  so it also wins on a real touch device, where both conditions are true
+  at once.
+*/
+@media (max-width: 1023.98px) {
+  .gear {
+    display: block !important;
+    opacity: 0.9 !important;
+    transform: rotate(141deg) !important;
+  }
+}

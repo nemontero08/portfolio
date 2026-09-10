@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import styles from "./Hero.module.css";
 import VitalmedLogo from "@/components/sections/VitalmedLogo";
 
@@ -28,27 +29,25 @@ import VitalmedLogo from "@/components/sections/VitalmedLogo";
  * normal flex flow next to the text column), 225x481 at this breakpoint,
  * object-fit:cover. No confirmed border-radius on the image itself.
  */
-export default function VitalmedHero() {
+export default async function VitalmedHero() {
+  const t = await getTranslations("vitalmed.hero");
+
   return (
     <div className={styles.card}>
       <div className={styles.textColumn}>
-        <VitalmedLogo height={48} />
+        <VitalmedLogo height={48} className={styles.logo} />
         <div className={styles.headingGroup}>
-          <h3 className={styles.heading}>From fragmented process to digital onboarding</h3>
+          <h3 className={styles.heading}>{t("heading")}</h3>
           <div className={styles.subheadingGroup}>
-            <h3 className={styles.subheading}>
-              An onboarding process that lived across forms, WhatsApp, and PDFs.
-            </h3>
-            <h3 className={styles.subheading}>
-              The result was a mobile-only flow — structured, automated, and measurable.
-            </h3>
+            <h3 className={styles.subheading}>{t("subheading1")}</h3>
+            <h3 className={styles.subheading}>{t("subheading2")}</h3>
           </div>
         </div>
         <div className={styles.ndaBadge}>
           <h3 className={styles.ndaIcon} aria-hidden>
             {String.fromCodePoint(0x1f512, 0x200b)}
           </h3>
-          <h3 className={styles.ndaText}>Protected by NDA — name changed, real process</h3>
+          <h3 className={styles.ndaText}>{t("ndaText")}</h3>
         </div>
       </div>
       <div className={styles.imageWrap}>

@@ -31,8 +31,8 @@ const COPIED_RESET_MS = 2000;
  * hug the text, not the button's right edge.
  *
  * Colors, icon, gap, and font are left to the caller — confirmed to differ
- * between the home card and the how-i-work Contact section (see
- * LetsTalkCard.tsx and components/how-i-work/Contact.tsx for each context's
+ * between the home card and the shared closing Contact CTA (see
+ * LetsTalkCard.tsx and components/sections/ContactCTA.tsx for each context's
  * own confirmed values).
  */
 interface CopyBtnProps {

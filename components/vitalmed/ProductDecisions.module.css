@@ -1,0 +1,354 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for this section (.framer-mv5KU.framer-1hgtjfo
+   "Desktop" variant, under the "PRODUCT DECISIONS" eyebrow) — resolved
+   via cascade simulation over the source-order rules scoped to this
+   component instance's own "framer-mv5KU" wrapper class. See
+   ProductDecisions.tsx for the single-line titulo / no-body-paragraph
+   and card-height notes. */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.eyebrow {
+  font-weight: var(--font-weight-medium); /* 500, confirmed Inter medium — same font-selector as Solution's eyebrow */
+  font-size: 16px; /* inherited default, same convention as the other sections */
+  letter-spacing: 1.26px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  margin: 0;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Single line only — confirmed, this section's titulo has no second line. */
+.tituloLine {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-weight: 500; /* confirmed */
+  font-size: 32px; /* confirmed */
+  line-height: 40px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+.decisionsRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; /* confirmed */
+  align-items: stretch;
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+.decisionsColFixed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 595px; /* confirmed */
+}
+
+.decisionsColFlex {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0; /* confirmed */
+  align-items: center;
+  gap: 10px; /* confirmed */
+}
+
+.decisionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px; /* approximated — see ProductDecisions.tsx card-height note */
+  width: 100%;
+  padding: 24px 16px; /* confirmed */
+  background: var(--color-bg-2); /* rgb(25,26,26), confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}
+
+.decisionText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* confirmed */
+}
+
+.decisionTitle {
+  font-size: 14px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+.decisionDescription {
+  font-size: 13px; /* confirmed */
+  line-height: 20px; /* confirmed */
+  color: rgba(204, 204, 204, 0.7); /* confirmed */
+  margin: 0;
+}
+
+.tradeOff {
+  display: flex;
+  align-items: center;
+  width: min-content;
+  padding: 4px 8px; /* confirmed */
+  background: rgba(212, 146, 10, 0.1); /* var(--color-semantic-amber) at 10% */
+  border-radius: 4px; /* confirmed */
+}
+
+.tradeOffText {
+  font-size: 11px; /* confirmed */
+  line-height: 18px; /* confirmed */
+  color: var(--color-semantic-amber); /* rgb(212,146,10), confirmed */
+  white-space: pre; /* preserves the confirmed leading space on the first card */
+  margin: 0;
+}
+
+.summaryRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; /* confirmed */
+  align-items: stretch;
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+.quoteCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 30%; /* confirmed */
+}
+
+.quoteCard {
+  display: flex;
+  flex: 1 0 0; /* confirmed */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 32px; /* confirmed */
+  background: rgba(0, 87, 184, 0.2); /* var(--color-case-vitalmed) at 20%, confirmed */
+  border: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}
+
+.quoteLabel {
+  font-size: 12px; /* confirmed */
+  line-height: 20px; /* confirmed */
+  color: rgba(130, 180, 240, 0.35); /* confirmed */
+  text-align: center;
+  margin: 0;
+}
+
+.quoteText {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-size: 22px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  text-align: center;
+  margin: 0;
+}
+
+.metricsCol {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0; /* confirmed */
+  align-items: center;
+  gap: 10px; /* confirmed */
+}
+
+.metricsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px; /* confirmed */
+  width: 100%;
+  padding: 24px; /* confirmed */
+  background: var(--color-bg-2); /* rgb(25,26,26), confirmed */
+  border-radius: var(--radius-outer); /* 12px, confirmed */
+}
+
+.metricsLabel {
+  font-size: 12px; /* confirmed */
+  line-height: 20px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  margin: 0;
+}
+
+.metricsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* confirmed */
+  width: 100%;
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 547px; /* confirmed */
+  padding-bottom: 24px; /* confirmed */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+}
+
+/* Last item: confirmed no divider, no bottom padding. */
+.metricItemLast {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 547px; /* confirmed */
+}
+
+.metricIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* confirmed */
+  height: 40px; /* confirmed */
+  background: rgba(0, 87, 184, 0.1); /* confirmed */
+  border: 0.84px solid rgba(0, 87, 184, 0.24); /* confirmed */
+  border-radius: 50%;
+}
+
+.metricText {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* confirmed */
+  align-items: flex-start;
+}
+
+.metricTitle {
+  font-size: 14px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+.metricDescription {
+  font-size: 13px; /* confirmed */
+  line-height: 20px; /* confirmed */
+  color: rgba(204, 204, 204, 0.7); /* confirmed */
+  margin: 0;
+}
+
+/* Mobile (≤425px, confirmed identical between source's "Mobile" and
+   "MOBILE L" variants — this rule stops at 425 since the tablet pass
+   below now owns 426-1023, the rest of that shared range): both Cosas
+   rows (.decisionsRow, .summaryRow) stack (row->column, matching every
+   other section); every column inside them (.decisionsColFixed's 595px,
+   .decisionsColFlex, .quoteCol's 30%, .metricsCol) goes full-width —
+   confirmed, not assumed. .metricItem/.metricItemLast's fixed 547px is
+   confirmed to become width:100% too (same overflow-safe pattern as
+   Problem's 678px-wide flow items). */
+@media (max-width: 425px) {
+  .decisionsRow,
+  .summaryRow {
+    flex-direction: column;
+  }
+
+  .decisionsColFixed {
+    width: 100%;
+  }
+
+  .quoteCol {
+    width: 100%;
+  }
+
+  .metricItem,
+  .metricItemLast {
+    width: 100%;
+  }
+}
+
+/*
+  Tablet pass (426-1023px). 426-767px is source's own "MOBILE L" variant
+  — confirmed identical to the ≤425 block above, repeated verbatim.
+
+  768-1023px (source's real "Tablet" variant, hash v-7pbdzz, same
+  nested/hidden-list-only pattern as the other sections' Tablet variants)
+  is the least clean-cut of this whole pass: unlike mobile,
+  .decisionsRow/.summaryRow do NOT get flex-direction:column in source's
+  own compiled CSS at this variant — they're confirmed to stay row. But
+  .decisionsColFixed IS confirmed to go width:100% at this same variant,
+  which only makes visual sense alongside wrapping (two 100%-width
+  children in a non-wrapping row would overlap) — source's own
+  proprietary auto-layout engine likely handles that natively; flex-wrap
+  is the standard CSS equivalent, added here since without it a literal
+  width:100% would break rather than stack the row. .quoteCol has no
+  explicit Tablet override in source either, but per instruction it's
+  set to a literal width:100% here (not just max-width:100%) so it
+  reliably takes the full wrapped row on its own line above .metricsCol,
+  rather than sitting at its base 30% alongside whatever happens to fit —
+  a deliberate choice, not a fidelity transcription. The metric items'
+  fixed 547px still has no explicit Tablet override found, so it stays
+  capped at max-width:100% as overflow-safety rather than left at a
+  literal fixed value that could overflow the narrower end of this
+  range — flagging that piece as the least independently-confirmed part
+  of this section's tablet pass.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .decisionsRow,
+  .summaryRow {
+    flex-direction: column;
+  }
+
+  .decisionsColFixed {
+    width: 100%;
+  }
+
+  .quoteCol {
+    width: 100%;
+  }
+
+  .metricItem,
+  .metricItemLast {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .decisionsRow,
+  .summaryRow {
+    flex-wrap: wrap; /* see comment above */
+  }
+
+  .decisionsColFixed {
+    width: 100%; /* confirmed */
+  }
+
+  .decisionsColFlex {
+    max-width: 100%; /* overflow-safety, not independently confirmed at this variant */
+  }
+
+  .quoteCol {
+    width: 100%;
+  }
+
+  .metricItem,
+  .metricItemLast {
+    max-width: 100%; /* overflow-safety, not independently confirmed at this variant */
+  }
+}

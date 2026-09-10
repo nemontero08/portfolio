@@ -1,4 +1,5 @@
 import { Noto_Serif, Manrope } from "next/font/google";
+import { getTranslations } from "next-intl/server";
 import PageReveal from "@/components/PageReveal";
 import PageFrame from "@/components/layout/PageFrame";
 import Navbar from "@/components/layout/Navbar";
@@ -48,50 +49,175 @@ const manrope = Manrope({ subsets: ["latin"], weight: ["800"] });
  * What-I-Do and Lab aren't part of this new desktop arrangement per the
  * brief — not deleted, just not placed here.
  *
- * <1024px is unchanged (still the old stacked-flex fallback) — smaller
- * breakpoints are explicitly out of scope for this pass.
+ * Tablet grid (426-1023px, see tabletSpan/tabletOrder/tabletMinHeight
+ * below and BentoGrid/GridItem.module.css): another NEW layout, no
+ * original to copy — a 2-column grid with an explicit visual order
+ * (--tablet-order) decoupled from DOM/source order. Reordered per brief,
+ * top to bottom:
+ * 1. Hero — full width, sized to content (no target height given).
+ * 2. Vitalmed case study — full width, 362px.
+ * 3. Basalto + Lumine Gas — half + half, one row, 200px each.
+ * 4. Testimonials (half width, 362px) beside the About-me/How-I-Work
+ *    column (also half width, 362px so it fills the same band): that
+ *    column's own component (VitalmedRightColumn) stacks its two slots
+ *    50/50 by height, with How I Work on top and About me below — a
+ *    tablet-only internal reorder (see VitalmedRightColumn.module.css),
+ *    reversed from its desktop 60/40 About-me-on-top arrangement.
+ * 5. Resume + LinkedIn — half + half, one row, 86px each.
+ * 6. Let's Talk — full width, 175px.
+ *
+ * Every px value above is Nico's measured spec, applied via
+ * tabletMinHeight (min-height, not height — see GridItem.tsx) so a card
+ * whose real content needs more room (checked against both locales;
+ * Testimonials also carries a measurement-only sizer for this, see
+ * Testimonials.module.css) grows instead of clipping, while still landing
+ * on exactly that value whenever content fits, via the grid's default
+ * row-stretch.
+ *
+ * Mobile pass 2 (<=425px, see mobileSpan/mobileOrder/mobileMinHeight below
+ * and BentoGrid/GridItem.module.css): superseding the original "DOM order,
+ * single column" mobile pass, this is its own 2-column grid — same
+ * mechanism as the tablet grid above (explicit --mobile-order, decoupled
+ * from DOM order) — reordered per brief, top to bottom:
+ * 1. Hero — full width, sized to content.
+ * 2. Vitalmed case study — full width.
+ * 3-4. Basalto + Lumine Gas — each full width, stacked one above the
+ *    other (NOT side by side like tablet's half+half pair — at mobile's
+ *    much narrower ~165-190px half-column width, "BASALTO" wrapped and
+ *    the centered under-construction badge overlapped the subtitle; full
+ *    width gives each card enough room for title + subtitle + pills
+ *    without the badge colliding with them).
+ * 5. How I Work — full width, standalone (a separate mobileOnly GridItem
+ *    from its tablet/desktop home nested in VitalmedRightColumn — see that
+ *    component and GridItem's hiddenAtMobile/mobileOnly). About me's own
+ *    mobile placement is still TBD (Nico confirming) so it's hidden at
+ *    this breakpoint for now rather than guessed at.
+ * 6. Testimonials — full width, 400px (Nico's measured spec), via
+ *    mobileMinHeight rather than height so its existing .sizer
+ *    measurement layer (previously tablet-only, now also covers mobile —
+ *    see Testimonials.module.css) can still grow it for content that
+ *    needs more than 400px.
+ * 7-8. Resume + LinkedIn — half + half, one row.
+ * 9. Let's Talk — full width.
  */
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations("home");
+  const vitalmedPills = t.raw("caseStudies.vitalmed.pills") as string[];
+  const basaltoPills = t.raw("caseStudies.basalto.pills") as string[];
+  const lumineGasPills = t.raw("caseStudies.lumineGas.pills") as string[];
+
   return (
     <main>
       <PageReveal>
         <PageFrame>
           <Navbar />
           <BentoGrid>
-            <GridItem colSpan={8} rowSpan={4} mobileOrder={0}>
+            <GridItem
+              colSpan={8}
+              rowSpan={4}
+              mobileOrder={1}
+              mobileSpan={2}
+              tabletSpan={2}
+              tabletOrder={1}
+            >
               <Hero />
             </GridItem>
 
-            <GridItem colSpan={4} rowSpan={1} mobileOrder={0}>
+            <GridItem
+              colSpan={4}
+              rowSpan={1}
+              mobileOrder={7}
+              mobileSpan={2}
+              mobileMinHeight={100}
+              tabletSpan={1}
+              tabletOrder={7}
+              tabletMinHeight={86}
+            >
               <ResumeButton />
             </GridItem>
 
-            <GridItem colSpan={4} rowSpan={1} mobileOrder={0}>
+            <GridItem
+              colSpan={4}
+              rowSpan={1}
+              mobileOrder={8}
+              mobileSpan={2}
+              mobileMinHeight={100}
+              tabletSpan={1}
+              tabletOrder={8}
+              tabletMinHeight={86}
+            >
               <LinkedInCard />
             </GridItem>
 
-            <GridItem colSpan={4} rowSpan={2} mobileOrder={13}>
+            <GridItem
+              colSpan={4}
+              rowSpan={2}
+              mobileOrder={9}
+              mobileSpan={2}
+              mobileMinHeight={175}
+              tabletSpan={2}
+              tabletOrder={9}
+              tabletMinHeight={175}
+            >
               <LetsTalkCard />
             </GridItem>
 
-            <GridItem colSpan={8} rowSpan={4} mobileOrder={3}>
+            <GridItem
+              colSpan={8}
+              rowSpan={4}
+              mobileOrder={2}
+              mobileSpan={2}
+              mobileMinHeight={220}
+              tabletSpan={2}
+              tabletOrder={2}
+              tabletMinHeight={362}
+            >
               <CaseStudyCard
                 background="15, 76, 182"
                 pillBackground="rgba(36, 36, 36, 0.5)"
                 titleLogo={<VitalmedLogo />}
-                heading="Turning a bureaucratic process into a digital enrollment"
+                heading={t("caseStudies.vitalmed.heading")}
                 headingFontSize={19}
-                pills={["Web App", "Onboarding", "Healthtech"]}
-                href="/vitalmed"
+                pills={vitalmedPills}
+                href={`/${locale}/vitalmed`}
                 image={{ src: "/images/vitalmed-phone.png", aspectRatio: 377 / 345 }}
+                denseTagsMobile
               />
             </GridItem>
 
-            <GridItem colSpan={4} rowSpan={4}>
+            <GridItem
+              colSpan={4}
+              rowSpan={4}
+              hiddenAtMobile
+              tabletSpan={1}
+              tabletOrder={6}
+              tabletMinHeight={362}
+            >
               <VitalmedRightColumn aboutMe={<AboutMe />} howItWork={<HowItWorkTeaser />} />
             </GridItem>
 
-            <GridItem colSpan={4} rowSpan={3} mobileOrder={4}>
+            <GridItem
+              colSpan={4}
+              rowSpan={1}
+              mobileOnly
+              mobileOrder={5}
+              mobileSpan={2}
+              mobileMinHeight={180}
+            >
+              <HowItWorkTeaser />
+            </GridItem>
+
+            <GridItem
+              colSpan={4}
+              rowSpan={3}
+              mobileOrder={3}
+              mobileSpan={2}
+              mobileMinHeight={220}
+              tabletSpan={1}
+              tabletOrder={3}
+              tabletMinHeight={200}
+            >
               <CaseStudyCard
                 background="212, 199, 143"
                 textColor="rgb(43, 43, 43)"
@@ -99,9 +225,11 @@ export default function Home() {
                 title="BASALTO"
                 titleFontSize={32}
                 titleFontFamily={notoSerif.style.fontFamily}
-                heading={<strong>Loyalty platform</strong>}
-                pills={["Web App", "Loyalty", "Engagement"]}
+                heading={<strong>{t("caseStudies.basalto.heading")}</strong>}
+                pills={basaltoPills}
+                denseTagsMobile
                 underConstruction
+                underConstructionLabel={t("caseStudies.basalto.underConstruction")}
                 texture={
                   <CardTexture
                     viewBox="0 0 239.4 239.85"
@@ -122,7 +250,16 @@ export default function Home() {
               />
             </GridItem>
 
-            <GridItem colSpan={4} rowSpan={3} mobileOrder={5}>
+            <GridItem
+              colSpan={4}
+              rowSpan={3}
+              mobileOrder={4}
+              mobileSpan={2}
+              mobileMinHeight={220}
+              tabletSpan={1}
+              tabletOrder={4}
+              tabletMinHeight={200}
+            >
               <CaseStudyCard
                 background="225, 227, 227"
                 textColor="rgb(51, 51, 51)"
@@ -130,10 +267,12 @@ export default function Home() {
                 title="Lumine Gas"
                 titleFontSize={32}
                 titleFontFamily={manrope.style.fontFamily}
-                heading={<strong>Ordering system</strong>}
+                heading={<strong>{t("caseStudies.lumineGas.heading")}</strong>}
                 headingOpacity={0.8}
-                pills={["Mobile App", "Web App", "Ordering"]}
+                pills={lumineGasPills}
+                denseTagsMobile
                 underConstruction
+                underConstructionLabel={t("caseStudies.lumineGas.underConstruction")}
                 texture={
                   <CardTexture
                     viewBox="0 0 183.2 207.958"
@@ -152,7 +291,16 @@ export default function Home() {
               />
             </GridItem>
 
-            <GridItem colSpan={4} rowSpan={3} mobileOrder={7}>
+            <GridItem
+              colSpan={4}
+              rowSpan={3}
+              mobileOrder={6}
+              mobileSpan={2}
+              mobileMinHeight={400}
+              tabletSpan={1}
+              tabletOrder={5}
+              tabletMinHeight={362}
+            >
               <Testimonials />
             </GridItem>
           </BentoGrid>

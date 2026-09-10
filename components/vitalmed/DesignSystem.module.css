@@ -1,0 +1,397 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for this section (.framer-WITdp.framer-1bukco0
+   "Desktop" variant, under the "UI & DESIGN SYSTEM" eyebrow) — resolved
+   via cascade simulation over the source-order rules scoped to this
+   component instance's own "framer-WITdp" wrapper class. See
+   DesignSystem.tsx for the body-paragraph-wrapper and Lottie-placeholder
+   notes. */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.eyebrow {
+  font-weight: var(--font-weight-medium); /* 500, confirmed Inter medium */
+  font-size: 16px; /* inherited default, same convention as the other sections */
+  letter-spacing: 1.26px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  margin: 0;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* confirmed */
+}
+
+.tituloLine1,
+.tituloLine2 {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-weight: 500; /* confirmed */
+  font-size: 32px; /* confirmed */
+  line-height: 40px; /* confirmed */
+  margin: 0;
+}
+
+.tituloLine1 {
+  color: rgb(204, 204, 204); /* confirmed */
+}
+
+.tituloLine2 {
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+}
+
+/* See DesignSystem.tsx: simplified from source's extra centered
+   min-content nested frame, same pattern as every other section's body. */
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+.bodyText {
+  font-size: 15px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgba(204, 204, 204, 0.8); /* confirmed */
+  margin: 0;
+}
+
+.cosas {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* confirmed — no forced equal-height stretch here */
+  gap: 10px; /* confirmed */
+  width: 100%;
+}
+
+.colAnimations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* confirmed */
+  width: 40%; /* confirmed */
+}
+
+.colUiKit {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0; /* confirmed */
+  align-self: stretch; /* confirmed — matches the Animations card's height */
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+}
+
+/* Shared white card shell for both sub-blocks — the only light-on-dark
+   surfaces on this page, confirmed. */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+  height: 100%;
+  padding: 32px 24px; /* confirmed */
+  background: rgb(255, 255, 255); /* confirmed */
+  border-radius: 20px; /* confirmed */
+  box-sizing: border-box;
+}
+
+.cardLabel {
+  font-size: 14px; /* confirmed */
+  line-height: 16px; /* confirmed */
+  color: rgba(51, 51, 51, 0.6); /* confirmed */
+  margin: 0;
+}
+
+.cardLabelStar {
+  color: rgba(20, 20, 20, 0.6); /* confirmed — darker than the label text */
+}
+
+.animationsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.animationsRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* confirmed */
+  align-items: center;
+  width: 100%;
+}
+
+/* Nominal layout slot for each Lottie — narrower than the placeholder's
+   own confirmed container size, matching source's deliberate overflow
+   (see DesignSystem.tsx note). */
+.lottieSlot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.lottieCanvas {
+  flex-shrink: 0;
+  display: block;
+  width: var(--lottie-w);
+  height: var(--lottie-h);
+}
+
+.animImageWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Confirmed per-row static-frame desktop widths (198/218/180px), kept as
+   real CSS classes here — rather than the inline styles used elsewhere on
+   this page — specifically so the mobile media query below can override
+   them with the source's own confirmed smaller MOBILE L widths. */
+.animFrame1 {
+  width: 198px;
+}
+
+.animFrame2 {
+  width: 218px;
+}
+
+.animFrame3 {
+  width: 180px;
+}
+
+.animImage {
+  object-fit: cover;
+}
+
+.uiKitTitulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px; /* confirmed */
+}
+
+/* KNOWN ISSUE (flagged per instruction, not fixed here): at this
+   breakpoint the two children's confirmed fixed widths (266px stack +
+   346px tall image) slightly exceed .colUiKit's available content width,
+   causing a small horizontal overflow. Needs a width fix in the polish
+   pass — see DesignSystem.tsx's header comment for the same note. */
+.uiKitContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* confirmed */
+  align-items: flex-start;
+  width: 100%;
+}
+
+.uiKitStack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px; /* confirmed */
+}
+
+.uiKitTallWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 346px; /* confirmed */
+  padding: 24px 0; /* confirmed */
+}
+
+.uiKitImageWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Mobile (≤767px, confirmed identical between source's "MOBILE L"
+   (375-424.98/425-767.98) and "Mobile 320" (<374.98) variants unless
+   noted). .cosas/.colAnimations/.colUiKit's row->column + width:100%
+   changes match the confirmed override on this section's own Cosas/COL
+   IZQ/COL DER (colUiKit's gap also confirmed 24px->16px).
+   .lottieCanvas + .animFrame1/2/3: confirmed exact source mobile pixel
+   sizes (see LOTTIE_1/2/3 and the animFrame1/2/3 classes above) — a true
+   extracted value, not a guessed scale-down.
+   .uiKitContent/.uiKitImageWrap: NOT purely extracted. Source itself
+   keeps these images' literal desktop pixel widths unchanged at mobile
+   (checked directly — no override exists), which is the real cause of
+   the previously-flagged UI KIT overflow: it exists in the original too,
+   at this breakpoint. Per this pass's explicit instruction to fix the
+   overflow, stacking uiKitContent into a column and capping every
+   uiKitImageWrap at max-width:100% is a deliberate overflow-safety
+   deviation here, not a discovered value — except for the closing
+   banner (.animImage's own wrapper reused for it), whose width:100% at
+   mobile IS separately confirmed in source, so this same rule happens to
+   match that one exactly. */
+@media (max-width: 425px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colAnimations {
+    width: 100%;
+  }
+
+  .colUiKit {
+    flex: none;
+    width: 100%;
+    gap: 16px; /* confirmed */
+  }
+
+  .lottieCanvas {
+    width: var(--lottie-w-mobile, var(--lottie-w));
+    height: var(--lottie-h-mobile, var(--lottie-h));
+  }
+
+  .animFrame1 {
+    width: 158px; /* confirmed */
+  }
+
+  .animFrame2 {
+    width: 174px; /* confirmed */
+  }
+
+  .animFrame3 {
+    width: 144px; /* confirmed */
+  }
+
+  .uiKitContent {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .uiKitTallWrap {
+    width: 100%;
+  }
+
+  .uiKitImageWrap {
+    max-width: 100%;
+  }
+
+  /*
+    Bug found while checking this page down to 320px (not previously
+    tested that narrow): each .animationsRow pairs one .lottieSlot
+    (inline-styled 130/128/187px — see DesignSystem.tsx, no per-row
+    mobile override exists for these) with one .animFrame1/2/3 (158/
+    174/144px above). Side by side via flex-direction:row (unchanged at
+    mobile), their combined width (e.g. row 1: 130+158=288px) exceeds
+    .colAnimations' available card content width at this breakpoint
+    (~240px at 320px viewport, ~295px at 375px) — already too tight at
+    375px and worse at 320px. Each Lottie's OWN player is also
+    intentionally wider than its slot (confirmed deliberate overflow —
+    see .lottieSlot's comment above; e.g. row 1's real canvas is 240px
+    inside a 130px slot), which only avoids visibly overflowing the CARD
+    itself when the slot is centered alone with nothing beside it eating
+    into that space. Wrapping each pair onto its own line (instead of
+    forcing them to share a row) fixes both problems at once: every
+    individual item (max 187px) comfortably fits under ~240px alone, and
+    each Lottie's overflow again lands symmetrically within the card.
+  */
+  .animationsRow {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
+/*
+  Tablet pass (426-1023px). 426-767px is source's own "MOBILE L" variant
+  — confirmed identical to the ≤425 block above, repeated verbatim.
+
+  768-1023px (source's real, cleanly top-level "Tablet" variant, hash
+  v-a9lwv2 — no nested/hidden-list trickery for this section) turns out
+  to need much less than mobile: .cosas DOES stack (confirmed,
+  row->column, same as mobile) and .colUiKit goes full-width too
+  (confirmed — but its gap has no override at this variant, so it stays
+  the desktop 0 rather than mobile's confirmed 16px). Critically, NEITHER
+  the 3 Lottie canvases NOR the UI KIT's images have any confirmed size
+  override at this variant — because once .cosas stacks, .colAnimations
+  and .colUiKit each get the FULL card width instead of desktop's 40/60
+  split, which comfortably fits both at their existing desktop pixel
+  sizes (300x210/270x189 Lottie canvases; 266+346px UI KIT row) without
+  needing mobile's downscale. So: the flagged "Lottie fits, no overflow"
+  concern is resolved by the stack itself at this width, not by resizing
+  anything — .uiKitContent also stays side-by-side (no flex-direction
+  override in source at this variant, and it fits).
+  Not reproduced: source also reorders the 3 Lottie/image pairs within
+  their rows at this variant (order:0/2/3 on specific elements) — a
+  minor internal left/right swap, not an overflow or sizing concern,
+  skipped as out of proportion to this pass's scope.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colAnimations {
+    width: 100%;
+  }
+
+  .colUiKit {
+    flex: none;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .lottieCanvas {
+    width: var(--lottie-w-mobile, var(--lottie-w));
+    height: var(--lottie-h-mobile, var(--lottie-h));
+  }
+
+  .animFrame1 {
+    width: 158px;
+  }
+
+  .animFrame2 {
+    width: 174px;
+  }
+
+  .animFrame3 {
+    width: 144px;
+  }
+
+  .uiKitContent {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .uiKitTallWrap {
+    width: 100%;
+  }
+
+  .uiKitImageWrap {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .cosas {
+    flex-direction: column;
+  }
+
+  .colAnimations {
+    width: 100%;
+  }
+
+  .colUiKit {
+    flex: none;
+    width: 100%; /* gap stays desktop's 0 — no override confirmed at this variant */
+  }
+}

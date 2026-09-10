@@ -264,3 +264,156 @@
 .curveImage {
   object-fit: cover;
 }
+
+/* --- Mobile accordion (≤767px) ---
+   Confirmed from source's own "MOBILE L" variant (shared across
+   375-424/425-767/<374, same as every other section on this page): the
+   table becomes a real interactive accordion, not a plain stack or a
+   horizontal scroll — see UserExperienceAccordion.tsx for the full
+   confirmation trail (it's a genuine reused Framer code component, not a
+   CSS trick) and for the one piece that's a documented adaptation rather
+   than an extracted value (the expanded panel's exact styling, since a
+   static capture only ever contains the collapsed/rest state). Hidden at
+   desktop; shown only under the mobile media query below, where the
+   desktop .table is hidden instead. */
+.accordion {
+  display: none;
+  flex-direction: column;
+  gap: 8px; /* confirmed */
+  width: 100%;
+}
+
+.accordionItem {
+  background: rgb(20, 20, 20); /* confirmed */
+  border-radius: 16px; /* confirmed */
+  overflow: hidden;
+}
+
+.accordionHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 16px; /* confirmed */
+  background: none;
+  border: none;
+  cursor: pointer; /* confirmed */
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.accordionHeaderText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px; /* confirmed */
+}
+
+.accordionChevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+/* Adaptation, not an extracted value — see UserExperienceAccordion.tsx. */
+.accordionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 16px 16px;
+}
+
+.accordionFeeling {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.accordionFeelingLabel {
+  font-size: 11px;
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0.05em;
+  color: rgba(204, 204, 204, 0.4);
+  margin: 0;
+}
+
+@media (max-width: 425px) {
+  .table {
+    display: none;
+  }
+
+  .accordion {
+    display: flex;
+  }
+
+  /* .barTrack's confirmed 300px width is a desktop value that would
+     overflow a narrow viewport — not independently confirmed at mobile
+     (the accordion's expanded panel is itself an adaptation, see above),
+     switched to 100% here as the direct consequence of that same
+     text-safety/overflow reasoning. */
+  .accordionFeeling .barTrack {
+    width: 100%;
+  }
+
+  .curve {
+    padding: 16px 4px; /* confirmed */
+  }
+}
+
+/*
+  Tablet pass (426-1023px). This section is genuinely different from
+  every other section's tablet story:
+
+  426-767px is confirmed identical to the ≤425 block above (same
+  accordion variant, hidden-breakpoint list confirms it covers
+  375-767.98 as one combined variant) — repeated verbatim.
+
+  768-1023px does NOT use the accordion at all. Source's own
+  hidden-breakpoint list is explicit and was double-checked carefully
+  here (this section nests an extra ssr-variant layer, easy to
+  misread): a variant internally mislabeled "MOBILE L" by Framer (likely
+  a copy/paste artifact in the source file — hash v-1vum9jq) is actually
+  the one shown ONLY at 768-1023.98px, not the true MOBILE L accordion.
+  Its own confirmed CSS touches only the section's intro text (TITULO
+  going width:100%, pre-wrap on the title lines — already satisfied by
+  this file's existing unconstrained-width text, so no visible change) —
+  nothing about the table structure itself. The desktop
+  STAGE/BEFORE/AFTER table is what actually renders at Tablet, completely
+  unreflowed.
+  That's a real, confirmed problem: .barTrack's fixed 300px doesn't fit
+  its 40%-width Before/After cell at the narrow end of this range (e.g.
+  ~282px available at 768px viewport) — a genuine, unaddressed overflow
+  in the source itself, the same category of issue as the UI KIT overflow
+  already fixed in the Design System section's own tablet/mobile passes.
+  Fixed here the same way: capped instead of reproduced literally.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .table {
+    display: none;
+  }
+
+  .accordion {
+    display: flex;
+  }
+
+  .accordionFeeling .barTrack {
+    width: 100%;
+  }
+
+  .curve {
+    padding: 16px 4px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .titulo {
+    width: 100%; /* confirmed */
+  }
+
+  .barTrack {
+    max-width: 100%; /* overflow-safety fix — see comment above; 300px stays the preferred size where it fits */
+  }
+}

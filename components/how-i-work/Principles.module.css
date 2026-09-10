@@ -4,20 +4,30 @@
    in app/how-i-work/page.tsx and exposed as CSS variables (shared with
    Methodology). */
 
+/* .principles (page.module.css) is a CSS grid with named areas so
+   "What you won't find" (.wontFind below) can sit inside the left column
+   at desktop but reorder to AFTER the cards at mobile — confirmed: source
+   moves this block out of the left-column grouping and places it after
+   the card grid at the mobile breakpoints, a real reorder, not just a
+   stack. Grid gives us that without duplicating markup per breakpoint. */
 .left {
+  grid-area: left;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-4); /* 16px, confirmed */
-  width: 40%; /* confirmed */
 }
 
 .right {
+  grid-area: right;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-4); /* 16px, confirmed */
-  flex: 1 0 0;
+}
+
+.wontFind {
+  grid-area: wontfind;
 }
 
 .intro {
@@ -86,6 +96,15 @@
   width: 100%;
 }
 
+/* Fixed-size guard for the red circle-X icon: without this, the svg (a
+   default flex item here) can shrink below its 18x18 intrinsic size when
+   ES copy wraps to two lines, since flex-shrink defaults to 1. */
+.wontFindIcon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
 .grid {
   display: flex;
   flex-direction: column;
@@ -137,7 +156,14 @@
    fixed height (not stretched to match row-mates, since it has none), a
    row layout (icon beside the text stack, not stacked above it), a larger
    24px icon (the 2x2 cards' icons are 18px), and no icon background chip
-   (same as the other 4 — confirmed, not an oversight). */
+   (same as the other 4 — confirmed, not an oversight).
+
+   117px is the base/mobile height; at ≥1024px (the two-column grid — see
+   .principles in page.module.css) it's overridden to flex:1 so this card
+   absorbs whatever slack is left in .right's box, keeping the right
+   column's visible bottom edge flush with the left column's ("What you
+   won't find") bottom edge instead of leaving dead space below this card.
+   See the @media (min-width: 1024px) block below. */
 .wideCard {
   display: flex;
   flex-direction: row;
@@ -157,4 +183,87 @@
   align-items: flex-start;
   gap: var(--space-3); /* 10px, confirmed */
   flex: 1 0 0;
+}
+
+/* Mobile (≤767px): the 2x2 card grid stacks into a single column (each
+   row of 2 goes column instead of row), and cards go full width. Source
+   fixes .card to a 280px explicit height at this breakpoint — NOT
+   reproduced, same text-safety reasoning as Methodology's cards (a fixed
+   height risks clipping the longer ES copy); height is left auto. Font
+   sizes unchanged from desktop — confirmed no responsive scaling in
+   source for this section's text presets either. */
+@media (max-width: 425px) {
+  .gridRow {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .wideCard {
+    height: auto;
+  }
+}
+
+/*
+  Tablet pass (426-1023px). The section's own top-level layout (row of
+  "Texto 40% | Cosas" at desktop) is confirmed to go flex-direction:column
+  at BOTH sub-ranges here — same single-column stack as mobile (see
+  page.module.css's .principles grid-template-areas switch, reused
+  unchanged for this whole range).
+
+  426-767px (source's own "MOBILE L" variant) is confirmed identical to
+  the ≤425 block above — the 2x2 card grid fully stacks into one column,
+  repeated verbatim.
+
+  768-1023px (source's real "Tablet" variant) is genuinely different: the
+  4 principle cards arrange in ONE ROW instead of stacking (confirmed —
+  the grid wrapper gets flex-direction:row at this variant specifically,
+  not grouped with mobile's own rule). Implemented here by flipping
+  .grid's own flex-direction instead of .gridRow's: the two existing
+  gridRow pairs sit side by side, each still a 2-card row, netting the
+  same "4 across" result confirmed in source without restructuring the
+  component's DOM. .wideCard has no confirmed override at this variant,
+  so it stays exactly as desktop (row layout, 117px height) — already
+  fits at this width.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .gridRow {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .wideCard {
+    height: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .grid {
+    flex-direction: row; /* confirmed — 4 cards across, not stacked */
+  }
+}
+
+/* Desktop (≥1024px): the only range where .principles' grid actually puts
+   "right" (this component) beside the left column's two stacked rows —
+   see page.module.css. .right's own box already stretches to match that
+   stack's full height (default grid stretch on a row-spanning item,
+   confirmed via measurement — not something added here), but its flex
+   children (.grid + this card) don't fill it by default, leaving dead
+   space below this card instead of a flush bottom edge. Letting this
+   card (not .grid — its rows are the measured 2x2 cards) grow to absorb
+   that slack keeps the right column's visible bottom aligned with the
+   left column's, without touching any other measured value. Not
+   reproduced at 768-1023.98px on purpose: that range already stacks to
+   single-column (no cross-column height to match), so this card stays at
+   its base 117px there, same as before this fix. */
+@media (min-width: 1024px) {
+  .wideCard {
+    flex: 1;
+    height: auto;
+  }
 }

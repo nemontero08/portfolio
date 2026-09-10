@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import BackButton from "@/components/layout/BackButton";
 import Methodology from "@/components/how-i-work/Methodology";
 import Principles from "@/components/how-i-work/Principles";
-import Contact from "@/components/how-i-work/Contact";
+import ContactCTA from "@/components/sections/ContactCTA";
 
 // This page's own confirmed heading/eyebrow fonts (separate from the home
 // page's Manrope instance, which only loads weight 800). Weight 600 is
@@ -27,7 +27,9 @@ const manrope = Manrope({ subsets: ["latin"], weight: ["600", "700"], variable: 
  * 1. Methodology — "METHODOLOGY & FLOW" / "I turn complex processes into
  *    digital products"
  * 2. Principles  — "WHERE I WORK BEST" / "Non-negotiable principles"
- * 3. Contact/CTA — "LET'S WORK TOGETHER" / "Let's talk."
+ * 3. Contact/CTA — "LET'S WORK TOGETHER" / "Let's talk." (rendered via the
+ *    shared components/sections/ContactCTA, also used to close the
+ *    Vitalmed page — not a how-i-work-specific component)
  */
 export default function HowIWorkPage() {
   return (
@@ -41,7 +43,7 @@ export default function HowIWorkPage() {
           <Principles />
         </section>
         <section className={styles.contact} aria-label="Contact">
-          <Contact />
+          <ContactCTA />
         </section>
       </div>
     </main>

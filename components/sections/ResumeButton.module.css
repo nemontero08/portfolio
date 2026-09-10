@@ -70,3 +70,29 @@
     display: none;
   }
 }
+
+/*
+  Home tablet pass (426-1023px), now also mobile pass 2 (<=425px, same
+  mobileMinHeight={86} as tablet — see page.tsx): the document graphic is
+  normally a hover reveal (slides from bottom:136/right:-177/height:125/
+  gap:10 to bottom:-38/right:-13/height:100/gap:8 — see containerVariants
+  in ResumeButton.tsx), but neither range has reliable real hover to
+  trigger it. Per Nico's note, freeze it always-visible at its
+  post-animation (slid-in) end state, at 0.90 opacity (a value this
+  graphic never had before — hover only ever animated position/size, not
+  opacity). Motion drives bottom/right/height/gap via inline styles every
+  frame, not CSS, so !important is required to win over them regardless
+  of whatever whileHover state Motion computes underneath. Comes after
+  the (hover: none) rule above so it also wins on a real touch device,
+  where both conditions are true at once.
+*/
+@media (max-width: 1023.98px) {
+  .docContainer {
+    display: flex !important;
+    bottom: -38px !important;
+    right: -13px !important;
+    height: 100px !important;
+    gap: 8px !important;
+    opacity: 0.9;
+  }
+}

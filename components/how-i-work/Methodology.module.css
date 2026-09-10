@@ -46,18 +46,32 @@
 .row {
   display: flex;
   flex-direction: row;
+  align-items: stretch; /* explicit — this IS the mechanism that keeps the 4 cards equal height below, now that .row/.card no longer hard-code one (see .card) */
   gap: var(--space-4); /* 16px, confirmed */
   width: 100%;
-  height: 295px; /* confirmed, this breakpoint */
 }
 
+/*
+  Fixed height removed (was height:295px, confirmed from source) — that,
+  combined with .card's height:100% + justify-content:space-between,
+  pushed the description to the very bottom of a fixed-height card
+  whenever its own content (icon+eyebrow+title+description) was shorter
+  than 295px, leaving a large empty gap in the middle. Card 3
+  (Wireframes/Prototyping) has the longest description in both locales,
+  so it naturally sets the row's height; .row's align-items:stretch above
+  is what still equalizes the other 3 cards to match it — no explicit
+  height needed on either .row or .card for that. justify-content:
+  space-between is replaced by a real gap, so the description now sits
+  directly under the title with the same small spacing already used
+  between icon/eyebrow/title above; any leftover height on a shorter card
+  falls below the description instead of splitting the card in half.
+*/
 .card {
   flex: 1 0 0;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  gap: var(--space-3); /* 10px — matches .cardTop's own icon->title rhythm below */
   padding: var(--space-6); /* 24px, confirmed */
   background: var(--color-bg-2); /* #191a1a, confirmed */
   border-radius: var(--radius-outer); /* 12px, confirmed */
@@ -115,4 +129,62 @@
   line-height: var(--line-height-default); /* 120%, confirmed */
   color: var(--color-text-muted);
   margin: 0;
+}
+
+/* Mobile (≤425px, covers the source's "Mobile"/"MOBILE L" breakpoints,
+   confirmed identical between them for this section — this rule stops
+   at 425 since the tablet pass below now owns 426-1023, the rest of
+   that shared range): the 4 cards stack into a single column instead of
+   a row. Source fixes .row/.card to 295px/280px explicit heights at this
+   breakpoint (to force equal card heights) — NOT reproduced: a fixed
+   height risks clipping the longer ES copy, so height is left auto here
+   instead, a deliberate text-safety deviation. Font sizes are unchanged
+   from desktop — confirmed no responsive scaling exists in source for
+   this section's text presets. */
+@media (max-width: 425px) {
+  .intro {
+    width: 100%; /* confirmed */
+  }
+
+  .row {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .card {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/*
+  Tablet pass (426-1023px): confirmed functionally identical to the
+  mobile block above across BOTH source sub-variants in this range
+  (source's own "MOBILE L" for 426-767, and a genuine Tablet variant for
+  768-1023 — found nested inside the Desktop chunk's own ssr-variant
+  wrapper, same "hidden-list-only" pattern seen throughout this pass, not
+  a plain top-level "Tablet" block missed at a glance) — same
+  intro-width:100% and row->column stack, same fixed 280px card height in
+  source that's deliberately left auto here for the same ES text-safety
+  reason as mobile. Unlike some other pages' tablet passes, this section
+  genuinely does NOT preserve the desktop row layout at 768-1023 — it
+  stacks there too, confirmed directly, not assumed from the mobile
+  pattern.
+*/
+@media (min-width: 426px) and (max-width: 1023.98px) {
+  .intro {
+    width: 100%;
+  }
+
+  .row {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .card {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
 }

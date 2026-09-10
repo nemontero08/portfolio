@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLocale } from "next-intl";
 import styles from "./ResumeButton.module.css";
 
 /**
@@ -38,16 +39,13 @@ const containerVariants = {
   hover: { bottom: -38, right: -13, height: 100, gap: 8 },
 };
 
-// TODO(i18n): there are two CVs, one per language — swap RESUME_HREF to
-// CV_URLS[locale] once locale routing/switching is wired up. For now this
-// always links the English CV (the current default), regardless of
-// whatever locale ends up being detected/selected.
+// One CV per language — RESUME_HREF below resolves this against the
+// current locale via next-intl's useLocale(), so EN pages link the EN CV
+// and ES pages link the ES CV.
 const CV_URLS = {
-  en: "https://drive.google.com/file/d/1GBlxHIKzgw4Xv7DNqGKQj19GC0M40hPM/view",
+  en: "https://drive.google.com/file/d/1oI8z7uACH74z5yQFMKwD3geQcy7ygUOE/view?usp=sharing",
   es: "https://drive.google.com/file/d/1womkBKNM0JCoLzADmmMrJZS21rJR1vBj/view",
 } as const;
-
-const RESUME_HREF = CV_URLS.en;
 
 // reference/specs/resume-doc.svg, verbatim — the real drawing pulled from
 // the live site, already resolved to literal colors (no Framer CSS vars):
@@ -89,10 +87,13 @@ function ResumeDocumentArt() {
 }
 
 export default function ResumeButton() {
+  const locale = useLocale();
+  const resumeHref = CV_URLS[locale as keyof typeof CV_URLS] ?? CV_URLS.en;
+
   return (
     <motion.a
       className={styles.button}
-      href={RESUME_HREF}
+      href={resumeHref}
       target="_blank"
       rel="noopener noreferrer"
       initial="rest"

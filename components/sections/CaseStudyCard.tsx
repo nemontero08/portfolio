@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type CSSProperties, type ReactNode } from "react";
+import { Fragment, useState, type CSSProperties, type ReactNode } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Pill from "@/components/ui/Pill";
@@ -88,6 +88,13 @@ interface CaseStudyCardProps {
   underConstruction?: boolean;
   /** Label for the cursor-follow pill, translated by the caller. Required when underConstruction is set. */
   underConstructionLabel?: string;
+  /**
+   * Vitalmed-only mobile request: tighter tag pills (smaller gap/font/padding)
+   * at <=425px, without touching Basalto/Lumine's shared .pills/.pill rules.
+   * Adds styles.tagsDense to just this card's pills wrapper so the mobile
+   * override in CaseStudyCard.module.css can target it specifically.
+   */
+  denseTagsMobile?: boolean;
 }
 
 export default function CaseStudyCard({
@@ -107,6 +114,7 @@ export default function CaseStudyCard({
   href,
   underConstruction = false,
   underConstructionLabel,
+  denseTagsMobile = false,
 }: CaseStudyCardProps) {
   const [hovering, setHovering] = useState(false);
   const textStyle = textColor ? ({ color: textColor } as CSSProperties) : undefined;
@@ -137,11 +145,14 @@ export default function CaseStudyCard({
           {heading}
         </p>
       </div>
-      <div className={`${styles.pills} ${styles.textLayer}`}>
-        {pills.map((pill) => (
-          <Pill key={pill} background={pillBackground}>
-            {pill}
-          </Pill>
+      <div
+        className={`${styles.pills} ${styles.textLayer}${denseTagsMobile ? ` ${styles.tagsDense}` : ""}`}
+      >
+        {pills.map((pill, index) => (
+          <Fragment key={pill}>
+            {index === 1 && <span className={styles.pillBreak} aria-hidden="true" />}
+            <Pill background={pillBackground}>{pill}</Pill>
+          </Fragment>
         ))}
       </div>
       {image && (

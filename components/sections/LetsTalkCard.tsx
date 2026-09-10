@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import styles from "./LetsTalkCard.module.css";
 import CopyBtn from "@/components/ui/CopyBtn";
 
@@ -30,11 +31,13 @@ function CopyIcon() {
   );
 }
 
-export default function LetsTalkCard() {
+export default async function LetsTalkCard() {
+  const t = await getTranslations("home.letsTalkCard");
+
   return (
     <div className={styles.card}>
       <div className={styles.top}>
-        <h3 className={styles.title}>Let&apos;s talk</h3>
+        <h3 className={styles.title}>{t("title")}</h3>
         <div className={styles.atIcon} aria-hidden>
           @
         </div>

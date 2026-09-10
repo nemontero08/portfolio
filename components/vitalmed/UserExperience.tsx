@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
+import UserExperienceAccordion from "./UserExperienceAccordion";
 import styles from "./UserExperience.module.css";
 
 /**
@@ -43,126 +45,33 @@ import styles from "./UserExperience.module.css";
  * via f2c-sw.js, copied to public/images.
  */
 
-type Feeling = {
-  label: string;
-  quote: string;
-  score: string;
-  scoreValue: number;
-  border: string;
-  bg: string;
-  text: string;
-  bar: string;
-};
-
-type Row = {
-  stageDisplay: string;
+type TranslatedFeeling = { label: string; quote: string; score: string };
+type TranslatedRow = {
+  stage: string;
   description: string;
-  before: Feeling;
-  after: Feeling;
+  before: TranslatedFeeling;
+  after: TranslatedFeeling;
   afterNote?: string;
 };
 
+type FeelingStyle = { border: string; bg: string; text: string; bar: string };
+type Feeling = TranslatedFeeling & FeelingStyle & { scoreValue: number };
+type Row = { stageDisplay: string; description: string; before: Feeling; after: Feeling; afterNote?: string };
+
+const AMBER = { border: "rgba(212, 146, 10, 0.2)", bg: "rgba(212, 146, 10, 0.1)", text: "rgb(200, 150, 10)", bar: "rgb(212, 146, 10)" };
 const BLUE = { border: "rgba(0, 87, 184, 0.24)", bg: "rgba(0, 87, 184, 0.1)", text: "rgb(130, 180, 240)", bar: "rgb(0, 87, 184)" };
 const RED = { border: "rgba(224, 90, 69, 0.2)", bg: "rgba(224, 90, 69, 0.1)", text: "rgb(224, 128, 112)", bar: "rgb(224, 128, 112)" };
+const GREEN = { border: "rgba(46, 168, 130, 0.24)", bg: "rgba(46, 168, 130, 0.1)", text: "rgb(46, 168, 130)", bar: "rgb(46, 168, 130)" };
 
-const ROWS: Row[] = [
-  {
-    stageDisplay: "1. Onboarding start",
-    description: "Firs contact",
-    before: {
-      label: " \u{1F615} Confused",
-      quote: '"What do I need to prepare? How long does it take?"',
-      score: "2/10",
-      scoreValue: 2,
-      border: "rgba(212, 146, 10, 0.2)",
-      bg: "rgba(212, 146, 10, 0.1)",
-      text: "rgb(200, 150, 10)",
-      bar: "rgb(212, 146, 10)",
-    },
-    after: {
-      label: " \u{1F535} Oriented",
-      quote: "\"I can see the steps. I know how long it'll take. I can start.\"",
-      score: "7/10",
-      scoreValue: 7,
-      ...BLUE,
-    },
-  },
-  {
-    stageDisplay: "2. Identity validation",
-    description: "ID, data & biometrics",
-    before: {
-      label: "\u{1F630} Anxious",
-      quote: '"They asked for my info via WhatsApp, my ID photo by message, and sent me to another app for biometrics."',
-      score: "1.5/10",
-      scoreValue: 1.5,
-      ...RED,
-    },
-    after: {
-      label: "\u{1F512} Confident",
-      quote: '"I scanned my ID, the data filled in automatically, and the validation happened within the same app."',
-      score: "8/10",
-      scoreValue: 8,
-      ...BLUE,
-    },
-  },
-  {
-    stageDisplay: "3. Health declaration",
-    description: "Medical questions",
-    before: {
-      label: "\u{1F613} Exhausted",
-      quote: "\"There are so many questions. I don't understand why so many.\"",
-      score: "1/10",
-      scoreValue: 1,
-      ...RED,
-    },
-    after: {
-      label: "\u{1F60C} Calm",
-      quote: "\"The questions are few and clear. I'm halfway through.\"",
-      score: "6.5/10",
-      scoreValue: 6.5,
-      ...BLUE,
-    },
-  },
-  {
-    stageDisplay: "4.  Medical review",
-    description: "No pre-existing conditions",
-    before: {
-      label: "\u{1F61F} Worried",
-      quote: "\"They didn't tell me anything. Am I still in the process? Did they reject me?\"",
-      score: "0.5/10",
-      scoreValue: 0.5,
-      ...RED,
-    },
-    after: {
-      label: "⚡ Invisible",
-      quote: '"I didn\'t even notice it. I went straight to the next step."',
-      score: "9.2/10",
-      scoreValue: 9.2,
-      ...BLUE,
-    },
-    afterNote: "If there are no pre-existing conditions, validation happens in the background. The user doesn't wait.",
-  },
-  {
-    stageDisplay: "5. Signature & payment",
-    description: "Onboarding completion",
-    before: {
-      label: " \u{1F624} Frustrated",
-      quote: '"I have to print, sign, and scan. In 2025."',
-      score: "1/10",
-      scoreValue: 1,
-      ...RED,
-    },
-    after: {
-      label: "✅ Satisfied",
-      quote: '"I signed and paid in two steps. Done. Easy."',
-      score: "9/10",
-      scoreValue: 9,
-      border: "rgba(46, 168, 130, 0.24)",
-      bg: "rgba(46, 168, 130, 0.1)",
-      text: "rgb(46, 168, 130)",
-      bar: "rgb(46, 168, 130)",
-    },
-  },
+// Badge/bar colors aren't translatable content — styling only, indexed to
+// match vitalmed.userExperience.rows' order in the JSON. Row 5's AFTER
+// resolution is intentionally green, not blue (confirmed in source).
+const ROW_STYLE: { before: FeelingStyle; after: FeelingStyle }[] = [
+  { before: AMBER, after: BLUE },
+  { before: RED, after: BLUE },
+  { before: RED, after: BLUE },
+  { before: RED, after: BLUE },
+  { before: RED, after: GREEN },
 ];
 
 function FeelingCell({ feeling, note }: { feeling: Feeling; note?: string }) {
@@ -189,37 +98,46 @@ function FeelingCell({ feeling, note }: { feeling: Feeling; note?: string }) {
   );
 }
 
-export default function UserExperience() {
+export default async function UserExperience() {
+  const t = await getTranslations("vitalmed.userExperience");
+  const tableHeaders = t.raw("tableHeaders") as string[];
+  const translatedRows = t.raw("rows") as TranslatedRow[];
+
+  const rows: Row[] = translatedRows.map((row, i) => ({
+    stageDisplay: row.stage,
+    description: row.description,
+    afterNote: row.afterNote,
+    before: { ...row.before, ...ROW_STYLE[i].before, scoreValue: parseFloat(row.before.score) },
+    after: { ...row.after, ...ROW_STYLE[i].after, scoreValue: parseFloat(row.after.score) },
+  }));
+
   return (
     <div className={styles.section}>
       <div className={styles.texto}>
-        <p className={styles.eyebrow}>USER EXPERIENCE</p>
+        <p className={styles.eyebrow}>{t("eyebrow")}</p>
         <div className={styles.titulo}>
-          <p className={styles.tituloLine1}>How the user feels</p>
-          <p className={styles.tituloLine2}>at each stage of the flow.</p>
+          <p className={styles.tituloLine1}>{t("titleLine1")}</p>
+          <p className={styles.tituloLine2}>{t("titleLine2")}</p>
         </div>
         <div className={styles.body}>
-          <p className={styles.bodyText}>
-            The design didn&apos;t just solve the structure. It actively changed the user&apos;s emotional state at
-            every critical stage.
-          </p>
+          <p className={styles.bodyText}>{t("body")}</p>
         </div>
       </div>
 
       <div className={styles.table}>
         <div className={styles.header}>
           <div className={styles.headerStage}>
-            <p className={styles.headerText}>STAGE</p>
+            <p className={styles.headerText}>{tableHeaders[0]}</p>
           </div>
           <div className={styles.headerBefore}>
-            <p className={styles.headerText}>BEFORE</p>
+            <p className={styles.headerText}>{tableHeaders[1]}</p>
           </div>
           <div className={styles.headerAfter}>
-            <p className={styles.headerText}>AFTER</p>
+            <p className={styles.headerText}>{tableHeaders[2]}</p>
           </div>
         </div>
 
-        {ROWS.map((row) => (
+        {rows.map((row) => (
           <div className={styles.row} key={row.stageDisplay}>
             <div className={styles.col1}>
               <p className={styles.stage}>{row.stageDisplay}</p>
@@ -231,8 +149,10 @@ export default function UserExperience() {
         ))}
       </div>
 
+      <UserExperienceAccordion rows={rows} />
+
       <div className={styles.curve}>
-        <p className={styles.curveLabel}>EXPERIENCE CURVE — BEFORE VS AFTER</p>
+        <p className={styles.curveLabel}>{t("curveLabel")}</p>
         <div className={styles.curveImageWrap}>
           <Image src="/images/vitalmed-experience-curve.png" alt="" fill className={styles.curveImage} />
         </div>

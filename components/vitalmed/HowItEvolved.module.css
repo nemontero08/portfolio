@@ -218,6 +218,66 @@
   margin: 0;
 }
 
+/* NOT in source — mobile-only carousel replacing the bare horizontal-
+   scroll strip, see IterationScreenshotsCarousel.tsx. Hidden by default
+   (desktop keeps .screenshots, all 3 visible side by side); shown
+   instead of .screenshots at ≤767px, see those media blocks below.
+   Mechanism/dot styling reused from Home's Testimonials carousel
+   (components/sections/Testimonials.tsx + its .module.css) — same
+   AnimatePresence+drag pattern, values re-declared here rather than
+   cross-imported (this file's own established convention, see the top-
+   of-file note on small confirmed duplication over premature sharing);
+   no autoplay, unlike Testimonials — reading pace here is user-paced. */
+.carousel {
+  display: none;
+  width: 100%;
+  padding: 24px 0 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.carouselViewport {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carouselSlide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; /* matches .screenshot's own gap */
+  cursor: grab;
+  touch-action: pan-y;
+}
+.carouselSlide:active {
+  cursor: grabbing;
+}
+
+.carouselDots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carouselDot {
+  width: 6px; /* matches Testimonials' own dot size */
+  height: 6px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-round);
+  background: rgba(0, 87, 184, 0.24); /* matches .iconButton's own border alpha on this page */
+  cursor: pointer;
+}
+
+.carouselDotActive {
+  background: rgb(0, 87, 184); /* == --color-case-vitalmed, this page's accent */
+}
+
 /* --- Closing line --- */
 
 .closing {
@@ -283,6 +343,14 @@
   border-radius: 50%;
 }
 
+/* Desktop/confirmed rest state: rotate(45deg) turns the corner+diagonal
+   glyph (drawn NE by default) to point right, matching .compareCard's
+   row layout. Overridden to rotate(135deg) — pointing down — wherever
+   .compareCard stacks to a column below, see those media blocks. */
+.arrowIcon {
+  transform: rotate(45deg);
+}
+
 .afterLabel {
   font-size: 12px; /* confirmed */
   font-weight: var(--font-weight-light); /* 300, confirmed */
@@ -300,4 +368,111 @@
   line-height: 36px; /* confirmed */
   color: rgb(204, 204, 204); /* confirmed */
   margin: 0;
+}
+
+/* Mobile (≤767px, confirmed identical between source's "MOBILE L"
+   (375-424.98/425-767.98) and "Mobile S" (<374.98) variants for
+   everything below): .phase's icon-rail + content stays a row at every
+   breakpoint (no override found in source) — only these three pieces
+   change.
+   .beforeText: confirmed source override adds white-space:pre-wrap +
+   word-break/word-wrap:break-word at mobile — its desktop nowrap would
+   otherwise overflow a narrow viewport, and the source explicitly lifts
+   it, so it's reproduced rather than left nowrap.
+   .compareCard: confirmed row->column (matching the rest of the page's
+   pattern) via a direct override on the card itself.
+   .screenshots: source confirms each screenshot stays a fixed 280px wide
+   down to 375px (only <374.98px drops it to 224px, not reproduced —
+   same text-safety reasoning as elsewhere on this page) via a genuine
+   Framer slideshow/carousel component (.framer-slideshow-axis-x present
+   in the compiled CSS). Previously reproduced here as a bare horizontal
+   scroll strip with no swipe/dots; now replaced by
+   IterationScreenshotsCarousel (see .carousel above) — a real swipeable
+   carousel, reusing Home's Testimonials drag+dots mechanism per
+   instruction, not a fidelity transcription of the Framer component
+   itself (that component's real interaction values aren't recoverable
+   from a static capture, same caveat as every other adapted-not-
+   confirmed piece on this page). */
+@media (max-width: 425px) {
+  .beforeText {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .compareCard {
+    flex-direction: column;
+  }
+
+  /* NOT in source — a bug fix, not a fidelity transcription. Desktop's
+     rotate(45deg) points the glyph right, correct when BEFORE/AFTER sit
+     side by side; here .compareCard just stacked them into a column, so
+     the arrow between them needs to point down instead — rotate(135deg)
+     is +90deg from the desktop value (see .arrowIcon's base rule). */
+  .arrowIcon {
+    transform: rotate(135deg);
+  }
+
+  .screenshots {
+    display: none;
+  }
+
+  .carousel {
+    display: flex;
+  }
+}
+
+/*
+  Tablet pass (426-1023px). 426-767px is source's own "MOBILE L" variant
+  — confirmed identical to the ≤425 block above (it's the same variant
+  that block already covers), repeated verbatim.
+
+  768-1023px is the genuinely unusual one: source's own ssr-variant
+  hidden-breakpoint list confirms the DESKTOP variant is what's shown at
+  Tablet (768-1023) — not a distinct reflowed layout at all. So
+  .beforeText/.compareCard/.screenshots stay exactly as desktop: no wrap
+  fix, no stacking, no scroll strip.
+  The one real change at this range isn't from a layout "variant" at
+  all — it's the screenshot <img>'s own responsive `sizes` attribute
+  (confirmed in source: 224px at 768-1023.98px viewport width, vs 280px
+  everywhere else including 426-767 and desktop), which applies purely by
+  viewport width regardless of which layout variant is active. Height is
+  derived from that confirmed width at the same aspect ratio as the
+  existing 280x599 pair (599 * 224/280 = 479.2, rounded) — not a
+  separately confirmed height value, flagging that rather than treating
+  it as extracted.
+*/
+@media (min-width: 426px) and (max-width: 767.98px) {
+  .beforeText {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .compareCard {
+    flex-direction: column;
+  }
+
+  /* NOT in source — same bug fix as the ≤425 block above, repeated for
+     this twin "MOBILE L" range where .compareCard also stacks. */
+  .arrowIcon {
+    transform: rotate(135deg);
+  }
+
+  /* NOT in source — same carousel swap as the ≤425 block above, repeated
+     for this twin "MOBILE L" range. */
+  .screenshots {
+    display: none;
+  }
+
+  .carousel {
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .screenshotImageWrap {
+    width: 224px; /* confirmed via the source <img>'s own sizes attribute */
+    height: 479px; /* derived from the confirmed width at the existing 280x599 ratio, not separately confirmed */
+  }
 }

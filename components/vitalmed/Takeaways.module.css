@@ -1,0 +1,143 @@
+/* All values below confirmed against reference/framer-original/vitalmed/'s
+   own compiled CSS for this section (.framer-J9S3v.framer-1f0w3c9
+   "Desktop" variant, under the "TAKEAWAYS" eyebrow) — resolved via
+   cascade simulation over the source-order rules scoped to this
+   component instance's own "framer-J9S3v" wrapper class. */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px; /* confirmed */
+  width: 100%;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* confirmed */
+  width: 100%;
+}
+
+.eyebrow {
+  font-weight: var(--font-weight-medium); /* 500, confirmed Inter medium */
+  font-size: 16px; /* inherited default, same convention as the other sections */
+  letter-spacing: 1.26px; /* confirmed */
+  line-height: 32px; /* confirmed */
+  color: rgba(255, 255, 255, 0.4); /* confirmed */
+  margin: 0;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* confirmed */
+}
+
+.tituloLine1,
+.tituloLine2 {
+  font-family: var(--font-ibm-plex-serif), "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-weight: 500; /* confirmed */
+  font-size: 32px; /* confirmed */
+  line-height: 40px; /* confirmed */
+  margin: 0;
+}
+
+.tituloLine1 {
+  color: rgb(204, 204, 204); /* confirmed */
+}
+
+.tituloLine2 {
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0; /* confirmed — dividers, not gaps, separate items */
+  width: 100%;
+}
+
+.itemFirst,
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px; /* confirmed */
+  width: 100%;
+  padding: 24px 0; /* confirmed */
+}
+
+.itemFirst {
+  padding-top: 24px; /* confirmed — no bottom padding/divider above item 1 */
+  padding-bottom: 0;
+}
+
+.item {
+  border-top: 1px solid rgba(255, 255, 255, 0.07); /* confirmed */
+}
+
+/* Regular-weight italic — confirmed distinct from the titulo's medium
+   italic, see Takeaways.tsx note. */
+.number {
+  font-family: "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-size: 38px; /* confirmed */
+  line-height: 30px; /* confirmed */
+  color: rgba(204, 204, 204, 0.6); /* confirmed */
+  margin: 0;
+}
+
+.itemText {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  align-items: flex-start;
+  gap: 10px; /* confirmed */
+}
+
+.itemTitle {
+  font-size: 16px; /* inherited default */
+  line-height: 24px; /* confirmed */
+  color: rgb(204, 204, 204); /* confirmed */
+  margin: 0;
+}
+
+.itemDescription {
+  font-size: 15px; /* confirmed */
+  line-height: 24px; /* confirmed */
+  color: rgba(204, 204, 204, 0.8); /* confirmed */
+  margin: 0;
+}
+
+.callout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; /* confirmed */
+  width: 100%;
+  padding: 24px 25px 24px 24px; /* confirmed */
+  background: rgba(0, 87, 184, 0.2); /* var(--color-case-vitalmed) at 20%, confirmed */
+  border-left: 3px solid var(--color-case-vitalmed); /* rgb(0,87,184), confirmed */
+}
+
+.quote {
+  font-family: "IBM Plex Serif", serif;
+  font-style: italic; /* confirmed */
+  font-size: 24px; /* confirmed */
+  line-height: 36px; /* confirmed */
+  color: rgba(255, 255, 255, 0.8); /* confirmed */
+  text-align: center;
+  margin: 0;
+}
+
+.attribution {
+  font-size: 12px; /* confirmed */
+  line-height: 20px; /* confirmed */
+  color: rgba(204, 204, 204, 0.8); /* confirmed */
+  text-align: center;
+  margin: 0;
+}

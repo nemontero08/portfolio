@@ -5,28 +5,75 @@
 }
 
 /*
-  Below 1024px the grid becomes a single flex column (see BentoGrid.module.css).
-  `order` is scoped to only this range: applying it above 1024 would also
-  reshuffle CSS Grid's own auto-placement, which we've verified should stay
-  in plain DOM order (see BentoGrid.tsx).
+  Home page tablet pass (426-1023px): a NEW custom layout with no original
+  to copy, same as the mobile pass below. This range gets its own
+  2-column CSS grid (see BentoGrid.module.css), one auto-row per card pair
+  (grid-row: span 1 — nothing in this layout spans multiple tablet rows),
+  each item spanning 1 or 2 of those columns via --tablet-col-span, and
+  sized to Nico's measured px spec via --tablet-min-height where one was
+  given (see GridItem.tsx / app/[locale]/page.tsx for each card's chosen
+  values). min-height rather than height: the grid's default row-stretch
+  (align-items: stretch) already lands same-row siblings on exactly that
+  value whenever content fits, but lets a card whose real content needs
+  more (e.g. a longer Spanish string) grow instead of clipping.
+
+  Unlike the mobile pass below, tablet has its own explicit reorder
+  (per the tablet-stacking-order brief) via --tablet-order, decoupled
+  from DOM/source order — DOM order itself is left untouched so the
+  mobile pass (which does rely on DOM order) stays unaffected.
 */
-@media (max-width: 1023.98px) {
+@media (min-width: 426px) and (max-width: 1023.98px) {
   .item {
-    order: var(--mobile-order, 0);
+    grid-column: span var(--tablet-col-span, 2);
+    grid-row: span 1;
+    order: var(--tablet-order, 0);
+    min-height: var(--tablet-min-height, 0);
   }
 }
 
 /*
-  Home page mobile pass (375-425px): this is a NEW custom layout with no
-  original to copy, so per instruction the stack uses plain DOM/source
-  order here — overriding the legacy --mobile-order value above (which
-  predates the bento redesign and no longer reflects a real intended
-  order for these cards). See app/[locale]/page.tsx for the resulting
-  top-to-bottom order.
+  Home page mobile pass 2 (<=425px): same mechanism as the tablet block
+  above (own 2-column grid — see BentoGrid.module.css — with per-item
+  --mobile-col-span/--mobile-order/--mobile-min-height), now carrying a
+  real requested reorder + consistent-height brief instead of the
+  original "just stack in DOM order" mobile pass. min-height rather than
+  height for the same reason as tablet: a card whose real content needs
+  more room (checked against both locales) grows instead of clipping.
 */
 @media (max-width: 425px) {
   .item {
-    order: 0;
+    grid-column: span var(--mobile-col-span, 2);
+    grid-row: span 1;
+    order: var(--mobile-order, 0);
+    min-height: var(--mobile-min-height, 0);
+  }
+}
+
+/*
+  Mobile-only standalone placement for How I Work (see mobileOnly in
+  GridItem.tsx and app/[locale]/page.tsx) — this card's content also
+  renders nested inside VitalmedRightColumn for tablet/desktop (see
+  hiddenAtMobile below), so exactly one of the two copies is ever visible
+  at a time.
+*/
+.mobileOnly {
+  display: none;
+}
+@media (max-width: 425px) {
+  .mobileOnly {
+    display: block;
+  }
+}
+
+/*
+  Inverse of .mobileOnly — hides the combined About-me/How-I-Work column
+  at <=425px, where How I Work instead renders via its own standalone
+  .mobileOnly GridItem and About me's placement is still TBD (hidden
+  until Nico confirms where it goes).
+*/
+@media (max-width: 425px) {
+  .hiddenAtMobile {
+    display: none;
   }
 }
 
