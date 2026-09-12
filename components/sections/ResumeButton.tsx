@@ -39,12 +39,12 @@ const containerVariants = {
   hover: { bottom: -38, right: -13, height: 100, gap: 8 },
 };
 
-// One CV per language — RESUME_HREF below resolves this against the
+// One CV per language, served from /public — resolved against the
 // current locale via next-intl's useLocale(), so EN pages link the EN CV
 // and ES pages link the ES CV.
 const CV_URLS = {
-  en: "https://drive.google.com/file/d/1oI8z7uACH74z5yQFMKwD3geQcy7ygUOE/view?usp=sharing",
-  es: "https://drive.google.com/file/d/1womkBKNM0JCoLzADmmMrJZS21rJR1vBj/view",
+  en: "/Nicolas_Montero_CV_EN.pdf",
+  es: "/Nicolas_Montero_CV_ES.pdf",
 } as const;
 
 // reference/specs/resume-doc.svg, verbatim — the real drawing pulled from
