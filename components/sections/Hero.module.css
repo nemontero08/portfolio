@@ -96,7 +96,7 @@
   default greedy wrap — adapts per language automatically, no manual
   breaks.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .card {
     gap: 24px;
   }

@@ -213,7 +213,7 @@
    timeline pieces carry a FIXED 678px width at desktop — confirmed to
    become width:100% at mobile, not left fixed (that fixed value would
    otherwise overflow a 375-425px viewport). */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .cosas {
     flex-direction: column;
   }
@@ -249,31 +249,6 @@
   Tablet (768-1023) has no gap override in source, so it keeps the
   desktop 8px value.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .cosas {
-    flex-direction: column;
-  }
-
-  .colIzq {
-    width: 100%;
-  }
-
-  .colDer {
-    flex: none;
-    width: 100%;
-    gap: 16px; /* confirmed */
-  }
-
-  .cuadro {
-    width: 100%;
-  }
-
-  .item,
-  .linea {
-    width: 100%;
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .cosas {
     flex-direction: column;

@@ -393,7 +393,7 @@
    itself (that component's real interaction values aren't recoverable
    from a static capture, same caveat as every other adapted-not-
    confirmed piece on this page). */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .beforeText {
     white-space: pre-wrap;
     word-break: break-word;
@@ -442,34 +442,6 @@
   separately confirmed height value, flagging that rather than treating
   it as extracted.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .beforeText {
-    white-space: pre-wrap;
-    word-break: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .compareCard {
-    flex-direction: column;
-  }
-
-  /* NOT in source — same bug fix as the ≤425 block above, repeated for
-     this twin "MOBILE L" range where .compareCard also stacks. */
-  .arrowIcon {
-    transform: rotate(135deg);
-  }
-
-  /* NOT in source — same carousel swap as the ≤425 block above, repeated
-     for this twin "MOBILE L" range. */
-  .screenshots {
-    display: none;
-  }
-
-  .carousel {
-    display: flex;
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .screenshotImageWrap {
     width: 224px; /* confirmed via the source <img>'s own sizes attribute */

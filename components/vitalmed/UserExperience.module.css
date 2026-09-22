@@ -340,7 +340,7 @@
   margin: 0;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .table {
     display: none;
   }
@@ -390,24 +390,6 @@
   already fixed in the Design System section's own tablet/mobile passes.
   Fixed here the same way: capped instead of reproduced literally.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .table {
-    display: none;
-  }
-
-  .accordion {
-    display: flex;
-  }
-
-  .accordionFeeling .barTrack {
-    width: 100%;
-  }
-
-  .curve {
-    padding: 16px 4px;
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .titulo {
     width: 100%; /* confirmed */

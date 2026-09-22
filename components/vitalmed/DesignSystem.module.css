@@ -240,7 +240,7 @@
    banner (.animImage's own wrapper reused for it), whose width:100% at
    mobile IS separately confirmed in source, so this same rule happens to
    match that one exactly. */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .cosas {
     flex-direction: column;
   }
@@ -335,52 +335,6 @@
   minor internal left/right swap, not an overflow or sizing concern,
   skipped as out of proportion to this pass's scope.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .cosas {
-    flex-direction: column;
-  }
-
-  .colAnimations {
-    width: 100%;
-  }
-
-  .colUiKit {
-    flex: none;
-    width: 100%;
-    gap: 16px;
-  }
-
-  .lottieCanvas {
-    width: var(--lottie-w-mobile, var(--lottie-w));
-    height: var(--lottie-h-mobile, var(--lottie-h));
-  }
-
-  .animFrame1 {
-    width: 158px;
-  }
-
-  .animFrame2 {
-    width: 174px;
-  }
-
-  .animFrame3 {
-    width: 144px;
-  }
-
-  .uiKitContent {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .uiKitTallWrap {
-    width: 100%;
-  }
-
-  .uiKitImageWrap {
-    max-width: 100%;
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .cosas {
     flex-direction: column;

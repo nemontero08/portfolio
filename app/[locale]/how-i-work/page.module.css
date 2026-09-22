@@ -67,7 +67,7 @@
    part — see that block's own comment). .principles reflows to a single
    column: intro+"where I work best" first, then the card grid, then
    "What you won't find" last (matching source's confirmed reorder). */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .body {
     gap: 64px;
     padding: 16px 16px 32px;
@@ -98,7 +98,7 @@
   flex-direction:column at both source's true Tablet variant and its
   Mobile-L-equivalent for 426-767) — reused unchanged.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
+@media (min-width: 768px) and (max-width: 767.98px) {
   .body {
     gap: 64px;
     padding: 16px 16px 32px;

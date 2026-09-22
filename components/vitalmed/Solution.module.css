@@ -222,7 +222,7 @@
    safety/overflow deviation from that unconfirmed-safe literal value,
    not a discovered source value; visual max size is unchanged since
    300px was already this step's natural width. */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .row {
     flex-direction: column;
     gap: 12px; /* confirmed */
@@ -268,32 +268,6 @@
   further, 19px->16px, in source — not reproduced here, a decorative
   detail not worth the added plumbing at this component's scope.)
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .row {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .step {
-    width: 100%;
-  }
-
-  .turnRight,
-  .turnLeft {
-    justify-content: center;
-  }
-
-  .turnSlot {
-    width: 100%;
-  }
-
-  /* NOT in source — same bug fix as the ≤425 block above, repeated for
-     this twin "MOBILE L" range where .row also stacks. */
-  .arrowIcon {
-    transform: rotate(135deg);
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .step {
     width: 192px; /* confirmed, scaled down from 300px — not full-width like mobile */

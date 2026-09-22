@@ -56,7 +56,7 @@
   independent of their fixed DOM order (About me first) used by every
   other breakpoint.
 */
-@media (min-width: 426px) and (max-width: 1023.98px) {
+@media (min-width: 768px) and (max-width: 1023.98px) {
   .aboutMeSlot {
     display: block;
     order: 2;

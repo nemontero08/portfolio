@@ -141,7 +141,7 @@
    instead, a deliberate text-safety deviation. Font sizes are unchanged
    from desktop — confirmed no responsive scaling exists in source for
    this section's text presets. */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .intro {
     width: 100%; /* confirmed */
   }
@@ -172,7 +172,7 @@
   stacks there too, confirmed directly, not assumed from the mobile
   pattern.
 */
-@media (min-width: 426px) and (max-width: 1023.98px) {
+@media (min-width: 768px) and (max-width: 1023.98px) {
   .intro {
     width: 100%;
   }

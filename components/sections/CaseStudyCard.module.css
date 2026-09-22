@@ -39,7 +39,7 @@
   vitalmed/Hero.module.css's own .logo override. width:auto (already the
   component's default) keeps the ~7.21 aspect ratio.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .titleLogo svg {
     height: 25px !important;
     width: auto !important;
@@ -51,7 +51,7 @@
   elsewhere in this project — not literally 768-1024): same override
   mechanism as the mobile block above, just a different target height.
 */
-@media (min-width: 426px) and (max-width: 1023.98px) {
+@media (min-width: 768px) and (max-width: 1023.98px) {
   .titleLogo svg {
     height: 32px !important;
     width: auto !important;
@@ -80,7 +80,7 @@
   !important wins over the inline 32px at mobile only; tablet/desktop
   keep that inline 32px untouched.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .title {
     font-size: 36px !important;
   }
@@ -122,7 +122,7 @@
   they're already at this class's 16px default and this rule is a no-op
   for them.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .heading {
     font-size: 16px !important;
   }
@@ -161,7 +161,7 @@
   single "orphan" pill — is guaranteed to hug the left edge instead of
   drifting to center/space-between under any inherited override.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .pills {
     justify-content: flex-start;
     align-content: flex-start;
@@ -208,7 +208,7 @@
   to every card's .pills, since Basalto/Lumine weren't asked for this at
   tablet.
 */
-@media (min-width: 426px) and (max-width: 1023.98px) {
+@media (min-width: 768px) and (max-width: 1023.98px) {
   .active .pills {
     justify-content: flex-start;
     align-content: flex-start;
@@ -247,7 +247,7 @@
   desktop's 35%); now a literal px target per Nico's measured spec.
   Tablet/desktop keep the unmodified 35%.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .imageWrap {
     width: 116px;
   }

@@ -263,7 +263,7 @@
    confirmed, not assumed. .metricItem/.metricItemLast's fixed 547px is
    confirmed to become width:100% too (same overflow-safe pattern as
    Problem's 678px-wide flow items). */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .decisionsRow,
   .summaryRow {
     flex-direction: column;
@@ -309,26 +309,6 @@
   range — flagging that piece as the least independently-confirmed part
   of this section's tablet pass.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .decisionsRow,
-  .summaryRow {
-    flex-direction: column;
-  }
-
-  .decisionsColFixed {
-    width: 100%;
-  }
-
-  .quoteCol {
-    width: 100%;
-  }
-
-  .metricItem,
-  .metricItemLast {
-    width: 100%;
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .decisionsRow,
   .summaryRow {

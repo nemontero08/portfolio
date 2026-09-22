@@ -65,7 +65,7 @@
   :first-child (REST_FILL, gray) / :last-child (HOVER_FILL, white) target
   them by their fixed DOM order in LinkedInCard.tsx.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .card {
     background-color: rgb(14, 118, 168) !important;
   }

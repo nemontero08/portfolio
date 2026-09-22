@@ -70,7 +70,7 @@
    padding/gap and every section's divider/max-width stay unchanged. This
    rule stops at 425 since the tablet pass below now owns 426-1023, the
    rest of that shared range. */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .body {
     padding: 16px 16px 32px;
   }
@@ -84,8 +84,3 @@
   through to the base/desktop padding (16px 32px 32px), already this
   file's default, so no rule is needed for that sub-range.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .body {
-    padding: 16px 16px 32px;
-  }
-}

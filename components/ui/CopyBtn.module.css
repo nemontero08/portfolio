@@ -79,7 +79,7 @@
   fits instead of bleeding past the card (this component has no
   overflow:hidden of its own to fall back on).
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .emailLayer {
     font-size: var(--text-13);
   }

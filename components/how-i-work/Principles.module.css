@@ -192,7 +192,7 @@
    height risks clipping the longer ES copy); height is left auto. Font
    sizes unchanged from desktop — confirmed no responsive scaling in
    source for this section's text presets either. */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .gridRow {
     flex-direction: column;
   }
@@ -228,7 +228,7 @@
   so it stays exactly as desktop (row layout, 117px height) — already
   fits at this width.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
+@media (min-width: 768px) and (max-width: 767.98px) {
   .gridRow {
     flex-direction: column;
   }

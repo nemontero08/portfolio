@@ -232,7 +232,7 @@
    one, see the tablet block below) — the 2x2 UX/Legal/Operations/
    Technical tile arrangement and its fixed 250px height are reproduced
    unchanged down to 375px, not assumed to stack. */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .cosas {
     flex-direction: column;
   }
@@ -315,29 +315,6 @@
   its fixed 250px height becomes auto (height:min-content) — a Tablet-
   specific relaxation that doesn't exist at true mobile.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .cosas {
-    flex-direction: column;
-  }
-
-  .colDer {
-    flex: none;
-    width: 100%;
-    gap: 16px; /* confirmed */
-  }
-
-  .colIzq {
-    flex: none;
-    width: 100%;
-    height: min-content; /* confirmed */
-  }
-
-  .visionCard {
-    flex: none;
-    height: min-content; /* confirmed */
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .cosas {
     flex-direction: column;

@@ -68,7 +68,7 @@
   renders at this forced size, but that's invisible either way — it sits
   fully outside the card, clipped by .card's overflow:clip.
 */
-@media (min-width: 426px) and (max-width: 1023.98px) {
+@media (min-width: 768px) and (max-width: 1023.98px) {
   .photo {
     width: 123.5px !important;
     height: 123.5px !important;

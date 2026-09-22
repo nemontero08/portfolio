@@ -117,7 +117,7 @@
    --framer-font-size" text node elsewhere on this page) — reproduced as
    16px. NDA badge (icon + text) keeps its desktop font sizes unchanged —
    confirmed no override exists for it at any mobile breakpoint. */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .card {
     /*
       Confirmed-but-flagged gap, now backfilled: the source's own Mobile
@@ -149,6 +149,7 @@
 
   .subheading {
     font-size: 16px; /* inherited default, confirmed no explicit override at this breakpoint */
+    width: 100%; /* confirmed — moved here from the dead 426-767.98 tier below, now covers the full mobile range */
   }
 
   .imageWrap {
@@ -224,38 +225,6 @@
   height as a plain inline style prop, which a class selector can't
   otherwise beat.
 */
-@media (min-width: 426px) and (max-width: 767.98px) {
-  .card {
-    padding: 24px 16px; /* confirmed */
-  }
-
-  .textColumn {
-    width: 100%;
-    gap: 14px; /* confirmed */
-  }
-
-  .headingGroup {
-    width: 100%;
-  }
-
-  .heading {
-    font-size: 18px; /* confirmed */
-  }
-
-  .subheadingGroup {
-    gap: 8px; /* confirmed */
-  }
-
-  .subheading {
-    font-size: 16px; /* inherited default, confirmed no explicit override at this variant */
-    width: 100%; /* confirmed */
-  }
-
-  .imageWrap {
-    display: none; /* confirmed absent from source at this variant */
-  }
-}
-
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .card {
     padding: 32px 24px; /* confirmed */
