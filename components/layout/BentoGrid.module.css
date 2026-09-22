@@ -42,7 +42,7 @@
   what produced the huge equal-height cards and dead vertical space this
   block exists to avoid.
 */
-@media (min-width: 426px) and (max-width: 1023.98px) {
+@media (min-width: 768px) and (max-width: 1023.98px) {
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -63,7 +63,7 @@
   reasoning as tablet: row heights aren't meaningful once content varies
   this much, so every row sizes compactly to its own content.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

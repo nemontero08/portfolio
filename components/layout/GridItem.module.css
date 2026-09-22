@@ -22,7 +22,7 @@
   from DOM/source order — DOM order itself is left untouched so the
   mobile pass (which does rely on DOM order) stays unaffected.
 */
-@media (min-width: 426px) and (max-width: 1023.98px) {
+@media (min-width: 768px) and (max-width: 1023.98px) {
   .item {
     grid-column: span var(--tablet-col-span, 2);
     grid-row: span 1;
@@ -40,7 +40,7 @@
   height for the same reason as tablet: a card whose real content needs
   more room (checked against both locales) grows instead of clipping.
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .item {
     grid-column: span var(--mobile-col-span, 2);
     grid-row: span 1;
@@ -59,7 +59,7 @@
 .mobileOnly {
   display: none;
 }
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .mobileOnly {
     display: block;
   }
@@ -71,7 +71,7 @@
   .mobileOnly GridItem and About me's placement is still TBD (hidden
   until Nico confirms where it goes).
 */
-@media (max-width: 425px) {
+@media (max-width: 767.98px) {
   .hiddenAtMobile {
     display: none;
   }
